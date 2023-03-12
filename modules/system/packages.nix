@@ -11,11 +11,15 @@
     bc
     clang
     fd
+    fzf
     git
     gnumake
     go
+    htop
     python311
     ripgrep
+    terraform
+    tree
     unstable.alejandra
     unstable.distrobox
     unstable.lazygit
@@ -23,7 +27,6 @@
     unstable.tmux
     vim
     wget
-    tree
   ];
 
   programs.gnupg.agent.enable = true;

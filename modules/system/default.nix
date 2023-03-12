@@ -25,8 +25,14 @@
     MaxFileSec=7day
   '';
 
-  environment.shellAliases = {
-    nixconf = "cd /home/aorith/githome/nixconf";
-    nix-list-packages = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort -u";
+  environment = {
+    etc = {
+      # Allow editing /etc/hosts as root (changes are disacarded on rebuild)
+      hosts.mode = "0644";
+    };
+    shellAliases = {
+      nixconf = "cd /home/aorith/githome/nixconf";
+      nix-list-packages = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort -u";
+    };
   };
 }

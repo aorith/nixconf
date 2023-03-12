@@ -1,3 +1,4 @@
+chat.rocket.RocketChat
 com.bitwarden.desktop
 com.calibre_ebook.calibre
 com.github.tchx84.Flatseal
@@ -8,6 +9,7 @@ com.vscodium.codium
 io.mpv.Mpv
 net.cozic.joplin_desktop
 org.flameshot.Flameshot
+org.geany.Geany
 org.gimp.GIMP
 org.gnome.Firmware
 org.remmina.Remmina
