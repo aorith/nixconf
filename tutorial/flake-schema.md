@@ -46,7 +46,7 @@ path:/home/aorith/githome/nixconf/tutorial/test?lastModified=1678544717&narHash=
 
 If we specify something that isn't in the schema it appears as *unknown*:  
 
-```nix
+```bash
 $ nix flake show
 path:/home/aorith/githome/nixconf/tutorial/test?lastModified=1678544845&narHash=sha256-QatWCXybLPXlwY9viQqKJ7xdBwf%2fgNp7JRje6yqEK7M=
 ├───packages
