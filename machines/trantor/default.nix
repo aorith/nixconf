@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -9,6 +10,7 @@
     ../../modules/system
     ../../modules/desktop
     ../../modules/virtualisation/docker.nix
+    inputs.private.nixosModules.work
   ];
 
   boot.loader.systemd-boot.enable = true;

@@ -2,9 +2,11 @@
   description = "One Nix flake to rule them all";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
+    #nixos-hardware.url = "github:nixos/nixos-hardware";
+    private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
   };
 
   outputs = inputs: {
