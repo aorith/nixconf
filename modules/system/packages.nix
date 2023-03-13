@@ -16,6 +16,8 @@
     gnumake
     go
     htop
+    openssl
+    openvpn
     python311
     ripgrep
     terraform

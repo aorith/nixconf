@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/users/aorith.nix
@@ -12,15 +7,6 @@
     ../../modules/virtualisation/docker.nix
     inputs.private.nixosModules.work
   ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  networking.hostName = "trantor";
-  networking.networkmanager = {
-    enable = true;
-  };
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -31,8 +17,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-  services.xserver.videoDrivers = ["amdgpu"];
 
   services.syncthing = {
     enable = true;

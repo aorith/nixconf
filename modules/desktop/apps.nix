@@ -1,10 +1,11 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    firefox
+    rocketchat-desktop
     sublime4
     unstable.alacritty
+    unstable.chromium
+    unstable.firefox
     unstable.foot
-    unstable.rocketchat-desktop
     wl-clipboard
   ];
 

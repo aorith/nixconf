@@ -25,6 +25,10 @@ dry-build:
 	@nix flake lock --update-input private
 	sudo nixos-rebuild dry-build --flake .#
 
+dry-activate:
+	@nix flake lock --update-input private
+	sudo nixos-rebuild dry-activate --flake .#
+
 update:
 	nix flake update
 
