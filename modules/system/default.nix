@@ -2,6 +2,7 @@
   imports = [
     ./nix.nix
     ./packages.nix
+    ./python.nix
   ];
 
   time.timeZone = "Europe/Madrid";
@@ -34,5 +35,11 @@
       nixconf = "cd /home/aorith/githome/nixconf";
       nix-list-packages = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort -u";
     };
+  };
+
+  documentation = {
+    enable = true;
+    man.enable = true;
+    nixos.enable = true;
   };
 }

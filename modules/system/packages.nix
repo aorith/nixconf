@@ -1,8 +1,4 @@
-{
-  pkgs,
-  nixpkgs,
-  ...
-}: {
+{pkgs, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -10,16 +6,30 @@
   environment.systemPackages = with pkgs; [
     bc
     clang
+    commonsCompress
+    coreutils-full
+    dig
+    dstat
+    efibootmgr
     fd
+    ffmpeg-full
+    file
     fzf
     git
     gnumake
     go
     htop
+    inetutils
+    lsof
+    nvme-cli
     openssl
     openvpn
-    python311
+    parted
+    pciutils
+    pstree
     ripgrep
+    smartmontools
+    sysstat
     terraform
     tree
     unstable.alejandra
@@ -27,6 +37,7 @@
     unstable.lazygit
     unstable.nil
     unstable.tmux
+    usbutils
     vim
     wget
   ];
