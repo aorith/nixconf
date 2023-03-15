@@ -5,6 +5,7 @@
     ../../modules/system
     ../../modules/desktop
     ../../modules/virtualisation/docker.nix
+    ../../modules/virtualisation/libvirt.nix
     inputs.private.nixosModules.work
   ];
 
