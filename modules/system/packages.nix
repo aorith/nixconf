@@ -18,6 +18,7 @@
     gnumake
     go
     inetutils
+    just
     lsof
     nvme-cli
     openssl
