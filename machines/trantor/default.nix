@@ -2,7 +2,6 @@
   imports = [
     ./hardware.nix
     ./virtualisation.nix
-    ./justfile.nix
     ../../modules/users/aorith.nix
     ../../modules/system
     ../../modules/desktop
