@@ -6,7 +6,7 @@
     ../../modules/desktop
     ../../modules/virtualisation/docker.nix
     ../../modules/virtualisation/libvirt.nix
-    inputs.private.nixosModules.work
+    #inputs.private.nixosModules.work
   ];
 
   sound.enable = true;
@@ -19,14 +19,14 @@
     pulse.enable = true;
   };
 
-  services.syncthing = {
-    enable = true;
-    user = "aorith";
-    group = "aorith";
-    configDir = "/home/aorith/storage/tank/data/syncthing/_config/syncthing";
-    dataDir = "/home/aorith/storage/tank/data/syncthing";
-    guiAddress = "127.0.0.1:8384";
-  };
+  #services.syncthing = {
+  #  enable = true;
+  #  user = "aorith";
+  #  group = "aorith";
+  #  configDir = "/home/aorith/storage/tank/data/syncthing/_config/syncthing";
+  #  dataDir = "/home/aorith/storage/tank/data/syncthing";
+  #  guiAddress = "127.0.0.1:8384";
+  #};
 
   system.stateVersion = "22.11";
 }

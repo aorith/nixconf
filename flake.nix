@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
+    #private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
   };
 
   outputs = inputs: {

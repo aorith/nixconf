@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   modulesPath,
   inputs,
@@ -19,28 +20,49 @@
       kernelModules = [];
     };
     kernelModules = ["kvm-amd" "amdgpu"];
+    kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = [];
     tmpOnTmpfs = true;
     loader = {
       systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
       };
     };
+    supportedFilesystems = [ "btrfs" ];
   };
 
   services.xserver.videoDrivers = ["amdgpu"];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/cf410a4d-08f3-4026-bbcf-537c3d4194f7";
-    fsType = "ext4";
-  };
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/367D-7052";
-    fsType = "vfat";
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
+      fsType = "btrfs";
+      options = [ "subvol=root" "compress=zstd" "noatime" ];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
+      fsType = "btrfs";
+      options = [ "subvol=home" "compress=zstd" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
+      fsType = "btrfs";
+      options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    };
+
+  fileSystems."/var" =
+    { device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
+      fsType = "btrfs";
+      options = [ "subvol=var" "compress=zstd" "noatime" ];
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/B6FC-8DCC";
+      fsType = "vfat";
+    };
 
   fileSystems."/home/aorith/storage/tank" = {
     device = "/dev/disk/by-label/tank";
@@ -72,7 +94,9 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   hardware = {
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
+    cpu.amd.updateMicrocode = true;
     bluetooth.enable = true;
     opengl = {
       enable = true;
