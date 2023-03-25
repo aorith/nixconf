@@ -9,7 +9,9 @@
       onShutdown = "shutdown";
       onBoot = "ignore";
       allowedBridges = ["br0" "virbr0"];
-      spiceUSBRedirection.enable = true;
+      qemu = {
+        ovmf.enable = true;
+      };
     };
     docker = {
       enable = true;
