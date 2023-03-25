@@ -15,10 +15,8 @@
     ffmpeg-full
     file
     fzf
-    git
     gnumake
     go
-    htop
     inetutils
     lsof
     nvme-cli
@@ -36,12 +34,27 @@
     unstable.distrobox
     unstable.lazygit
     unstable.nil
-    unstable.tmux
     usbutils
     vim
     wget
   ];
 
-  programs.gnupg.agent.enable = true;
-  programs.bash.enableCompletion = true;
+  programs = {
+    bash = {
+      enableLsColors = true;
+      enableCompletion = true;
+    };
+    tmux = {
+      enable = true;
+    };
+
+    dconf.enable = true;
+    git.enable = true;
+    gnupg.agent.enable = true;
+    htop.enable = true;
+    iotop.enable = true;
+    mtr.enable = true;
+    traceroute.enable = true;
+    wireshark.enable = true;
+  };
 }

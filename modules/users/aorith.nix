@@ -10,7 +10,7 @@
     uid = 1000;
     group = "aorith";
     description = "aorith";
-    extraGroups = ["networkmanager" "wheel" "docker" "libvirtd"];
+    extraGroups = ["networkmanager" "wheel" "docker" "libvirtd" "systemd-journal"];
     shell = pkgs.bash;
   };
 }

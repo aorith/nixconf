@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    #private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
+    private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
   };
 
   outputs = inputs: {
@@ -28,7 +28,9 @@
             # you can verify it by loading the flake in a repl (nix repl -> :lf .)
             # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
             ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
-            machines/trantor
+
+            ./machines/trantor
+            inputs.private.nixosModules.work
           ];
         };
     };

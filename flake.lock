@@ -2,11 +2,11 @@
   "nodes": {
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1679598117,
-        "narHash": "sha256-Vs1f/7imI77OkMOQhO3xgx4jalN2Gx3D3C2wmnlpWJM=",
+        "lastModified": 1679765008,
+        "narHash": "sha256-VCkg/wC2e882suYDS5PDAemaMLYSOdFm4fsx2gowMR0=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "648021dcb2b65498eed3ea3a7339cdfc3bea4d82",
+        "rev": "f38f9a4c9b2b6f89a5778465e0afd166a8300680",
         "type": "github"
       },
       "original": {
@@ -31,20 +31,38 @@
         "type": "github"
       }
     },
+    "private": {
+      "locked": {
+        "dir": "private",
+        "lastModified": 1678630694,
+        "narHash": "sha256-EWESGI13niZybdLWd36frApxsgrQNDb1LZrZ7BTYV8M=",
+        "ref": "refs/heads/master",
+        "rev": "03ad3a8a3f8522c59e2479a070be251f81e0b6b4",
+        "revCount": 2,
+        "type": "git",
+        "url": "file:///home/aorith/Syncthing/SYNC_STUFF/githome/nixconf?dir=private"
+      },
+      "original": {
+        "dir": "private",
+        "type": "git",
+        "url": "file:///home/aorith/Syncthing/SYNC_STUFF/githome/nixconf?dir=private"
+      }
+    },
     "root": {
       "inputs": {
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "private": "private",
         "unstable": "unstable"
       }
     },
     "unstable": {
       "locked": {
-        "lastModified": 1679616449,
-        "narHash": "sha256-E6Fvb13mDFa1ZY4lDbTpKbjvUOA4gbh23GWRf3ZzOOw=",
+        "lastModified": 1679705136,
+        "narHash": "sha256-MDlZUR7wJ3PlPtqwwoGQr3euNOe0vdSSteVVOef7tBY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a64e169e396460d6b5763a1de1dd197df8421688",
+        "rev": "8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd",
         "type": "github"
       },
       "original": {

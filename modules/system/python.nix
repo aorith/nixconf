@@ -9,6 +9,7 @@
 {
   environment.systemPackages = with pkgs; [
     #(python311.withPackages python-pkgs)
-    python311
+    unstable.python311Packages.requests
+    unstable.python311Packages.urllib3
   ];
 }

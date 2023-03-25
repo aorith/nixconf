@@ -1,6 +1,4 @@
 {
-  config,
-  pkgs,
   lib,
   modulesPath,
   inputs,
@@ -20,49 +18,51 @@
       kernelModules = [];
     };
     kernelModules = ["kvm-amd" "amdgpu"];
-    kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = [];
     tmpOnTmpfs = true;
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 20;
+      };
       efi = {
         canTouchEfiVariables = true;
       };
     };
-    supportedFilesystems = [ "btrfs" ];
+    supportedFilesystems = ["btrfs"];
   };
 
   services.xserver.videoDrivers = ["amdgpu"];
+  services.btrfs.autoScrub.enable = true;
 
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
+    fsType = "btrfs";
+    options = ["subvol=root" "compress=zstd" "noatime"];
+  };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
+    fsType = "btrfs";
+    options = ["subvol=home" "compress=zstd" "noatime"];
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
-      fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" ];
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
+    fsType = "btrfs";
+    options = ["subvol=nix" "compress=zstd" "noatime"];
+  };
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime" ];
-    };
+  fileSystems."/var" = {
+    device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
+    fsType = "btrfs";
+    options = ["subvol=var" "compress=zstd" "noatime"];
+  };
 
-  fileSystems."/var" =
-    { device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
-      fsType = "btrfs";
-      options = [ "subvol=var" "compress=zstd" "noatime" ];
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B6FC-8DCC";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/B6FC-8DCC";
+    fsType = "vfat";
+  };
 
   fileSystems."/home/aorith/storage/tank" = {
     device = "/dev/disk/by-label/tank";
@@ -85,7 +85,7 @@
   networking = {
     hostName = "trantor";
     hostId = "be6e2627"; # head -c8 /etc/machine-id
-    useDHCP = lib.mkDefault true;
+    useDHCP = false;
     networkmanager.enable = true;
   };
 
@@ -103,5 +103,6 @@
       driSupport = true;
       driSupport32Bit = true;
     };
+    video.hidpi.enable = lib.mkForce false;
   };
 }

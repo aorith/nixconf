@@ -18,13 +18,6 @@ in {
     ./gnome.nix
   ];
 
-  systemd.targets = {
-    sleep.enable = false;
-    suspend.enable = false;
-    hibernate.enable = false;
-    hybrid-sleep.enable = false;
-  };
-
   # Fix cursor theme: https://github.com/NixOS/nixpkgs/issues/22652
   environment.systemPackages = [
     defaultCursorPkg
