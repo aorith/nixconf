@@ -25,8 +25,10 @@
     ];
     systemPackages = with pkgs; [
       gnome.gnome-tweaks
-      gnomeExtensions.gsconnect
       gnomeExtensions.appindicator
+      gnomeExtensions.gsconnect
+      gnomeExtensions.pano
+      pantheon.elementary-wallpapers
     ];
   };
 }

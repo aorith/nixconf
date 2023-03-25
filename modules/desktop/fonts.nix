@@ -36,5 +36,6 @@
     # Create an FHS mount to support flatpak host icons/fonts
     "/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
     "/usr/share/fonts" = mkRoSymBind "/run/current-system/sw/share/X11/fonts";
+    "/usr/share/sounds" = mkRoSymBind "/run/current-system/sw/share/sounds";
   };
 }
