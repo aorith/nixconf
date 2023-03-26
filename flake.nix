@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
   };
@@ -13,7 +13,7 @@
       trantor = let
         system = "x86_64-linux";
         overlay-unstable = final: prev: {
-          unstable = import inputs.unstable {
+          unstable = import inputs.nixpkgs-unstable {
             inherit system;
             config.allowUnfree = true;
           };
@@ -31,6 +31,7 @@
 
             ./machines/trantor
             inputs.private.nixosModules.work
+            ./modules/virtualisation/media-stack
           ];
         };
     };

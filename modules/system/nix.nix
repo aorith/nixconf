@@ -5,8 +5,12 @@
 }: {
   nix = {
     extraOptions = ''
+      connect-timeout = 5
       min-free = ${toString (1024 * 1024 * 1024 * 10)} # run gc when less than 10G ...
       max-free = ${toString (1024 * 1024 * 1024 * 15)} # ... until at least 15G are free
+      log-lines = 35
+      fallback = true
+      warn-dirty = false
     '';
     package = pkgs.nixFlakes;
     registry.nixpkgs.flake = inputs.nixpkgs;
