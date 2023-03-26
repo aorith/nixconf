@@ -64,17 +64,17 @@
     fsType = "vfat";
   };
 
-  fileSystems."/home/aorith/storage/tank" = {
+  fileSystems."/storage/tank" = {
     device = "/dev/disk/by-label/tank";
     fsType = "btrfs";
     options = ["compress=zstd" "noatime"];
   };
-  fileSystems."/home/aorith/storage/disk1" = {
+  fileSystems."/storage/disk1" = {
     device = "/dev/disk/by-label/DISK1";
     fsType = "ext4";
     options = ["noatime"];
   };
-  fileSystems."/home/aorith/storage/disk2" = {
+  fileSystems."/storage/disk2" = {
     device = "/dev/disk/by-label/DISK2";
     fsType = "ext4";
     options = ["noatime"];

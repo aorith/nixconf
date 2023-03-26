@@ -1,6 +1,19 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    virt-manager
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  enable_podman = true;
+  enable_libvirt = true;
+in {
+  environment.systemPackages = [
+    pkgs.virt-manager
+    (lib.mkIf enable_podman pkgs.podman-compose)
+  ];
+
+  users.users.aorith.extraGroups = [
+    (lib.mkIf (!enable_podman) "docker")
+    (lib.mkIf enable_libvirt "libvirtd")
   ];
 
   virtualisation = {
@@ -14,12 +27,17 @@
       };
     };
     docker = {
-      enable = true;
+      enable = !enable_podman;
       storageDriver = "btrfs";
       autoPrune = {
         dates = "daily";
         flags = ["--all" "--volumes"];
       };
+    };
+
+    podman = {
+      enable = enable_podman;
+      defaultNetwork.dnsname.enable = true;
     };
   };
 }

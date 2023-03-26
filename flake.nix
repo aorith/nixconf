@@ -31,7 +31,6 @@
 
             ./machines/trantor
             inputs.private.nixosModules.work
-            ./modules/virtualisation/media-stack
           ];
         };
     };

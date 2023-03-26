@@ -11,23 +11,23 @@
         isReadOnly = true;
       };
       "/MEDIA" = {
-        hostPath = "/home/aorith/storage/disk1/media";
+        hostPath = "/storage/disk1/media";
         isReadOnly = false;
       };
       "/mediaconfs" = {
-        hostPath = "/home/aorith/storage/tank/data/nixos-containers/mediaconfs";
+        hostPath = "/storage/tank/data/nixos-containers/mediaconfs";
         isReadOnly = false;
       };
       "/var/lib/jellyfin" = {
-        hostPath = "/home/aorith/storage/tank/data/nixos-containers/mediaconfs/jellyfin";
+        hostPath = "/storage/tank/data/nixos-containers/mediaconfs/jellyfin";
         isReadOnly = false;
       };
       "/var/lib/bazarr" = {
-        hostPath = "/home/aorith/storage/tank/data/nixos-containers/mediaconfs/bazarr";
+        hostPath = "/storage/tank/data/nixos-containers/mediaconfs/bazarr";
         isReadOnly = false;
       };
       "/var/lib/transmission/.config/transmission-daemon" = {
-        hostPath = "/home/aorith/storage/tank/data/nixos-containers/mediaconfs/transmission";
+        hostPath = "/storage/tank/data/nixos-containers/mediaconfs/transmission";
         isReadOnly = false;
       };
     };

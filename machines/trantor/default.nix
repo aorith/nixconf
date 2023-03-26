@@ -5,6 +5,7 @@
     ../../modules/users/aorith.nix
     ../../modules/system
     ../../modules/desktop
+    ../../modules/virtualisation/media-stack
   ];
 
   sound.enable = true;
@@ -29,8 +30,8 @@
       enable = true;
       user = "aorith";
       group = "aorith";
-      configDir = "/home/aorith/storage/tank/data/syncthing/_config/syncthing";
-      dataDir = "/home/aorith/storage/tank/data/syncthing";
+      configDir = "/storage/tank/data/syncthing/_config/syncthing";
+      dataDir = "/storage/tank/data/syncthing";
       guiAddress = "127.0.0.1:8384";
     };
     fwupd.enable = true;
@@ -40,7 +41,8 @@
   };
 
   systemd.tmpfiles.rules = [
-    "L /home/aorith/Syncthing - - - - /home/aorith/storage/tank/data/syncthing"
+    "L /home/aorith/Syncthing - - - - /storage/tank/data/syncthing"
+    "L /home/aorith/storage - - - - /storage"
     "L /run/current-system/sw/share/X11/fonts - - - - /home/aorith/.local/share/fonts"
   ];
 
