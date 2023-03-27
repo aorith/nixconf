@@ -64,17 +64,17 @@
     fsType = "vfat";
   };
 
-  fileSystems."/storage/tank" = {
+  fileSystems."/home/aorith/storage/tank" = {
     device = "/dev/disk/by-label/tank";
     fsType = "btrfs";
     options = ["compress=zstd" "noatime"];
   };
-  fileSystems."/storage/disk1" = {
+  fileSystems."/home/aorith/storage/disk1" = {
     device = "/dev/disk/by-label/DISK1";
     fsType = "ext4";
     options = ["noatime"];
   };
-  fileSystems."/storage/disk2" = {
+  fileSystems."/home/aorith/storage/disk2" = {
     device = "/dev/disk/by-label/DISK2";
     fsType = "ext4";
     options = ["noatime"];
@@ -87,6 +87,8 @@
     hostId = "be6e2627"; # head -c8 /etc/machine-id
     useDHCP = false;
     networkmanager.enable = true;
+    firewall.enable = false;
+    enableIPv6 = false;
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

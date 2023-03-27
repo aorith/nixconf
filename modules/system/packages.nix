@@ -23,18 +23,20 @@
     nvme-cli
     openssl
     openvpn
+    p7zip
     parted
     pciutils
     pstree
     ripgrep
     smartmontools
     sysstat
-    terraform
     tree
     unstable.alejandra
     unstable.distrobox
     unstable.lazygit
     unstable.nil
+    unstable.terraform
+    unzip
     usbutils
     vim
     wget

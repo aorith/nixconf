@@ -1,11 +1,11 @@
 # Activate with nix-shell
-{ pkgs ? import <nixpkgs> { } }:
+{pkgs ? import <nixpkgs> {}}:
 pkgs.mkShell {
   name = "InitialShell";
   nativeBuildInputs = with pkgs; [
     git
     nixUnstable
-    (nixos { nix.package = nixFlakes; }).nixos-rebuild
+    (nixos {nix.package = nixFlakes;}).nixos-rebuild
   ];
 
   shellHook = ''

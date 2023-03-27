@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  storage = "/home/aorith/storage";
+in {
   containers.media-stack = {
     autoStart = false;
     privateNetwork = false;
@@ -11,23 +13,23 @@
         isReadOnly = true;
       };
       "/MEDIA" = {
-        hostPath = "/storage/disk1/media";
+        hostPath = "${storage}/disk1/media";
         isReadOnly = false;
       };
       "/mediaconfs" = {
-        hostPath = "/storage/tank/data/nixos-containers/mediaconfs";
+        hostPath = "${storage}/tank/data/nixos-containers/mediaconfs";
         isReadOnly = false;
       };
       "/var/lib/jellyfin" = {
-        hostPath = "/storage/tank/data/nixos-containers/mediaconfs/jellyfin";
+        hostPath = "${storage}/tank/data/nixos-containers/mediaconfs/jellyfin";
         isReadOnly = false;
       };
       "/var/lib/bazarr" = {
-        hostPath = "/storage/tank/data/nixos-containers/mediaconfs/bazarr";
+        hostPath = "${storage}/tank/data/nixos-containers/mediaconfs/bazarr";
         isReadOnly = false;
       };
       "/var/lib/transmission/.config/transmission-daemon" = {
-        hostPath = "/storage/tank/data/nixos-containers/mediaconfs/transmission";
+        hostPath = "${storage}/tank/data/nixos-containers/mediaconfs/transmission";
         isReadOnly = false;
       };
     };
@@ -51,11 +53,31 @@
         shell = pkgs.bash;
       };
 
+      systemd.services.prowlarr = {
+        description = "Prowlarr";
+        after = ["network.target"];
+        wantedBy = ["multi-user.target"];
+
+        serviceConfig = {
+          Type = "simple";
+          User = "media-stack";
+          Group = "media-stack";
+          ExecStart = "${pkgs.prowlarr}/bin/Prowlarr -nobrowser -data=/mediaconfs/prowlarr";
+          Restart = "on-failure";
+        };
+      };
+
       services = {
         jellyfin = {
           enable = true;
           user = "media-stack";
           group = "media-stack";
+        };
+        jackett = {
+          enable = true;
+          user = "media-stack";
+          group = "media-stack";
+          dataDir = "/mediaconfs/jackett";
         };
         transmission = {
           enable = true;
@@ -81,12 +103,6 @@
             umask = 2;
           };
         };
-        jackett = {
-          enable = true;
-          user = "media-stack";
-          group = "media-stack";
-          dataDir = "/mediaconfs/jackett";
-        };
         radarr = {
           enable = true;
           user = "media-stack";
@@ -108,7 +124,10 @@
 
       boot.kernel.sysctl."net.core.wmem_max" = 1048576; # for transmission
       nixpkgs.config.allowUnfree = true;
-      networking.firewall.enable = false;
+      networking = {
+        firewall.enable = false;
+        enableIPv6 = false;
+      };
       environment.etc."resolv.conf".text = "nameserver 8.8.8.8\nnameserver 8.8.4.4";
       system.stateVersion = "22.11";
     };

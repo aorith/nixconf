@@ -1,4 +1,6 @@
-{...}: {
+{...}: let
+  storage = "/home/aorith/storage";
+in {
   imports = [
     ./hardware.nix
     ./virtualisation.nix
@@ -30,8 +32,8 @@
       enable = true;
       user = "aorith";
       group = "aorith";
-      configDir = "/storage/tank/data/syncthing/_config/syncthing";
-      dataDir = "/storage/tank/data/syncthing";
+      configDir = "${storage}/tank/data/syncthing/_config/syncthing";
+      dataDir = "${storage}/tank/data/syncthing";
       guiAddress = "127.0.0.1:8384";
     };
     fwupd.enable = true;
@@ -41,8 +43,7 @@
   };
 
   systemd.tmpfiles.rules = [
-    "L /home/aorith/Syncthing - - - - /storage/tank/data/syncthing"
-    "L /home/aorith/storage - - - - /storage"
+    "L /home/aorith/Syncthing - - - - ${storage}/tank/data/syncthing"
     "L /run/current-system/sw/share/X11/fonts - - - - /home/aorith/.local/share/fonts"
   ];
 
