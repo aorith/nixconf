@@ -35,6 +35,7 @@
     unstable.distrobox
     unstable.lazygit
     unstable.nil
+    unstable.nvd
     unstable.terraform
     unzip
     usbutils
