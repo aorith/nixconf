@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    neovim-flake.url = "github:aorith/neovim-flake";
     private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
   };
 
@@ -28,6 +29,9 @@
             # you can verify it by loading the flake in a repl (nix repl -> :lf .)
             # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
             ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
+
+            # my own neovim configuration
+            ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
 
             ./machines/trantor
             inputs.private.nixosModules.work
