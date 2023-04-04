@@ -17,6 +17,9 @@
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
       kernelModules = [];
     };
+    # AMD 1600:
+    # BIOS: "power supply idle control" == "typical current idle"
+    kernelParams = ["amd_iommu=on" "idle=nomwait" "rcu_nocbs=0-11"];
     kernelModules = ["kvm-amd" "amdgpu"];
     extraModulePackages = [];
     tmpOnTmpfs = true;

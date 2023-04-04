@@ -4,6 +4,8 @@
     pavucontrol
     sublime4
     unstable.alacritty
+    unstable.ungoogled-chromium
+    unstable.wezterm
     wl-clipboard
     xclip
   ];
