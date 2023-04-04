@@ -23,4 +23,9 @@ in {
     defaultCursorPkg
     pkgs.gnome.adwaita-icon-theme
   ];
+
+  services.xserver = {
+    autoRepeatDelay = 300;
+    autoRepeatInterval = 30;
+  };
 }

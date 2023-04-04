@@ -2,9 +2,19 @@
   services.xserver = {
     enable = true;
     desktopManager.gnome.enable = true;
-    displayManager.gdm = {
-      enable = true;
-      autoSuspend = false;
+    displayManager = {
+      gdm = {
+        enable = true;
+        autoSuspend = false;
+      };
+      sessionCommands = ''
+        dconf write /org/gnome/desktop/wm/preferences/resize-with-right-button true
+        dconf write /org/gnome/desktop/wm/preferences/action-right-click-titlebar 'menu'
+
+        dconf write /org/gnome/desktop/privacy/remove-old-temp-files true
+        dconf write /org/gnome/desktop/privacy/remove-old-trash-files true
+        dconf write /org/gnome/desktop/privacy/old-files-age 'uint32 30'
+      '';
     };
     layout = "es";
     xkbVariant = "";
