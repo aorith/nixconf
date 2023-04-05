@@ -60,11 +60,11 @@
         "plugin_vim-varnish": "plugin_vim-varnish"
       },
       "locked": {
-        "lastModified": 1680624109,
-        "narHash": "sha256-wm3NLBcu5GbqE1TiAFLBUCNdcgd627jy+aKpLvgo7cY=",
+        "lastModified": 1680706529,
+        "narHash": "sha256-2georv/iMKZWN5Rx4FVqfPdbORY9Q1+WktwEr5foMuA=",
         "owner": "aorith",
         "repo": "neovim-flake",
-        "rev": "522eb220cee798c01b16016149b2d8cb27249d4e",
+        "rev": "1c0bf4f5341f1f29fb42ed55c0fb97af591b6293",
         "type": "github"
       },
       "original": {
@@ -187,11 +187,11 @@
     "private": {
       "locked": {
         "dir": "private",
-        "lastModified": 1680615891,
-        "narHash": "sha256-k6CVtXvO3UZsmk2gQrlm2wLiUW/MF5TEvTtL9YHZ72k=",
+        "lastModified": 1680683253,
+        "narHash": "sha256-KrmvksEphUtId+/Ywid1HyoT2ljw5Bd6tqkPbNA+viw=",
         "ref": "refs/heads/master",
-        "rev": "27720e58a891323bf4fab16d704b0974eb112a4a",
-        "revCount": 6,
+        "rev": "fee1394b1c85d77c8a47f6f6f376e1a6e6e461df",
+        "revCount": 11,
         "type": "git",
         "url": "file:///home/aorith/Syncthing/SYNC_STUFF/githome/nixconf?dir=private"
       },
