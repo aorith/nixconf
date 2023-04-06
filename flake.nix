@@ -35,7 +35,6 @@
 
             ./machines/trantor
             inputs.private.nixosModules.work
-            inputs.private.nixosModules.monero
           ];
         };
     };

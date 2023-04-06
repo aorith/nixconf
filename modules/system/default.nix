@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./nix.nix
     ./packages.nix
@@ -33,11 +33,17 @@
       # Allow editing /etc/hosts as root (changes are disacarded on rebuild)
       hosts.mode = "0644";
     };
-    shellAliases = {
+    shellAliases = let
+      find = "${pkgs.findutils}/bin/find";
+      fzf = "${pkgs.fzf}/bin/fzf";
+      nvd = "${pkgs.unstable.nvd}/bin/nvd";
+    in {
       nixconf = "cd /home/aorith/githome/nixconf";
       #nix-list-packages = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort -u";
-      nix-list-packages = "nvd list";
-      nix-diff = "find /nix/var/nix/profiles/ -maxdepth 1 -mindepth 1 -type l | tail -2 | xargs nvd diff";
+      nix-list-packages = "${nvd} list";
+      nix-diff = ''
+        ${find} /nix/var/nix/profiles -maxdepth 1 -mindepth 1 -type l -name "*system-*link" | sort -Vr | ${fzf} | xargs -I {} ${nvd} diff {} /nix/var/nix/profiles/system
+      '';
     };
   };
 

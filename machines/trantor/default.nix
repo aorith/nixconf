@@ -4,7 +4,7 @@ in {
   imports = [
     ./hardware.nix
     ./virtualisation.nix
-    ../../modules/users/aorith.nix
+    ../../modules/users
     ../../modules/system
     ../../modules/desktop
     ../../modules/virtualisation/media-stack

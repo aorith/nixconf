@@ -2,6 +2,7 @@
   lib,
   modulesPath,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
@@ -10,6 +11,7 @@
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
+    inputs.nixos-hardware.nixosModules.common-pc-hdd
   ];
 
   boot = {
@@ -107,6 +109,10 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
     };
     video.hidpi.enable = lib.mkForce false;
   };
