@@ -1,9 +1,50 @@
 {pkgs, ...}: let
   storage = "/mnt/storage";
+  jellyfin_datadir = "${storage}/tank/data/nixos-containers/mediaconfs/jellyfin";
+
+  group = {
+    name = "media-stack";
+    members = ["media-stack"];
+    gid = 1013;
+  };
+  user = {
+    name = "media-stack";
+    isNormalUser = true;
+    uid = 1013;
+    group = "media-stack";
+    description = "media-stack";
+    extraGroups = ["render" "video"];
+    shell = pkgs.bash;
+  };
 in {
-  imports = [
-    ./jellyfin.nix
-  ];
+  # user outside of the container
+  users.groups."${group.name}" = group;
+  users.users."${user.name}" = user;
+  users.users.aorith.extraGroups = ["${group.name}"];
+
+  # Jellyfin
+  fileSystems."/var/lib/jellyfin" = {
+    device = "${jellyfin_datadir}";
+    options = ["bind" "rw"];
+  };
+
+  systemd.services.jellyfin = {
+    description = "Jellyfin";
+    after = ["network.target"];
+    wantedBy = ["multi-user.target"];
+
+    # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/misc/jellyfin.nix
+    serviceConfig = {
+      Type = "simple";
+      User = "${user.name}";
+      Group = "${group.name}";
+      WorkingDirectory = "/var/lib/jellyfin";
+      ExecStart = "${pkgs.unstable.jellyfin}/bin/jellyfin --datadir '/var/lib/jellyfin' --cachedir '/tmp/jellyfin-cache'";
+      Restart = "on-failure";
+      SuccessExitStatus = ["0" "143"];
+      TimeoutSec = 15;
+    };
+  };
 
   containers.media-stack = {
     autoStart = false;
@@ -39,19 +80,9 @@ in {
       nixpkgs,
       ...
     }: {
-      users.groups = {
-        "media-stack" = {
-          members = ["media-stack"];
-          gid = 1000;
-        };
-      };
-      users.users."media-stack" = {
-        isNormalUser = true;
-        uid = 1000;
-        group = "media-stack";
-        description = "media-stack";
-        shell = pkgs.bash;
-      };
+      # user inside of the container
+      users.groups."${group.name}" = group;
+      users.users."${user.name}" = user;
 
       systemd.services.prowlarr = {
         description = "Prowlarr";
@@ -60,8 +91,8 @@ in {
 
         serviceConfig = {
           Type = "simple";
-          User = "media-stack";
-          Group = "media-stack";
+          User = "${user.name}";
+          Group = "${group.name}";
           ExecStart = "${pkgs.prowlarr}/bin/Prowlarr -nobrowser -data=/mediaconfs/prowlarr";
           Restart = "on-failure";
         };
@@ -70,14 +101,14 @@ in {
       services = {
         jackett = {
           enable = true;
-          user = "media-stack";
-          group = "media-stack";
+          user = "${user.name}";
+          group = "${group.name}";
           dataDir = "/mediaconfs/jackett";
         };
         transmission = {
           enable = true;
-          user = "media-stack";
-          group = "media-stack";
+          user = "${user.name}";
+          group = "${group.name}";
           performanceNetParameters = true;
           settings = {
             alt-speed-up = 10;
@@ -100,20 +131,20 @@ in {
         };
         radarr = {
           enable = true;
-          user = "media-stack";
-          group = "media-stack";
+          user = "${user.name}";
+          group = "${group.name}";
           dataDir = "/mediaconfs/radarr";
         };
         sonarr = {
           enable = true;
-          user = "media-stack";
-          group = "media-stack";
+          user = "${user.name}";
+          group = "${group.name}";
           dataDir = "/mediaconfs/sonarr";
         };
         bazarr = {
           enable = true;
-          user = "media-stack";
-          group = "media-stack";
+          user = "${user.name}";
+          group = "${group.name}";
         };
       };
 
