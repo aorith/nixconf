@@ -13,7 +13,7 @@
   defaultCursorPkg = mkDefaultCursorFile "Adwaita";
 in {
   imports = [
-    ./fonts.nix
+    ./fonts
     ./apps.nix
     ./gnome.nix
   ];

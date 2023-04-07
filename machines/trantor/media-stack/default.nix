@@ -1,6 +1,10 @@
 {pkgs, ...}: let
-  storage = "/home/aorith/storage";
+  storage = "/mnt/storage";
 in {
+  imports = [
+    ./jellyfin.nix
+  ];
+
   containers.media-stack = {
     autoStart = false;
     privateNetwork = false;
@@ -8,10 +12,6 @@ in {
     nixpkgs = pkgs.unstable.path;
 
     bindMounts = {
-      "/dev/dri" = {
-        hostPath = "/dev/dri";
-        isReadOnly = true;
-      };
       "/MEDIA" = {
         hostPath = "${storage}/disk1/media";
         isReadOnly = false;
@@ -68,11 +68,6 @@ in {
       };
 
       services = {
-        jellyfin = {
-          enable = true;
-          user = "media-stack";
-          group = "media-stack";
-        };
         jackett = {
           enable = true;
           user = "media-stack";

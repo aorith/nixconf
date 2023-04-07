@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   services.xserver = {
     enable = true;
+    libinput.enable = true;
     desktopManager.gnome.enable = true;
     displayManager = {
       gdm = {
@@ -20,6 +21,8 @@
     xkbVariant = "";
   };
 
+  services.gnome.gnome-keyring.enable = true;
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -34,11 +37,14 @@
       gnome.totem
     ];
     systemPackages = with pkgs; [
+      gnome.gnome-settings-daemon
       gnome.gnome-tweaks
+      gnome.seahorse # keyring
+
+      pantheon.elementary-wallpapers
+
       gnomeExtensions.appindicator
       gnomeExtensions.gsconnect
-      gnomeExtensions.pano
-      pantheon.elementary-wallpapers
     ];
   };
 }

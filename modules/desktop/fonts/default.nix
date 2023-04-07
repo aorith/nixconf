@@ -1,18 +1,51 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  nerfonts-symbols = import ./nerdfonts-symbols {
+    inherit pkgs;
+    lib = pkgs.lib;
+  };
+
+  # Icons are misaligned
+  #iosevka-fixed = import ./iosevka-fixed {
+  #  inherit pkgs;
+  #  lib = pkgs.lib;
+  #};
+  #iosevka-nerd-term = import ./iosevka-nerd {
+  #  inherit pkgs;
+  #  lib = pkgs.lib;
+  #};
+
+  localconf = ''
+    <?xml version="1.0"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+      <alias>
+        <family>monospace</family>
+        <prefer><family>Symbols Nerd Font</family></prefer>
+      </alias>
+      <alias>
+        <family>Iosevka Fixed</family>
+        <prefer>
+          <family>IosevkaTerm Nerd Font</family>
+          <family>Symbols Nerd Font</family>
+        </prefer>
+      </alias>
+    </fontconfig>
+  '';
+in {
   fonts = {
     enableDefaultFonts = true;
     fontDir.enable = true; # required for flatpak
     fontconfig = {
       enable = true;
-      defaultFonts = {
-        monospace = ["Hack"];
-        sansSerif = ["Noto Sans"];
-        serif = ["Noto Serif"];
-      };
+      allowBitmaps = false;
+      cache32Bit = true;
+      localConf = localconf;
     };
     fonts = with pkgs; [
-      corefonts
-      hack-font
+      #iosevka-fixed
+      #iosevka-nerd-term
+      nerfonts-symbols
+      dejavu_fonts
       liberation_ttf
       libertine
       noto-fonts

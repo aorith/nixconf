@@ -15,6 +15,7 @@
   ];
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest; # https://nixos.wiki/wiki/Linux_kernel
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
       kernelModules = [];
@@ -69,20 +70,34 @@
     fsType = "vfat";
   };
 
-  fileSystems."/home/aorith/storage/tank" = {
+  fileSystems."/mnt/storage/tank" = {
     device = "/dev/disk/by-label/tank";
     fsType = "btrfs";
     options = ["compress=zstd" "noatime"];
   };
-  fileSystems."/home/aorith/storage/disk1" = {
+  fileSystems."/mnt/storage/disk1" = {
     device = "/dev/disk/by-label/DISK1";
     fsType = "ext4";
     options = ["noatime"];
   };
-  fileSystems."/home/aorith/storage/disk2" = {
+  fileSystems."/mnt/storage/disk2" = {
     device = "/dev/disk/by-label/DISK2";
     fsType = "ext4";
     options = ["noatime"];
+  };
+
+  # bindmounts
+  fileSystems."/home/aorith/storage/tank" = {
+    device = "/mnt/storage/tank";
+    options = ["bind" "rw"];
+  };
+  fileSystems."/home/aorith/storage/disk1" = {
+    device = "/mnt/storage/disk1";
+    options = ["bind" "rw"];
+  };
+  fileSystems."/home/aorith/storage/disk2" = {
+    device = "/mnt/storage/disk2";
+    options = ["bind" "rw"];
   };
 
   swapDevices = [];
@@ -99,6 +114,10 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   powerManagement.cpuFreqGovernor = "schedutil";
+
+  environment.systemPackages = with pkgs; [
+    radeontop
+  ];
 
   hardware = {
     enableAllFirmware = true;

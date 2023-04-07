@@ -5,6 +5,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     bc
+    btop
     clang
     commonsCompress
     coreutils-full
@@ -17,9 +18,12 @@
     fzf
     gnumake
     go
-    inetutils
+    inetutils # telnet
     just
+    killall
+    kubectl
     lsof
+    ncdu
     nvme-cli
     openssl
     openvpn

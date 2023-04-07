@@ -3,17 +3,17 @@
   pkgs,
   ...
 }: let
-  enable_podman = true;
-  enable_libvirt = true;
+  with_podman = true;
+  with_libvirtd = true;
 in {
   environment.systemPackages = [
     pkgs.virt-manager
-    (lib.mkIf enable_podman pkgs.podman-compose)
+    (lib.mkIf with_podman pkgs.podman-compose)
   ];
 
   users.users.aorith.extraGroups = [
-    (lib.mkIf (!enable_podman) "docker")
-    (lib.mkIf enable_libvirt "libvirtd")
+    (lib.mkIf (!with_podman) "docker")
+    (lib.mkIf with_libvirtd "libvirtd")
   ];
 
   virtualisation = {
@@ -22,12 +22,11 @@ in {
       onShutdown = "shutdown";
       onBoot = "ignore";
       allowedBridges = ["br0" "virbr0"];
-      qemu = {
-        ovmf.enable = true;
-      };
+      qemu.ovmf.enable = true;
     };
+
     docker = {
-      enable = !enable_podman;
+      enable = !with_podman;
       storageDriver = "btrfs";
       autoPrune = {
         dates = "daily";
@@ -36,7 +35,7 @@ in {
     };
 
     podman = {
-      enable = enable_podman;
+      enable = with_podman;
       defaultNetwork.dnsname.enable = true;
     };
   };

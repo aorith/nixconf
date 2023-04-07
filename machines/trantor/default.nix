@@ -1,13 +1,14 @@
-{...}: let
-  storage = "/home/aorith/storage";
+{pkgs, ...}: let
+  storage = "/mnt/storage";
 in {
   imports = [
     ./hardware.nix
     ./virtualisation.nix
+    ./media-stack
     ../../modules/users
     ../../modules/system
     ../../modules/desktop
-    ../../modules/virtualisation/media-stack
+    ../../modules/steam
   ];
 
   sound.enable = true;
@@ -15,10 +16,44 @@ in {
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    package = pkgs.unstable.pipewire;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
+    wireplumber = {
+      enable = true;
+      package = pkgs.unstable.wireplumber;
+    };
   };
+
+  environment.systemPackages = with pkgs; [
+    unstable.pavucontrol
+    unstable.helvum # for pipewire
+  ];
+
+  # from /run/current-system/sw/share/wireplumber/main.lua.d/50-alsa-config.lua
+  # disable sound suspend to avoid missing sounds on idle or pop noises
+  environment.etc."wireplumber/main.lua.d/51-alsa-custom.lua".text = ''
+    alsa_monitor.rules = {
+      {
+        matches = {
+          {
+            -- Matches all sources.
+            { "node.name", "matches", "alsa_input.*" },
+          },
+          {
+            -- Matches all sinks.
+            { "node.name", "matches", "alsa_output.*" },
+          },
+        },
+        apply_properties = {
+          ["session.suspend-timeout-seconds"] = 0, -- 0 disables suspend
+        },
+      },
+    }
+
+  '';
 
   systemd.targets = {
     sleep.enable = false;
@@ -44,8 +79,8 @@ in {
 
   systemd.tmpfiles.rules = [
     "L /home/aorith/Syncthing - - - - ${storage}/tank/data/syncthing"
-    "L /run/current-system/sw/share/X11/fonts - - - - /home/aorith/.local/share/fonts"
   ];
+  #"L /run/current-system/sw/share/X11/fonts - - - - /home/aorith/.local/share/fonts"
 
   system.stateVersion = "22.11";
 }
