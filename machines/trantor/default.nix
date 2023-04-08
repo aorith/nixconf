@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   storage = "/mnt/storage";
 in {
   imports = [
@@ -11,7 +15,7 @@ in {
     ../../modules/steam
   ];
 
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = lib.mkForce false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -25,6 +29,7 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    pulseaudio
     unstable.pavucontrol
     unstable.helvum # for pipewire
   ];

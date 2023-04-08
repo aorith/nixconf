@@ -7,6 +7,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     neovim-flake.url = "github:aorith/neovim-flake";
     private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = inputs: let
@@ -21,46 +22,54 @@
         };
       };
     };
-  in {
-    nixosConfigurations = {
-      trantor = let
-        system = x86_64-linux.system;
-        overlay-unstable = x86_64-linux.overlay-unstable;
-      in
-        lib.nixosSystem
-        {
-          inherit system;
-          specialArgs = {inherit inputs;};
+  in
+    {
+      nixosConfigurations = {
+        trantor = let
+          system = x86_64-linux.system;
+          overlay-unstable = x86_64-linux.overlay-unstable;
+        in
+          lib.nixosSystem
+          {
+            inherit system;
+            specialArgs = {inherit inputs;};
 
-          modules = [
-            # allows the use of pkgs.unstable.<pkgname>
-            # you can verify it by loading the flake in a repl (nix repl -> :lf .)
-            # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
-            ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
+            modules = [
+              # allows the use of pkgs.unstable.<pkgname>
+              # you can verify it by loading the flake in a repl (nix repl -> :lf .)
+              # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
+              ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
 
-            # my own neovim configuration
-            ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
+              # my own neovim configuration
+              ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
 
-            ./machines/trantor
-            inputs.private.nixosModules.work
-          ];
-        };
+              ./machines/trantor
+              inputs.private.nixosModules.work
+            ];
+          };
 
-      msi = let
-        system = x86_64-linux.system;
-        overlay-unstable = x86_64-linux.overlay-unstable;
-      in
-        lib.nixosSystem
-        {
-          inherit system;
-          specialArgs = {inherit inputs;};
+        msi = let
+          system = x86_64-linux.system;
+          overlay-unstable = x86_64-linux.overlay-unstable;
+        in
+          lib.nixosSystem
+          {
+            inherit system;
+            specialArgs = {inherit inputs;};
 
-          modules = [
-            ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
-            ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
-            ./machines/msi
-          ];
-        };
-    };
-  };
+            modules = [
+              ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
+              ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
+              ./machines/msi
+            ];
+          };
+      };
+    }
+    // inputs.flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import inputs.nixpkgs {
+        inherit system;
+      };
+    in {
+      formatter = pkgs.alejandra;
+    });
 }
