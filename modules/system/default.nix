@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./nix.nix
+    ./ssh.nix
     ./packages.nix
     ./python.nix
   ];
@@ -16,10 +17,12 @@
     LC_NUMERIC = "es_ES.UTF-8";
     LC_PAPER = "es_ES.UTF-8";
     LC_TELEPHONE = "es_ES.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    LC_TIME = "C.UTF-8";
+    LC_COLLATE = "C.UTF-8";
   };
 
   location.provider = "geoclue2";
+  services.geoclue2.enable = true;
 
   console.keyMap = "es";
 
@@ -51,5 +54,12 @@
     enable = true;
     man.enable = true;
     nixos.enable = true;
+  };
+
+  systemd.targets = {
+    sleep.enable = false;
+    suspend.enable = false;
+    hibernate.enable = false;
+    hybrid-sleep.enable = false;
   };
 }

@@ -9,21 +9,29 @@
     private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
   };
 
-  outputs = inputs: {
+  outputs = inputs: let
+    lib = inputs.nixpkgs.lib;
+
+    x86_64-linux = rec {
+      system = "x86_64-linux";
+      overlay-unstable = final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+    };
+  in {
     nixosConfigurations = {
       trantor = let
-        system = "x86_64-linux";
-        overlay-unstable = final: prev: {
-          unstable = import inputs.nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
-        };
+        system = x86_64-linux.system;
+        overlay-unstable = x86_64-linux.overlay-unstable;
       in
-        inputs.nixpkgs.lib.nixosSystem
+        lib.nixosSystem
         {
           inherit system;
           specialArgs = {inherit inputs;};
+
           modules = [
             # allows the use of pkgs.unstable.<pkgname>
             # you can verify it by loading the flake in a repl (nix repl -> :lf .)
@@ -35,6 +43,22 @@
 
             ./machines/trantor
             inputs.private.nixosModules.work
+          ];
+        };
+
+      msi = let
+        system = x86_64-linux.system;
+        overlay-unstable = x86_64-linux.overlay-unstable;
+      in
+        lib.nixosSystem
+        {
+          inherit system;
+          specialArgs = {inherit inputs;};
+
+          modules = [
+            ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
+            ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
+            ./machines/msi
           ];
         };
     };

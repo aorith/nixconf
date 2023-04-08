@@ -3,12 +3,10 @@
   lib,
   ...
 }: let
-  storage = "/mnt/storage";
+  storage = "/mnt/data";
 in {
   imports = [
     ./hardware.nix
-    ./virtualisation.nix
-    ./media-stack
     ../../modules/users
     ../../modules/system
     ../../modules/desktop
@@ -75,7 +73,6 @@ in {
   systemd.tmpfiles.rules = [
     "L /home/aorith/Syncthing - - - - ${storage}/tank/data/syncthing"
   ];
-  #"L /run/current-system/sw/share/X11/fonts - - - - /home/aorith/.local/share/fonts"
 
   system.stateVersion = "22.11";
 }
