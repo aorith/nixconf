@@ -10,8 +10,10 @@ in {
     ../../modules/users
     ../../modules/system
     ../../modules/desktop
-    ../../modules/steam
+    #../../modules/steam
   ];
+
+  hardware.steam-hardware.enable = true;
 
   hardware.pulseaudio.enable = lib.mkForce false;
   hardware.pulseaudio.extraConfig = "unload-module module-suspend-on-idle";
@@ -49,6 +51,7 @@ in {
 
   systemd.tmpfiles.rules = [
     "L /home/aorith/Syncthing - - - - ${storage}/tank/data/syncthing"
+    "L /run/current-system/sw/share/X11/fonts - - - - /home/aorith/.local/share/fonts"
   ];
 
   system.stateVersion = "22.11";

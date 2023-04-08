@@ -33,12 +33,10 @@
   '';
 in {
   fonts = {
-    enableDefaultFonts = true;
     fontDir.enable = true; # required for flatpak
     fontconfig = {
       enable = true;
       allowBitmaps = false;
-      cache32Bit = true;
       localConf = localconf;
     };
     fonts = with pkgs; [
