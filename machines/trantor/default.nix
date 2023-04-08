@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   storage = "/mnt/storage";
 in {
   imports = [
@@ -15,8 +11,7 @@ in {
     ../../modules/steam
   ];
 
-  sound.enable = lib.mkForce false;
-  hardware.pulseaudio.enable = lib.mkForce false;
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
