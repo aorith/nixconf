@@ -11,58 +11,35 @@
   };
 
   outputs = inputs: let
-    lib = inputs.nixpkgs.lib;
-
-    x86_64-linux = rec {
-      system = "x86_64-linux";
+    # Helper to create nixosConfigurations
+    mkNixosCfg = hostname: system: let
       overlay-unstable = final: prev: {
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
         };
       };
-    };
+    in
+      inputs.nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {inherit inputs;};
+        modules = [
+          # allows the use of pkgs.unstable.<pkgname>
+          # you can verify it by loading the flake in a repl (nix repl -> :lf .)
+          # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
+          ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
+
+          # my own neovim configuration
+          ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
+
+          ./machines/${hostname}
+        ];
+      };
   in
     {
       nixosConfigurations = {
-        trantor = let
-          system = x86_64-linux.system;
-          overlay-unstable = x86_64-linux.overlay-unstable;
-        in
-          lib.nixosSystem
-          {
-            inherit system;
-            specialArgs = {inherit inputs;};
-
-            modules = [
-              # allows the use of pkgs.unstable.<pkgname>
-              # you can verify it by loading the flake in a repl (nix repl -> :lf .)
-              # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
-              ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
-
-              # my own neovim configuration
-              ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
-
-              ./machines/trantor
-              inputs.private.nixosModules.work
-            ];
-          };
-
-        msi = let
-          system = x86_64-linux.system;
-          overlay-unstable = x86_64-linux.overlay-unstable;
-        in
-          lib.nixosSystem
-          {
-            inherit system;
-            specialArgs = {inherit inputs;};
-
-            modules = [
-              ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
-              ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
-              ./machines/msi
-            ];
-          };
+        trantor = mkNixosCfg "trantor" "x86_64-linux";
+        msi = mkNixosCfg "msi" "x86_64-linux";
       };
     }
     // inputs.flake-utils.lib.eachDefaultSystem (system: let
