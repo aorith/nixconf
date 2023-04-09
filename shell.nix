@@ -3,6 +3,8 @@
 pkgs.mkShell {
   name = "InitialShell";
   nativeBuildInputs = with pkgs; [
+    age
+    sops
     git
     nixUnstable
     (nixos {nix.package = nixFlakes;}).nixos-rebuild
