@@ -13,6 +13,7 @@ in {
     ../../modules/system
     ../../modules/desktop
     ../../modules/steam
+    ../../modules/work
   ];
 
   hardware.pulseaudio.enable = lib.mkForce false;

@@ -6,6 +6,7 @@
   environment.systemPackages = with pkgs; [
     aorith.neovim # my own neovim flake
 
+    age
     bc
     btop
     clang
@@ -35,6 +36,7 @@
     pstree
     ripgrep
     smartmontools
+    sops
     sysstat
     tree
     unstable.alejandra

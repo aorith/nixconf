@@ -8,8 +8,8 @@
     neovim-flake = {
       url = "github:aorith/neovim-flake";
     };
-    private.url = "/home/aorith/Syncthing/SYNC_STUFF/githome/nixconf/private";
     flake-utils.url = "github:numtide/flake-utils";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = inputs: let
@@ -31,6 +31,7 @@
           # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
           ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable inputs.neovim-flake.overlays.default];})
 
+          inputs.sops-nix.nixosModules.sops
           ./machines/${hostname}
         ];
       };
