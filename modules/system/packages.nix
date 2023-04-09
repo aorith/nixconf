@@ -4,6 +4,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    aorith.neovim # my own neovim flake
+
     bc
     btop
     clang
