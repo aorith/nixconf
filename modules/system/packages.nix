@@ -22,6 +22,7 @@
     gnumake
     go
     inetutils # telnet
+    jq
     just
     killall
     kubectl

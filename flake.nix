@@ -31,6 +31,13 @@
           # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
           ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable inputs.neovim-flake.overlays.default];})
 
+          {
+            networking = {
+              hostName = hostname;
+              hostId = builtins.substring 24 8 (builtins.hashString "md5" "${hostname}");
+            };
+          }
+
           inputs.sops-nix.nixosModules.sops
           ./machines/${hostname}
         ];

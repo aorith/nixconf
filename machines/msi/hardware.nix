@@ -33,8 +33,6 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   networking = {
-    hostName = "msi";
-    hostId = "b798e2c1"; # head -c8 /etc/machine-id
     networkmanager.enable = true;
     useDHCP = false;
     firewall.enable = true;

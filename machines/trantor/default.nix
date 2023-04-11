@@ -30,6 +30,11 @@ in {
     };
   };
 
+  # from /run/current-system/sw/share/wireplumber/main.lua.d/50-alsa-config.lua
+  # disable sound suspend to avoid missing sounds on idle or pop noises
+  # pactl list sinks | grep -A1 'State:'
+  environment.etc."wireplumber/main.lua.d/51-alsa-custom.lua".text = builtins.readFile ./51-alsa-custom.lua;
+
   environment.systemPackages = with pkgs; [
     pulseaudio
     unstable.pavucontrol

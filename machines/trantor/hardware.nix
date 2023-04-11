@@ -103,8 +103,6 @@
   swapDevices = [];
 
   networking = {
-    hostName = "trantor";
-    hostId = "be6e2627"; # head -c8 /etc/machine-id
     useDHCP = false;
     networkmanager.enable = true;
     firewall.enable = false;

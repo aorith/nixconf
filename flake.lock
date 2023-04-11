@@ -75,11 +75,11 @@
         "plugin_vim-varnish": "plugin_vim-varnish"
       },
       "locked": {
-        "lastModified": 1681048962,
-        "narHash": "sha256-jZdi9PKlIXhGK9ZcmXq1+kcOYF/CBMHWto5D1E6iwZ4=",
+        "lastModified": 1681153875,
+        "narHash": "sha256-5OiFFxuw4Cy22nt0p1UqZ45JvcB64LSfODhUrRfDlZI=",
         "owner": "aorith",
         "repo": "neovim-flake",
-        "rev": "52e37212ed05f46fa7adc2600a94bcda3bdb471f",
+        "rev": "de2932be813f7c5f1c09f85d47b308788a45c6ba",
         "type": "github"
       },
       "original": {
@@ -153,11 +153,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1680945546,
-        "narHash": "sha256-8FuaH5t/aVi/pR1XxnF0qi4WwMYC+YxlfdsA0V+TEuQ=",
+        "lastModified": 1680213900,
+        "narHash": "sha256-cIDr5WZIj3EkKyCgj/6j3HBH4Jj1W296z7HTcWj1aMA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d9f759f2ea8d265d974a6e1259bd510ac5844c5d",
+        "rev": "e3652e0735fbec227f342712f180f4f21f0594f2",
         "type": "github"
       },
       "original": {
