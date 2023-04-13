@@ -29,7 +29,7 @@
           # allows the use of pkgs.unstable.<pkgname>
           # you can verify it by loading the flake in a repl (nix repl -> :lf .)
           # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
-          ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable inputs.neovim-flake.overlays.default];})
+          ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
 
           {
             networking = {

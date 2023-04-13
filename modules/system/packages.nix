@@ -1,10 +1,14 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    aorith.neovim # my own neovim flake
+    inputs.neovim-flake.packages.${pkgs.system}.default
 
     age
     bc
