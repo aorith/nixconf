@@ -2,7 +2,9 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  nixPath = "/etc/nixPath";
+in {
   nix = {
     extraOptions = ''
       connect-timeout = 5
@@ -26,5 +28,12 @@
       dates = "weekly";
       options = "--delete-older-than 60d";
     };
+
+    # Nix path for non-flake commands
+    nixPath = ["nixpkgs=${nixPath}"];
   };
+
+  systemd.tmpfiles.rules = [
+    "L+ ${nixPath} - - - - ${pkgs.unstable.path}"
+  ];
 }
