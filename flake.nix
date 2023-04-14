@@ -39,7 +39,8 @@
           }
 
           inputs.sops-nix.nixosModules.sops
-          ./machines/${hostname}
+          ./modules
+          ./nixos/hosts/${hostname}
         ];
       };
   in

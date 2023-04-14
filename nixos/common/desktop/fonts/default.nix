@@ -34,6 +34,7 @@
 in {
   fonts = {
     fontDir.enable = true; # required for flatpak
+    enableDefaultFonts = true; # installs extra fonts
     fontconfig = {
       enable = true;
       allowBitmaps = false;

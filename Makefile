@@ -14,19 +14,15 @@ bootstrap:
 	./scripts/bootstrap.sh
 
 switch:
-	@nix flake lock --update-input private
 	sudo nixos-rebuild switch -L --flake .#
 
 boot:
-	@nix flake lock --update-input private
 	sudo nixos-rebuild boot -L --flake .#
 
 dry-build:
-	@nix flake lock --update-input private
 	sudo nixos-rebuild dry-build -L --flake .#
 
 dry-activate:
-	@nix flake lock --update-input private
 	sudo nixos-rebuild dry-activate -L --flake .#
 
 update:

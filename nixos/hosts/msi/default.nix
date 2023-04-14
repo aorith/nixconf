@@ -7,10 +7,10 @@
 in {
   imports = [
     ./hardware.nix
-    ../../modules/users
-    ../../modules/system
-    ../../modules/desktop
-    #../../modules/steam
+    ../../common/users
+    ../../common/system
+    ../../common/desktop
+    #../../common/steam
   ];
 
   hardware.steam-hardware.enable = true;

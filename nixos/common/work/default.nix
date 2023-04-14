@@ -6,7 +6,7 @@
   sops.secrets = {
     hosts = {
       format = "yaml";
-      sopsFile = ./../../secrets/work.yaml;
+      sopsFile = ../../../secrets/work.yaml;
       restartUnits = ["update-hosts.service"];
     };
   };
