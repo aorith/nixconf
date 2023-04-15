@@ -25,6 +25,7 @@ in {
   ];
 
   services.xserver = {
+    xkbOptions = "ctrl:nocaps";
     autoRepeatDelay = 300;
     autoRepeatInterval = 30;
   };
