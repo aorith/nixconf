@@ -2,6 +2,7 @@
   lib,
   pkgs,
   modulesPath,
+  config,
   inputs,
   ...
 }: {
@@ -59,6 +60,11 @@
   swapDevices = [];
 
   hardware = {
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      modesetting.enable = true;
+    };
+
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = true;
