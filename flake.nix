@@ -14,7 +14,7 @@
 
   outputs = inputs: let
     # Helper to create nixosConfigurations
-    mkNixosCfg = hostname: system: let
+    mkNixosCfg = hostname: system: nixpkgs: let
       overlay-unstable = final: prev: {
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
@@ -22,7 +22,7 @@
         };
       };
     in
-      inputs.nixpkgs.lib.nixosSystem {
+      nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {inherit inputs;};
         modules = [
@@ -46,12 +46,12 @@
   in
     {
       nixosConfigurations = {
-        trantor = mkNixosCfg "trantor" "x86_64-linux";
-        msi = mkNixosCfg "msi" "x86_64-linux";
+        trantor = mkNixosCfg "trantor" "x86_64-linux" inputs.nixpkgs;
+        msi = mkNixosCfg "msi" "x86_64-linux" inputs.nixpkgs-unstable;
       };
     }
     // inputs.flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import inputs.nixpkgs {
+      pkgs = import inputs.nixpkgs-unstable {
         inherit system;
       };
     in {
