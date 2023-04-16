@@ -15,7 +15,7 @@ in {
       antialias = true;
       hinting = {
         enable = true;
-        style = "hintmedium";
+        style = "hintslight";
       };
       subpixel.lcdfilter = "default";
     };

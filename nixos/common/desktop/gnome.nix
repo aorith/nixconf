@@ -15,10 +15,10 @@
         dconf write /org/gnome/desktop/privacy/remove-old-temp-files true
         dconf write /org/gnome/desktop/privacy/remove-old-trash-files true
         dconf write /org/gnome/desktop/privacy/old-files-age 'uint32 30'
+
+        dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'shift:both_capslock']"
       '';
     };
-    layout = "es";
-    xkbVariant = "";
   };
 
   services.gnome.gnome-keyring.enable = true;

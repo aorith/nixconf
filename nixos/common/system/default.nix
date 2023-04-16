@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./nix.nix
     ./ssh.nix
@@ -12,6 +16,7 @@
     LC_MEASUREMENT = "es_ES.UTF-8";
     LC_MONETARY = "es_ES.UTF-8";
     LC_NUMERIC = "es_ES.UTF-8";
+    LC_TIME = "es_ES.UTF-8";
   };
 
   location.provider = "geoclue2";
@@ -20,8 +25,7 @@
   console.keyMap = "es";
 
   services.journald.extraConfig = ''
-    SystemMaxUse=900M
-    MaxFileSec=7day
+    SystemMaxUse=1G
   '';
 
   environment = {

@@ -25,7 +25,9 @@ in {
   ];
 
   services.xserver = {
-    xkbOptions = "ctrl:nocaps";
+    xkbOptions = "ctrl:nocaps,shift:both_capslock"; # Capslock as CTRL & pressing both shift keys toggle caps
+    layout = "es";
+    xkbVariant = "";
     autoRepeatDelay = 300;
     autoRepeatInterval = 30;
   };
