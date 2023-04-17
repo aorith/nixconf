@@ -21,12 +21,13 @@ in {
       auto-optimise-store = true;
       trusted-users = ["root" "aorith"];
       allowed-users = ["root" "aorith"];
+      flake-registry = "${inputs.flake-registry}/flake-registry.json";
     };
 
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 60d";
+      options = "--delete-older-than 25d";
     };
 
     # Nix path for non-flake commands
@@ -34,6 +35,6 @@ in {
   };
 
   systemd.tmpfiles.rules = [
-    "L+ ${nixPath} - - - - ${pkgs.unstable.path}"
+    "L+ ${nixPath} - - - - ${inputs.nixpkgs-unstable}"
   ];
 }
