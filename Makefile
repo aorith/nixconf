@@ -4,14 +4,15 @@ ifeq ($(CURRENTUID), 0)
   $(error Run without root)
 endif
 
-.PHONY: switch boot dry-build update shell clean bootstrap
+.PHONY: home switch boot dry-build update shell clean
 
 main:
 	@echo "Avalable options: "
 	@grep -Eo '^[a-zA-Z]+:' Makefile | grep -v '[m]ain:' | tr -d ':' | xargs -n1 echo "    make"
 
-bootstrap:
-	./scripts/bootstrap.sh
+home:
+	@echo nix run nixpkgs#home-manager -- switch --flake ".#$$USER@$$HOSTNAME"
+	@nix run nixpkgs#home-manager -- switch --flake ".#$$USER@$$HOSTNAME"
 
 switch:
 	sudo nixos-rebuild switch -L --flake .#
