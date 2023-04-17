@@ -109,8 +109,6 @@
     enableIPv6 = false;
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
   powerManagement.cpuFreqGovernor = "schedutil";
 
   environment.systemPackages = with pkgs; [
