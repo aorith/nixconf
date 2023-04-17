@@ -16,7 +16,7 @@
         dconf write /org/gnome/desktop/privacy/remove-old-trash-files true
         dconf write /org/gnome/desktop/privacy/old-files-age 'uint32 30'
 
-        dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'shift:both_capslock']"
+        dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
       '';
     };
   };
