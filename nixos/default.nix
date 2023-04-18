@@ -22,7 +22,7 @@
             hostName = hostname;
             hostId = builtins.substring 24 8 (builtins.hashString "md5" "${hostname}");
           };
-          nixpkgs.hostPlatform = "x86_64-linux";
+          nixpkgs.hostPlatform = system;
         }
 
         self.inputs.sops-nix.nixosModules.sops
