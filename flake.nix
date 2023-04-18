@@ -6,7 +6,6 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     neovim-flake.url = "github:aorith/neovim-flake";
-    flake-utils.url = "github:numtide/flake-utils";
     sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager = {
@@ -24,14 +23,11 @@
     };
   };
 
-  outputs = inputs:
-    {
-      nixosConfigurations = import ./nixos inputs;
-      homeConfigurations = import ./home inputs;
-    }
-    // inputs.flake-utils.lib.eachDefaultSystem (system: let
-      pkgs-unstable = inputs.nixpkgs.legacyPackages.${system};
-    in {
-      formatter = pkgs-unstable.alejandra;
-    });
+  outputs = inputs: let
+    forAllSystems = inputs.nixpkgs.lib.genAttrs ["aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux"];
+  in {
+    nixosConfigurations = import ./nixos inputs;
+    homeConfigurations = import ./home inputs;
+    formatter = forAllSystems (system: inputs.nixpkgs-unstable.legacyPackages.${system}.alejandra);
+  };
 }
