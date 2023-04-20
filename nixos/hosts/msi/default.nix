@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  pkgsFrom,
   ...
 }: let
   storage = "/mnt/data";
@@ -12,6 +13,8 @@ in {
     ../../common/desktop
     #../../common/steam
   ];
+
+  nix.settings.max-jobs = lib.mkDefault 8;
 
   hardware.steam-hardware.enable = true;
 
@@ -29,9 +32,10 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    pkgsFrom.unstable.pavucontrol
+    pkgsFrom.unstable.helvum # for pipewire
+
     pulseaudio
-    unstable.pavucontrol
-    unstable.helvum # for pipewire
   ];
 
   services = {
@@ -51,7 +55,6 @@ in {
 
   systemd.tmpfiles.rules = [
     "L /home/aorith/Syncthing - - - - ${storage}/tank/data/syncthing"
-    "L /run/current-system/sw/share/X11/fonts - - - - /home/aorith/.local/share/fonts"
   ];
 
   system.stateVersion = "22.11";

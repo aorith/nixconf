@@ -3,9 +3,9 @@
   config,
   ...
 }: let
-  cfg = config.aorith.fonts.lowdpi;
+  cfg = config.custom.fonts.lowdpi;
 in {
-  options.aorith.fonts.lowdpi = {
+  options.custom.fonts.lowdpi = {
     enable = lib.mkEnableOption "low dpi font settings";
   };
 

@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  pkgsFrom,
   ...
 }: let
   storage = "/mnt/storage";
@@ -16,7 +17,8 @@ in {
     ../../common/work
   ];
 
-  aorith.fonts.lowdpi.enable = true;
+  custom.fonts.lowdpi.enable = false;
+  nix.settings.max-jobs = lib.mkDefault 12;
 
   hardware.pulseaudio.enable = lib.mkForce false;
   hardware.pulseaudio.extraConfig = "unload-module module-suspend-on-idle";
@@ -38,9 +40,10 @@ in {
   environment.etc."wireplumber/main.lua.d/51-alsa-custom.lua".text = builtins.readFile ./51-alsa-custom.lua;
 
   environment.systemPackages = with pkgs; [
+    pkgsFrom.unstable.pavucontrol
+    pkgsFrom.unstable.helvum # for pipewire
+
     pulseaudio
-    unstable.pavucontrol
-    unstable.helvum # for pipewire
   ];
 
   services = {

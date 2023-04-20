@@ -1,6 +1,6 @@
 {...}: {
   services.openssh = {
-    permitRootLogin = "prohibit-password";
+    settings.PermitRootLogin = "prohibit-password";
 
     # disable IPv6
     listenAddresses = [

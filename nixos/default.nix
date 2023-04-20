@@ -1,22 +1,24 @@
 {self, ...}: let
   # Helper to create nixosConfigurations
   mkNixosCfg = hostname: system: nixpkgs: let
-    overlay-unstable = final: prev: {
-      unstable = import self.inputs.nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
+    nixpkgsConfig = {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+    pkgsFrom = {
+      main = import self.inputs.nixpkgs nixpkgsConfig;
+      unstable = import self.inputs.nixpkgs-unstable nixpkgsConfig;
     };
   in
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = {inputs = self.inputs;};
-      modules = [
-        # allows the use of pkgs.unstable.<pkgname>
-        # you can verify it by loading the flake in a repl (nix repl -> :lf .)
-        # and checking: outputs.nixosConfigurations.trantor.pkgs.unstable.
-        ({pkgs, ...}: {nixpkgs.overlays = [overlay-unstable];})
+      specialArgs = {
+        inputs = self.inputs;
+        inherit pkgsFrom;
+      };
 
+      modules = [
         {
           networking = {
             hostName = hostname;
@@ -26,11 +28,12 @@
         }
 
         self.inputs.sops-nix.nixosModules.sops
+        self.inputs.flake-programs-sqlite.nixosModules.${system}.programs-sqlite
         ../modules
         ./hosts/${hostname}
       ];
     };
 in {
-  trantor = mkNixosCfg "trantor" "x86_64-linux" self.inputs.nixpkgs;
+  trantor = mkNixosCfg "trantor" "x86_64-linux" self.inputs.nixpkgs-unstable;
   msi = mkNixosCfg "msi" "x86_64-linux" self.inputs.nixpkgs-unstable;
 }

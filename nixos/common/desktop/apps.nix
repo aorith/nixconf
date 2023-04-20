@@ -1,11 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgsFrom,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
+    pkgsFrom.unstable.alacritty
+    pkgsFrom.unstable.mpv
+    pkgsFrom.unstable.ungoogled-chromium
+    pkgsFrom.unstable.wezterm
+
     imagemagick
     sublime4
-    unstable.alacritty
-    unstable.mpv
-    unstable.ungoogled-chromium
-    unstable.wezterm
     wl-clipboard
     xclip
   ];

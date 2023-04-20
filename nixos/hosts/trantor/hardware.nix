@@ -25,7 +25,6 @@
     kernelParams = ["amd_iommu=on" "idle=nomwait" "rcu_nocbs=0-11"];
     kernelModules = ["kvm-amd" "amdgpu"];
     extraModulePackages = [];
-    tmpOnTmpfs = true;
     loader = {
       systemd-boot = {
         enable = true;
@@ -36,6 +35,7 @@
       };
     };
     supportedFilesystems = ["btrfs"];
+    tmp.useTmpfs = true;
   };
 
   services.xserver.videoDrivers = ["amdgpu"];
@@ -129,6 +129,5 @@
         libvdpau-va-gl
       ];
     };
-    video.hidpi.enable = lib.mkForce false;
   };
 }

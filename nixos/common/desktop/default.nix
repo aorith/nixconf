@@ -31,8 +31,4 @@ in {
     autoRepeatDelay = 300;
     autoRepeatInterval = 30;
   };
-
-  systemd.tmpfiles.rules = [
-    "L /run/current-system/sw/share/X11/fonts - - - - /home/aorith/.local/share/fonts"
-  ];
 }

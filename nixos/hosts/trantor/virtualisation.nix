@@ -36,7 +36,7 @@ in {
 
     podman = {
       enable = with_podman;
-      defaultNetwork.dnsname.enable = true;
+      defaultNetwork.settings.dns_enabled = true;
     };
   };
 }

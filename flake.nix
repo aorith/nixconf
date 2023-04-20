@@ -7,6 +7,10 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     neovim-flake.url = "github:aorith/neovim-flake";
     sops-nix.url = "github:Mic92/sops-nix";
+    flake-programs-sqlite = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-22.11";

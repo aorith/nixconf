@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  pkgsFrom,
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
@@ -9,6 +10,13 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     inputs.neovim-flake.packages.${pkgs.system}.default
+
+    pkgsFrom.unstable.alejandra
+    pkgsFrom.unstable.distrobox
+    pkgsFrom.unstable.lazygit
+    pkgsFrom.unstable.nil
+    pkgsFrom.unstable.nvd
+    pkgsFrom.unstable.terraform
 
     age
     bc
@@ -44,12 +52,6 @@
     sops
     sysstat
     tree
-    unstable.alejandra
-    unstable.distrobox
-    unstable.lazygit
-    unstable.nil
-    unstable.nvd
-    unstable.terraform
     unzip
     usbutils
     vim

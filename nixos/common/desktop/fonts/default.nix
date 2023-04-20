@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   nerfonts-symbols = import ./nerdfonts-symbols {
     inherit pkgs;
     lib = pkgs.lib;
@@ -33,17 +37,18 @@
   '';
 in {
   fonts = {
-    fontDir.enable = true; # required for flatpak
+    fontDir.enable = false; # required for flatpak
     enableDefaultFonts = true; # installs extra fonts
     fontconfig = {
       enable = true;
-      allowBitmaps = false;
       localConf = localconf;
     };
     fonts = with pkgs; [
       #iosevka-fixed
       #iosevka-nerd-term
       nerfonts-symbols
+
+      cantarell-fonts
       dejavu_fonts
       liberation_ttf
       libertine
@@ -64,10 +69,19 @@ in {
       fsType = "fuse.bindfs";
       options = ["ro" "resolve-symlinks" "x-gvfs-hide"];
     };
+    aggregatedFonts = pkgs.buildEnv {
+      name = "system-fonts";
+      paths = config.fonts.fonts;
+      pathsToLink = ["/share/fonts"];
+    };
   in {
     # Create an FHS mount to support flatpak host icons/fonts
-    "/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
-    "/usr/share/fonts" = mkRoSymBind "/run/current-system/sw/share/X11/fonts";
-    "/usr/share/sounds" = mkRoSymBind "/run/current-system/sw/share/sounds";
+    #"/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
+    #"/usr/share/pixmaps" = mkRoSymBind "/run/current-system/sw/share/pixmaps";
+    #"/usr/share/fonts" = mkRoSymBind "/run/current-system/sw/share/X11/fonts";
+    "/home/aorith/.local/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
+    #"/usr/share/sounds" = mkRoSymBind "/run/current-system/sw/share/sounds";
+    #"/usr/share/themes" = mkRoSymBind "/run/current-system/sw/share/themes";
+    #"/usr/share/backgrounds" = mkRoSymBind "/run/current-system/sw/share/backgrounds";
   };
 }
