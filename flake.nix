@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     neovim-flake.url = "github:aorith/neovim-flake";
-    sops-nix.url = "github:Mic92/sops-nix";
+    agenix.url = "github:ryantm/agenix";
     flake-programs-sqlite = {
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

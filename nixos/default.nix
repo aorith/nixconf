@@ -27,7 +27,7 @@
           nixpkgs.hostPlatform = system;
         }
 
-        self.inputs.sops-nix.nixosModules.sops
+        self.inputs.agenix.nixosModules.default
         self.inputs.flake-programs-sqlite.nixosModules.${system}.programs-sqlite
         ../modules
         ./hosts/${hostname}

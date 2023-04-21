@@ -3,19 +3,13 @@
   pkgs,
   ...
 }: {
-  sops.secrets = {
-    hosts = {
-      format = "yaml";
-      sopsFile = ../../../secrets/work.yaml;
-      restartUnits = ["update-hosts.service"];
-    };
-  };
+  age.secrets.hosts.file = ../../../secrets/hosts.age;
 
   # this doesn't need to be a secret, it's just an example to show
   # that secrets are available after activation, not on 'build'
   #
   # this doesn't work:
-  # networking.hostFiles = [config.sops.secrets.hosts.path];
+  # networking.hostFiles = [config.age.secrets.hosts.path];
   #
   # this works
   systemd.services.update-hosts = {
@@ -25,7 +19,7 @@
     serviceConfig = {
       Type = "oneshot";
       ExecStart = ''
-        ${pkgs.bash}/bin/bash -c '${pkgs.coreutils}/bin/cat ${config.sops.secrets.hosts.path} >> /etc/hosts'
+        ${pkgs.bash}/bin/bash -c '${pkgs.coreutils}/bin/cat ${config.age.secrets.hosts.path} >> /etc/hosts'
       '';
     };
   };
