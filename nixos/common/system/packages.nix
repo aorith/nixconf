@@ -36,7 +36,6 @@
     go
     inetutils # telnet
     jq
-    just
     killall
     kubectl
     lsof
