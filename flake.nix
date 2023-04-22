@@ -7,10 +7,6 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     neovim-flake.url = "github:aorith/neovim-flake";
     agenix.url = "github:ryantm/agenix";
-    flake-programs-sqlite = {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-22.11";
@@ -21,6 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    flake-programs-sqlite = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     flake-registry = {
       url = "github:nixos/flake-registry";
       flake = false;
