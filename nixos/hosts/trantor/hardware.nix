@@ -4,7 +4,14 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  defaultBtrfsOpts = [
+    "defaults"
+    "compress=zstd"
+    "noatime"
+    "nodiscard" # instead use the fstrim timer
+  ];
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixos-hardware.nixosModules.common-cpu-amd
@@ -44,25 +51,25 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
     fsType = "btrfs";
-    options = ["subvol=root" "compress=zstd" "noatime"];
+    options = defaultBtrfsOpts ++ ["subvol=root"];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
     fsType = "btrfs";
-    options = ["subvol=home" "compress=zstd" "noatime"];
+    options = defaultBtrfsOpts ++ ["subvol=home"];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
     fsType = "btrfs";
-    options = ["subvol=nix" "compress=zstd" "noatime"];
+    options = defaultBtrfsOpts ++ ["subvol=nix"];
   };
 
   fileSystems."/var" = {
     device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
     fsType = "btrfs";
-    options = ["subvol=var" "compress=zstd" "noatime"];
+    options = defaultBtrfsOpts ++ ["subvol=var"];
   };
 
   fileSystems."/boot" = {
@@ -73,17 +80,17 @@
   fileSystems."/mnt/storage/tank" = {
     device = "/dev/disk/by-label/tank";
     fsType = "btrfs";
-    options = ["compress=zstd" "noatime"];
+    options = defaultBtrfsOpts;
   };
   fileSystems."/mnt/storage/disk1" = {
     device = "/dev/disk/by-label/DISK1";
     fsType = "ext4";
-    options = ["noatime"];
+    options = ["defaults" "noatime"];
   };
   fileSystems."/mnt/storage/disk2" = {
     device = "/dev/disk/by-label/DISK2";
     fsType = "ext4";
-    options = ["noatime"];
+    options = ["defaults" "noatime"];
   };
 
   # bindmounts
