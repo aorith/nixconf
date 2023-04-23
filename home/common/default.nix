@@ -4,6 +4,8 @@
   pkgsFrom,
   ...
 }: {
+  imports = [./shell-config.nix];
+
   home.packages = [
     pkgsFrom.unstable.just
   ];

@@ -8,6 +8,7 @@
     ./ssh.nix
     ./packages.nix
     ./python.nix
+    ./shell-config.nix
   ];
 
   time.timeZone = "Europe/Madrid";
