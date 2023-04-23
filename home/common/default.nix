@@ -11,7 +11,7 @@
   xdg.mime.enable = pkgs.stdenv.isLinux;
 
   programs.neovim = {
-    enable = true;
+    enable = pkgs.stdenv.isDarwin;
     package = inputs.neovim-flake.packages.${pkgs.system}.default;
   };
 }
