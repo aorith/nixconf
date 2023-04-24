@@ -44,6 +44,8 @@
       };
       directory = {
         truncation_symbol = "…/";
+        truncate_to_repo = false;
+        truncation_length = 4;
       };
       cmd_duration = {
         min_time = 1000;

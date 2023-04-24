@@ -19,6 +19,8 @@
     pkgsFrom.unstable.nvd
     pkgsFrom.unstable.terraform
 
+    (pkgs.lib.lowPrio inetutils) # telnet, lowPrio since it has some collisions (hostname, ...)
+
     age
     bc
     btop
@@ -34,7 +36,6 @@
     fzf
     gnumake
     go
-    inetutils # telnet
     jq
     killall
     kubectl

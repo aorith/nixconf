@@ -12,7 +12,7 @@
   ];
 
   time.timeZone = "Europe/Madrid";
-  i18n.defaultLocale = "C.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_MEASUREMENT = "es_ES.UTF-8";
     LC_MONETARY = "es_ES.UTF-8";
@@ -51,7 +51,9 @@
   documentation = {
     enable = true;
     man.enable = true;
-    nixos.enable = true;
+    doc.enable = false;
+    info.enable = false;
+    nixos.enable = false;
   };
 
   systemd.targets = {

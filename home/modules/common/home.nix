@@ -4,16 +4,11 @@
   pkgsFrom,
   ...
 }: {
-  imports = [./shell-config.nix];
-
   home.packages = [
     pkgsFrom.unstable.just
-    pkgs.hack-font
   ];
 
-  fonts = {
-    fontconfig.enable = true;
-  };
+  fonts.fontconfig.enable = true;
   xdg.mime.enable = pkgs.stdenv.isLinux;
 
   programs.neovim = {

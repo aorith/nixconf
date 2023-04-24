@@ -3,7 +3,6 @@
 
   mkHmCfg = {
     username,
-    homeDir,
     stateVer,
     system,
     hmCfg,
@@ -30,7 +29,10 @@
             programs.home-manager.enable = true;
             home = {
               username = "${username}";
-              homeDirectory = "${homeDir}";
+              homeDirectory =
+                if (builtins.match ".*(darwin)" "${system}" != null)
+                then "/Users/${username}"
+                else "/home/${username}";
               stateVersion = "${stateVer}";
             };
           }
@@ -42,19 +44,25 @@ in {
   "aorith@trantor" = let
     system = "x86_64-linux";
     username = "aorith";
-    homeDir = "/home/aorith";
     stateVer = "22.11";
     hmCfg = hmCfg-unstable;
-    extraModules = [./linux ./common ./gui];
+    extraModules = [
+      ./modules/linux
+      ./modules/common/home.nix
+      ./modules/common/shell-config.nix
+      ./modules/common/gui.nix
+    ];
   in
-    mkHmCfg {inherit system username homeDir stateVer hmCfg extraModules;};
+    mkHmCfg {inherit system username stateVer hmCfg extraModules;};
   "aorith@moria" = let
     system = "aarch64-darwin";
     username = "aorith";
-    homeDir = "/Users/aorith";
     stateVer = "22.11";
     hmCfg = hmCfg-unstable;
-    extraModules = [./common];
+    extraModules = [
+      ./modules/common/home.nix
+      ./modules/common/shell-config.nix
+    ];
   in
-    mkHmCfg {inherit system username homeDir stateVer hmCfg extraModules;};
+    mkHmCfg {inherit system username stateVer hmCfg extraModules;};
 }

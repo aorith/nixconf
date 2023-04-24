@@ -50,6 +50,8 @@ in {
 
       cantarell-fonts
       dejavu_fonts
+      hack-font
+      jetbrains-mono
       liberation_ttf
       libertine
       noto-fonts
