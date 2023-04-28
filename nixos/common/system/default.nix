@@ -9,6 +9,7 @@
     ./packages.nix
     ./python.nix
     ./shell-config.nix
+    ./sysctl.nix
   ];
 
   time.timeZone = "Europe/Madrid";
