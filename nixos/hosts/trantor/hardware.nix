@@ -22,7 +22,7 @@ in {
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest; # https://nixos.wiki/wiki/Linux_kernel
+    #kernelPackages = pkgs.linuxPackages_latest; # https://nixos.wiki/wiki/Linux_kernel
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
       kernelModules = [];
@@ -30,7 +30,7 @@ in {
     # AMD 1600:
     # BIOS: "power supply idle control" == "typical current idle"
     kernelParams = ["amd_iommu=on" "idle=nomwait" "rcu_nocbs=0-11"];
-    kernelModules = ["kvm-amd" "amdgpu"];
+    kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     loader = {
       systemd-boot = {
@@ -45,7 +45,6 @@ in {
     tmp.useTmpfs = true;
   };
 
-  services.xserver.videoDrivers = ["amdgpu"];
   services.btrfs.autoScrub.enable = true;
 
   fileSystems."/" = {

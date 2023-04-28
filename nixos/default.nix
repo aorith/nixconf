@@ -28,7 +28,7 @@
         }
 
         self.inputs.agenix.nixosModules.default
-        self.inputs.flake-programs-sqlite.nixosModules.${system}.programs-sqlite
+        self.inputs.flake-programs-sqlite.nixosModules.programs-sqlite
         ../modules
         ./hosts/${hostname}
       ];
