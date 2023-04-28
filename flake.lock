@@ -142,15 +142,16 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs_2",
+        "plugin_neo-tree-nvim": "plugin_neo-tree-nvim",
         "plugin_vim-fugitive": "plugin_vim-fugitive",
         "plugin_vim-varnish": "plugin_vim-varnish"
       },
       "locked": {
-        "lastModified": 1682275778,
-        "narHash": "sha256-pNnVBDcLLUr+r5fmy2Q29xvxxtDA0rkghXmxQm7AvCk=",
+        "lastModified": 1682619526,
+        "narHash": "sha256-eAc9W4xc0LQb+HdJCnSHhexzrDfMGfhs5YvEprBCnyg=",
         "owner": "aorith",
         "repo": "neovim-flake",
-        "rev": "b48771ff60df04c9642a303279bbd5ef0e84bf87",
+        "rev": "c7147b372bcc2d3e2fd48126de651ef07442d020",
         "type": "github"
       },
       "original": {
@@ -208,11 +209,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1682181988,
-        "narHash": "sha256-CYWhlNi16cjGzMby9h57gpYE59quBcsHPXiFgX4Sw5k=",
+        "lastModified": 1682526928,
+        "narHash": "sha256-2cKh4O6t1rQ8Ok+v16URynmb0rV7oZPEbXkU0owNLQs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6c43a3495a11e261e5f41e5d7eda2d71dae1b2fe",
+        "rev": "d6b863fd9b7bb962e6f9fdf292419a775e772891",
         "type": "github"
       },
       "original": {
@@ -235,6 +236,23 @@
         "owner": "nixos",
         "ref": "nixos-22.11",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "plugin_neo-tree-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1682256597,
+        "narHash": "sha256-Wf+/dJBn7g9ywOwP1BzXOeajo4bECngK82wSr80nWKQ=",
+        "owner": "nvim-neo-tree",
+        "repo": "neo-tree.nvim",
+        "rev": "8d485aab32da9b8841d4af977f992b82b14af469",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neo-tree",
+        "ref": "2.59",
+        "repo": "neo-tree.nvim",
         "type": "github"
       }
     },
