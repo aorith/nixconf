@@ -15,10 +15,9 @@
       pkgs.wl-clipboard
       pkgs.xclip
       pkgs.xsel
-
-      pkgs.pbcopy2 # overlay
     ]
     ++ [
       # Common packages
+      pkgs.pbcopy2 # overlay
     ];
 }

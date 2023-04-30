@@ -3,12 +3,22 @@
   pkgs,
   ...
 }: {
-  home.packages = [
-    pkgs.just
-    pkgs.bat
+  fonts.fontconfig.enable = true;
+  xdg.mime.enable = pkgs.stdenv.isLinux;
+
+  home.packages = with pkgs; [
+    bat
+    fd
+    just
+
     inputs.neovim-flake.packages.${pkgs.system}.default
   ];
 
-  fonts.fontconfig.enable = true;
-  xdg.mime.enable = pkgs.stdenv.isLinux;
+  programs = {
+    fzf = {
+      enable = true;
+      enableBashIntegration = false;
+      defaultCommand = "fd --type f --follow --exclude .git";
+    };
+  };
 }
