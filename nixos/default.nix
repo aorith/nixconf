@@ -5,10 +5,8 @@
       inherit system;
       config.allowUnfree = true;
     };
-
     pkgsFrom = {
-      main = import self.inputs.nixpkgs nixpkgsConfig;
-      unstable = import self.inputs.nixpkgs-unstable nixpkgsConfig;
+      stable = import self.inputs.nixpkgs-stable nixpkgsConfig;
     };
   in
     nixpkgs.lib.nixosSystem {
@@ -34,6 +32,6 @@
       ];
     };
 in {
-  trantor = mkNixosCfg "trantor" "x86_64-linux" self.inputs.nixpkgs-unstable;
-  msi = mkNixosCfg "msi" "x86_64-linux" self.inputs.nixpkgs-unstable;
+  trantor = mkNixosCfg "trantor" "x86_64-linux" self.inputs.nixpkgs;
+  msi = mkNixosCfg "msi" "x86_64-linux" self.inputs.nixpkgs;
 }

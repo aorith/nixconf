@@ -44,16 +44,16 @@
     "flake-programs-sqlite": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ],
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1682704448,
-        "narHash": "sha256-g41BKgHfM7yQ551qOBkf4rAfqy9XdLe0MLRmAgal22E=",
+        "lastModified": 1682835220,
+        "narHash": "sha256-5aXh23dkbVvMIHvQBQKA1o3MVRfxRmp7YXH2/ghQwiA=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "fe35f9ede0c71db32c55133d9abebfeff02ea867",
+        "rev": "04fa27919cdaf6c18d13ad7edec374984ae614ba",
         "type": "github"
       },
       "original": {
@@ -100,6 +100,26 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1682779989,
+        "narHash": "sha256-H8AjcIBYFYrlRobYJ+n1B+ZJ6TsaaeZpuLn4iRqVvr4=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "3144311f31194b537808ae6848f86f3dbf977d59",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager-stable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-stable"
         ],
         "utils": "utils_2"
       },
@@ -114,26 +134,6 @@
       "original": {
         "owner": "nix-community",
         "ref": "release-22.11",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager-unstable": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1682702336,
-        "narHash": "sha256-11M53Vt8Gl4hxgU2XazttGiuSexgxf1cbFtluICd8A0=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "f2d629115095abf6f8fe55798487b3670d07cd14",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
       }
@@ -162,11 +162,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1680876084,
-        "narHash": "sha256-eP9yxP0wc7XuVaODugh+ajgbFGaile2O1ihxiLxOuvU=",
+        "lastModified": 1682836095,
+        "narHash": "sha256-PdzpJhuXBz71AgWNWMMYLbB8GMMce6QguhQY/6HOOcc=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "3006d2860a6ed5e01b0c3e7ffb730e9b293116e2",
+        "rev": "e4a21ddcb45ee5f5c85a5d9e9698debf77fb98c3",
         "type": "github"
       },
       "original": {
@@ -191,18 +191,18 @@
         "type": "github"
       }
     },
-    "nixpkgs-unstable": {
+    "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1682526928,
-        "narHash": "sha256-2cKh4O6t1rQ8Ok+v16URynmb0rV7oZPEbXkU0owNLQs=",
+        "lastModified": 1682669017,
+        "narHash": "sha256-Vi+p4y3wnl0/4gcwTdmCO398kKlDaUrNROtf3GOD2NY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d6b863fd9b7bb962e6f9fdf292419a775e772891",
+        "rev": "7449971a3ecf857b4a554cf79b1d9dcc1a4647d8",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "nixos-22.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -225,16 +225,16 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1682538316,
-        "narHash": "sha256-YuHgVsR7S9zxJWHo7lo2ugd+uDC4ESWg1hA4bEZQv3Y=",
+        "lastModified": 1682692304,
+        "narHash": "sha256-9/lyXN2BpHw+1xE+D2ySBSLMCHWqiWu5tPHBMRDib8M=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "15b75800dce80225b44f067c9012b09de37dfad2",
+        "rev": "937a9d1ee7b1351d8c55fff6611a8edf6e7c1c37",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-22.11",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -294,11 +294,11 @@
         "flake-programs-sqlite": "flake-programs-sqlite",
         "flake-registry": "flake-registry",
         "home-manager": "home-manager",
-        "home-manager-unstable": "home-manager-unstable",
+        "home-manager-stable": "home-manager-stable",
         "neovim-flake": "neovim-flake",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-stable": "nixpkgs-stable"
       }
     },
     "systems": {

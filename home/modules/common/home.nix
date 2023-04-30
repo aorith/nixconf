@@ -1,11 +1,10 @@
 {
   inputs,
   pkgs,
-  pkgsFrom,
   ...
 }: {
   home.packages = [
-    pkgsFrom.unstable.just
+    pkgs.just
     pkgs.bat
     inputs.neovim-flake.packages.${pkgs.system}.default
   ];

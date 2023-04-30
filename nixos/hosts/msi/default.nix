@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  pkgsFrom,
   ...
 }: let
   storage = "/mnt/data";
@@ -32,9 +31,8 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    pkgsFrom.unstable.pavucontrol
-    pkgsFrom.unstable.helvum # for pipewire
-
+    pavucontrol
+    helvum # for pipewire
     pulseaudio
   ];
 

@@ -1,5 +1,5 @@
-{pkgsFrom, ...}: let
-  exa = pkgsFrom.unstable.exa;
+{pkgs, ...}: let
+  exa = pkgs.exa;
 in {
   programs.fish = {
     enable = true;

@@ -2,24 +2,24 @@
   description = "One Nix flake to rule them all";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     neovim-flake.url = "github:aorith/neovim-flake";
     agenix.url = "github:ryantm/agenix";
 
-    home-manager = {
+    home-manager-stable = {
       url = "github:nix-community/home-manager/release-22.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    home-manager-unstable = {
+    home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-programs-sqlite = {
       url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-registry = {
       url = "github:nixos/flake-registry";
@@ -32,6 +32,6 @@
   in {
     nixosConfigurations = import ./nixos inputs;
     homeConfigurations = import ./home inputs;
-    formatter = forAllSystems (system: inputs.nixpkgs-unstable.legacyPackages.${system}.alejandra);
+    formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
   };
 }

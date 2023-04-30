@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  pkgsFrom,
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
@@ -11,12 +10,12 @@
   environment.systemPackages = with pkgs; [
     inputs.agenix.packages.${pkgs.system}.default
 
-    pkgsFrom.unstable.alejandra
-    pkgsFrom.unstable.distrobox
-    pkgsFrom.unstable.lazygit
-    pkgsFrom.unstable.nil
-    pkgsFrom.unstable.nvd
-    pkgsFrom.unstable.terraform
+    pkgs.alejandra
+    pkgs.distrobox
+    pkgs.lazygit
+    pkgs.nil
+    pkgs.nvd
+    pkgs.terraform
 
     (pkgs.lib.lowPrio inetutils) # telnet, lowPrio since it has some collisions (hostname, ...)
 

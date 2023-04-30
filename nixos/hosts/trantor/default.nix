@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  pkgsFrom,
   ...
 }: let
   storage = "/mnt/storage";
@@ -40,9 +39,8 @@ in {
   environment.etc."wireplumber/main.lua.d/51-alsa-custom.lua".text = builtins.readFile ./51-alsa-custom.lua;
 
   environment.systemPackages = with pkgs; [
-    pkgsFrom.unstable.pavucontrol
-    pkgsFrom.unstable.helvum # for pipewire
-
+    pavucontrol
+    helvum # for pipewire
     pulseaudio
   ];
 

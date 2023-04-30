@@ -1,19 +1,15 @@
-{
-  pkgs,
-  pkgsFrom,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages =
     pkgs.lib.optionals pkgs.stdenv.isDarwin [
       # Darwin packages
     ]
     ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
       # Linux packages
-      pkgsFrom.unstable.wezterm
-      pkgsFrom.unstable.alacritty
-      pkgsFrom.unstable.mpv
-      pkgsFrom.unstable.ungoogled-chromium
-      pkgsFrom.unstable.sublime4
+      pkgs.wezterm
+      pkgs.alacritty
+      pkgs.mpv
+      pkgs.ungoogled-chromium
+      pkgs.sublime4
 
       pkgs.imagemagick
       pkgs.wl-clipboard

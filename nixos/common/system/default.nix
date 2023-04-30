@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgsFrom,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./nix.nix
     ./ssh.nix
@@ -40,7 +36,7 @@
     shellAliases = let
       find = "${pkgs.findutils}/bin/find";
       fzf = "${pkgs.fzf}/bin/fzf";
-      nvd = "${pkgsFrom.unstable.nvd}/bin/nvd";
+      nvd = "${pkgs.nvd}/bin/nvd";
     in {
       nixconf = "cd /home/aorith/githome/nixconf";
       #nix-list-packages = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort -u";

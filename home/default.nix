@@ -1,6 +1,4 @@
 {self, ...}: let
-  hmCfg-unstable = self.inputs.home-manager-unstable.lib.homeManagerConfiguration;
-
   mkHmCfg = {
     username,
     stateVer,
@@ -15,8 +13,7 @@
     };
     pkgs = import self.inputs.nixpkgs nixpkgsConfig;
     pkgsFrom = {
-      main = import self.inputs.nixpkgs nixpkgsConfig;
-      unstable = import self.inputs.nixpkgs-unstable nixpkgsConfig;
+      stable = import self.inputs.nixpkgs-stable nixpkgsConfig;
     };
   in
     hmCfg {
@@ -47,7 +44,7 @@ in {
     system = "x86_64-linux";
     username = "aorith";
     stateVer = "22.11";
-    hmCfg = hmCfg-unstable;
+    hmCfg = self.inputs.home-manager.lib.homeManagerConfiguration;
     extraModules = [
       ./modules/linux
       ./modules/common
@@ -58,7 +55,7 @@ in {
     system = "aarch64-darwin";
     username = "aorith";
     stateVer = "22.11";
-    hmCfg = hmCfg-unstable;
+    hmCfg = self.inputs.home-manager.lib.homeManagerConfiguration;
     extraModules = [
       ./modules/common
     ];

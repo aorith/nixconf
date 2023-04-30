@@ -36,6 +36,6 @@ in {
   };
 
   systemd.tmpfiles.rules = [
-    "L+ ${nixPath} - - - - ${inputs.nixpkgs-unstable}"
+    "L+ ${nixPath} - - - - ${inputs.nixpkgs}"
   ];
 }
