@@ -11,4 +11,6 @@
   home.packages = [
     pkgsFrom.unstable.pgadmin4-desktopmode # pgadmin web app
   ];
+
+  #services.clipmenu.enable = true;
 }

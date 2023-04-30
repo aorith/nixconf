@@ -9,7 +9,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    inputs.neovim-flake.packages.${pkgs.system}.default
     inputs.agenix.packages.${pkgs.system}.default
 
     pkgsFrom.unstable.alejandra
@@ -62,9 +61,6 @@
     bash = {
       enableLsColors = true;
       enableCompletion = true;
-    };
-    tmux = {
-      enable = true;
     };
 
     dconf.enable = true;

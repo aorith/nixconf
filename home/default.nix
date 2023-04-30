@@ -11,14 +11,16 @@
     nixpkgsConfig = {
       inherit system;
       config.allowUnfree = true;
+      overlays = [(import ../overlays/pbcopy2.nix)];
     };
+    pkgs = import self.inputs.nixpkgs nixpkgsConfig;
     pkgsFrom = {
       main = import self.inputs.nixpkgs nixpkgsConfig;
       unstable = import self.inputs.nixpkgs-unstable nixpkgsConfig;
     };
   in
     hmCfg {
-      pkgs = self.inputs.nixpkgs.legacyPackages.${system};
+      inherit pkgs;
       extraSpecialArgs = {
         inherit pkgsFrom;
         inputs = self.inputs;
@@ -48,9 +50,7 @@ in {
     hmCfg = hmCfg-unstable;
     extraModules = [
       ./modules/linux
-      ./modules/common/home.nix
-      ./modules/common/shell-config.nix
-      ./modules/common/gui.nix
+      ./modules/common
     ];
   in
     mkHmCfg {inherit system username stateVer hmCfg extraModules;};
@@ -60,8 +60,7 @@ in {
     stateVer = "22.11";
     hmCfg = hmCfg-unstable;
     extraModules = [
-      ./modules/common/home.nix
-      ./modules/common/shell-config.nix
+      ./modules/common
     ];
   in
     mkHmCfg {inherit system username stateVer hmCfg extraModules;};

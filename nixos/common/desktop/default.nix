@@ -14,7 +14,6 @@
 in {
   imports = [
     ./fonts
-    ./apps.nix
     ./gnome.nix
   ];
 
