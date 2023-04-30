@@ -10,17 +10,9 @@
   environment.systemPackages = with pkgs; [
     inputs.agenix.packages.${pkgs.system}.default
 
-    pkgs.alejandra
-    pkgs.distrobox
-    pkgs.lazygit
-    pkgs.nil
-    pkgs.nvd
-    pkgs.terraform
-
     (pkgs.lib.lowPrio inetutils) # telnet, lowPrio since it has some collisions (hostname, ...)
 
     age
-    bc
     btop
     clang
     commonsCompress
@@ -31,12 +23,7 @@
     fd
     ffmpeg-full
     file
-    fzf
-    gnumake
     go
-    jq
-    killall
-    kubectl
     lsof
     ncdu
     nvme-cli
@@ -46,14 +33,11 @@
     parted
     pciutils
     pstree
-    ripgrep
     smartmontools
     sysstat
-    tree
     unzip
     usbutils
     vim
-    wget
   ];
 
   programs = {

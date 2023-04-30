@@ -11,13 +11,11 @@
       pkgs.ungoogled-chromium
       pkgs.sublime4
 
-      pkgs.imagemagick
       pkgs.wl-clipboard
       pkgs.xclip
       pkgs.xsel
     ]
     ++ [
       # Common packages
-      pkgs.pbcopy2 # overlay
     ];
 }
