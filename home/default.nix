@@ -58,6 +58,7 @@ in {
     hmCfg = self.inputs.home-manager.lib.homeManagerConfiguration;
     extraModules = [
       ./modules/common
+      ./modules/darwin
     ];
   in
     mkHmCfg {inherit system username stateVer hmCfg extraModules;};

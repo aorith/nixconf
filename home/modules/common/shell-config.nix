@@ -53,9 +53,24 @@
 
     fish = {
       enable = true;
-      interactiveShellInit = ''
-        set -g fish_greeting
-      '';
+      interactiveShellInit = lib.concatStringsSep "\n" ([
+          # Common
+          ''
+            set -g fish_greeting
+
+            fish_add_path -g --prepend $GOBIN ~/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/scripts-private/bin ~/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/bin
+
+            source ~/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/env/all/bash/04_aliases
+          ''
+        ]
+        ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+          ''
+            # Darwin
+            fish_add_path -g ~/.docker/bin
+            source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+            eval (/opt/homebrew/bin/brew shellenv)
+          ''
+        ]);
     };
 
     bash = {
@@ -79,7 +94,6 @@
           # Common
           ''
             complete -cf sudo
-
             export PS4='+ ''${BASH_SOURCE:-}:''${LINENO:-}: ''${FUNCNAME[0]:-}() [''${?:-}] → '
 
             export PATH="$PATH:$GOBIN:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/scripts-private/bin:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/bin"
@@ -91,7 +105,6 @@
         ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
           # Darwin
           ''
-            . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
             eval "$(/opt/homebrew/bin/brew shellenv)"
             . "$HOME/githome/dotfiles/topics/homebrew/env/Darwin/bash/03_functions"
             export PATH="$HOME/.docker/bin:$PATH"
