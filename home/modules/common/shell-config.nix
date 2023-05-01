@@ -7,6 +7,9 @@
   home = {
     sessionVariables = {
       EDITOR = "nvim";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_CACHE_HOME = "$HOME/.local/cache";
       GOPATH = "$HOME/.local/go";
       GOBIN = "$HOME/.local/go/bin";
       _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
