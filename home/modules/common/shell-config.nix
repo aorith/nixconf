@@ -96,6 +96,7 @@
     starship = {
       enable = true;
       settings = {
+        add_newline = false;
         format = lib.concatStrings [
           "$time"
           "$username"

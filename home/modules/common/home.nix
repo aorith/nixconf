@@ -36,7 +36,6 @@ in {
       diffutils
       fd
       findutils
-      git
       glow
       gnumake
       gnused

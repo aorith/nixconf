@@ -1,6 +1,15 @@
-{...}: {
+{pkgs, ...}: {
   programs.git = {
     enable = true;
+    package = pkgs.gitFull;
+    lfs.enable = true;
+    delta = {
+      enable = true;
+      options = {
+        navigate = true;
+        syntax-theme = "gruvbox-dark";
+      };
+    };
     aliases = {
       myls = "log --topo-order --stat";
       myld = "log --topo-order --stat --patch --full-diff";
@@ -14,9 +23,9 @@
     };
 
     extraConfig = {
-      core = {
-        pager = "less -RS";
-      };
+      #core = {
+      #pager = "less -RS";
+      #};
       user = {
         signingKey = "~/.ssh/id_rsa.pub";
       };
