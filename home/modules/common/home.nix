@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -10,7 +11,15 @@
     ];
 in {
   fonts.fontconfig.enable = true;
-  xdg.mime.enable = pkgs.stdenv.isLinux;
+  xdg = {
+    enable = true;
+    configHome = "${config.home.homeDirectory}/.config";
+    cacheHome = "${config.home.homeDirectory}/.local/cache";
+    dataHome = "${config.home.homeDirectory}/.local/share";
+    stateHome = "${config.home.homeDirectory}/.local/state";
+    mimeApps.enable = pkgs.stdenv.isLinux;
+    mime.enable = pkgs.stdenv.isLinux;
+  };
 
   home.packages = with pkgs;
     [
