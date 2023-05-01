@@ -161,6 +161,10 @@
         python = {
           detect_extensions = [];
         };
+        kubernetes = {
+          disabled = false;
+          detect_extensions = ["yaml"];
+        };
       };
     };
   };
