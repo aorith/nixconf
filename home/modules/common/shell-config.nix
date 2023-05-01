@@ -7,6 +7,9 @@
   home = {
     sessionVariables = {
       EDITOR = "nvim";
+      GOPATH = "$HOME/.local/go";
+      GOBIN = "$HOME/.local/go/bin";
+      _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
     };
 
     shellAliases = {
@@ -22,6 +25,20 @@
 
   programs = {
     dircolors.enable = true;
+    readline = {
+      enable = true;
+      extraConfig = ''
+        set bell-style none
+        set colored-stats On
+        set colored-completion-prefix On
+        set visible-stats On
+        set mark-symlinked-directories On
+        set menu-complete-display-prefix On
+        set enable-bracketed-paste On
+        set show-all-if-ambiguous On
+        set show-all-if-unmodified On
+      '';
+    };
 
     fish = {
       enable = true;
@@ -33,20 +50,45 @@
     bash = {
       enable = true;
       enableCompletion = true;
+
       historyFile = "${config.home.homeDirectory}/.local/share/.bash_history";
+      historyControl = ["erasedups" "ignoredups" "ignorespace"];
+      shellOptions = [
+        "autocd"
+        "checkjobs"
+        "checkwinsize"
+        "cmdhist"
+        "extglob"
+        "globstar"
+        "histappend"
+      ];
+
       # Login shell
       profileExtra = lib.concatStringsSep "\n" ([
           # Common
           ''
-            export PATH="$PATH:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/scripts-private/bin:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/bin"
+            complete -cf sudo
+
+            export PS4='+ ''${BASH_SOURCE:-}:''${LINENO:-}: ''${FUNCNAME[0]:-}() [''${?:-}] → '
+
+            export PATH="$PATH:$GOBIN:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/scripts-private/bin:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/bin"
             . "$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/env/all/bash/04_aliases"
+
+            . "$HOME/githome/dotfiles/topics/python/env/all/bash/03_functions"
           ''
         ]
         ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
           # Darwin
           ''
+            export LANG='en_US.UTF-8'
+            export LANGUAGE='en_US.UTF-8'
+            export LC_COLLATE=C
+            export LC_CTYPE=UTF-8
+
             . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
             eval "$(/opt/homebrew/bin/brew shellenv)"
+            . "$HOME/githome/dotfiles/topics/homebrew/env/Darwin/bash/03_functions"
+            export PATH="$HOME/.docker/bin:$PATH"
           ''
         ]);
     };
@@ -64,6 +106,8 @@
           "$git_state"
           "$git_status"
           "$nix_shell"
+          "$python"
+          "$kubernetes"
           "$container"
           "$package" # curr dir is a repo for a package (cargo, python, helm, ...)
           "$jobs"
@@ -93,6 +137,9 @@
         };
         cmd_duration = {
           min_time = 1000;
+        };
+        python = {
+          detect_extensions = [];
         };
       };
     };

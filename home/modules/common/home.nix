@@ -2,7 +2,13 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  python-pkgs = p:
+    with p; [
+      requests
+      urllib3
+    ];
+in {
   fonts.fontconfig.enable = true;
   xdg.mime.enable = pkgs.stdenv.isLinux;
 
@@ -12,6 +18,8 @@
       (pkgs.lib.lowPrio inetutils) # telnet, lowPrio since it has some collisions (hostname, ...)
       pkgs.pbcopy2 # overlay
       inputs.neovim-flake.packages.${pkgs.system}.default
+
+      (python3.withPackages python-pkgs)
 
       ansible
       bc
@@ -29,6 +37,7 @@
       killall
       kubectl
       lazygit
+      minikube
       nmap
       ripgrep
       terraform
