@@ -37,7 +37,6 @@
       fzf = "${pkgs.fzf}/bin/fzf";
       nvd = "${pkgs.nvd}/bin/nvd";
     in {
-      nixconf = "cd /home/aorith/githome/nixconf";
       #nix-list-packages = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort -u";
       nix-list-packages = "${nvd} list";
       nixos-diff = ''

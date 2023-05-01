@@ -5,12 +5,21 @@
   ...
 }: {
   home = {
-    sessionVariables = {
-      EDITOR = "nvim";
-      GOPATH = "$HOME/.local/go";
-      GOBIN = "$HOME/.local/go/bin";
-      _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
-    };
+    sessionVariables =
+      {
+        # Common
+        EDITOR = "nvim";
+        GOPATH = "$HOME/.local/go";
+        GOBIN = "$HOME/.local/go/bin";
+        _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
+      }
+      // pkgs.lib.attrsets.optionalAttrs pkgs.stdenv.isDarwin {
+        # Darwin only
+        LANG = "en_US.UTF-8";
+        LANGUAGE = "en_US.UTF-8";
+        LC_COLLATE = "C";
+        LC_CTYPE = "UTF-8";
+      };
 
     shellAliases = {
       ls = "ls --color=auto";
@@ -20,6 +29,8 @@
       "..." = "cd ../..";
       repos = ''cd "$(fd '\.git$' "$HOME/Syncthing/TES/gitlab" --max-depth 4 --type d --unrestricted --color never | fzf --delimiter / --with-nth -3)/.."'';
       k = "kubectl";
+      nixconf = "cd ${config.home.homeDirectory}/githome/nixconf";
+      dotfiles = "cd ${config.home.homeDirectory}/githome/dotfiles";
     };
   };
 
@@ -80,11 +91,6 @@
         ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
           # Darwin
           ''
-            export LANG='en_US.UTF-8'
-            export LANGUAGE='en_US.UTF-8'
-            export LC_COLLATE=C
-            export LC_CTYPE=UTF-8
-
             . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
             eval "$(/opt/homebrew/bin/brew shellenv)"
             . "$HOME/githome/dotfiles/topics/homebrew/env/Darwin/bash/03_functions"
