@@ -31,6 +31,7 @@ in {
       (python3.withPackages python-pkgs)
 
       ansible
+      bash-completion
       bc
       curl
       diffutils

@@ -93,7 +93,6 @@
       profileExtra = lib.concatStringsSep "\n" ([
           # Common
           ''
-            complete -cf sudo
             export PS4='+ ''${BASH_SOURCE:-}:''${LINENO:-}: ''${FUNCNAME[0]:-}() [''${?:-}] → '
 
             export PATH="$PATH:$GOBIN:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/scripts-private/bin:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/bin"
