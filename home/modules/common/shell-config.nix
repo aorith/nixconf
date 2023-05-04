@@ -3,7 +3,10 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  # starship preset bracketed-segments -o ./bracketed-segments.toml
+  starship-bracketed-segments = builtins.fromTOML (builtins.readFile ./starship/bracketed-segments.toml);
+in {
   home = {
     sessionVariables =
       {
@@ -113,58 +116,61 @@
 
     starship = {
       enable = true;
-      settings = {
-        add_newline = false;
-        format = lib.concatStrings [
-          "$time"
-          "$username"
-          "$hostname"
-          "$directory"
-          "$git_branch"
-          "$git_commit"
-          "$git_state"
-          "$git_status"
-          "$nix_shell"
-          "$python"
-          "$kubernetes"
-          "$container"
-          "$package" # curr dir is a repo for a package (cargo, python, helm, ...)
-          "$jobs"
-          "$cmd_duration"
-          "$status"
-          "$line_break"
-          "$character"
-        ];
-        command_timeout = 500; # 500 = default
-        time = {
-          disabled = false;
-          time_format = "%H:%M";
-          format = "[$time]($style) ";
+      settings =
+        lib.recursiveUpdate starship-bracketed-segments
+        {
+          add_newline = false;
+          format = lib.concatStrings [
+            "$time"
+            "$username"
+            "$hostname"
+            "$directory"
+            "$git_branch"
+            "$git_commit"
+            "$git_state"
+            "$git_status"
+            "$nix_shell"
+            "$python"
+            "$kubernetes"
+            "$container"
+            "$package" # curr dir is a repo for a package (cargo, python, helm, ...)
+            "$jobs"
+            "$cmd_duration"
+            "$status"
+            "$line_break"
+            "$character"
+          ];
+          command_timeout = 500; # 500 = default
+          time = {
+            disabled = false;
+            time_format = "%H:%M";
+            format = "[$time]($style) ";
+            style = "white dimmed";
+          };
+          jobs = {
+            format = "[$number]($style) ";
+            number_threshold = 1;
+          };
+          status = {
+            disabled = false;
+            format = "[$status]($style) ";
+          };
+          directory = {
+            truncation_symbol = "…/";
+            truncate_to_repo = false;
+            truncation_length = 4;
+          };
+          cmd_duration = {
+            min_time = 1000;
+          };
+          python = {
+            detect_extensions = [];
+          };
+          kubernetes = {
+            disabled = false;
+            detect_extensions = ["yaml"];
+          };
         };
-        jobs = {
-          format = "[$number]($style) ";
-          number_threshold = 1;
-        };
-        status = {
-          disabled = false;
-          format = "[$status]($style) ";
-        };
-        directory = {
-          truncation_symbol = "…/";
-          truncate_to_repo = false;
-          truncation_length = 4;
-        };
-        cmd_duration = {
-          min_time = 1000;
-        };
-        python = {
-          detect_extensions = [];
-        };
-        kubernetes = {
-          disabled = false;
-          detect_extensions = ["yaml"];
-        };
-      };
     };
   };
 }
