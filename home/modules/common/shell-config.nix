@@ -53,14 +53,17 @@
 
     fish = {
       enable = true;
-      interactiveShellInit = lib.concatStringsSep "\n" ([
+      interactiveShellInit = lib.concatStringsSep "\n\n" (
+        [
           # Common
           ''
             set -g fish_greeting
-
             fish_add_path -g --prepend $GOBIN ~/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/scripts-private/bin ~/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/bin
-
             source ~/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/env/all/bash/04_aliases
+
+            # enable starship here manually to then enable transient prompt
+            starship init fish | source
+            enable_transience
           ''
         ]
         ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
@@ -70,7 +73,8 @@
             source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
             eval (/opt/homebrew/bin/brew shellenv)
           ''
-        ]);
+        ]
+      );
     };
 
     bash = {
@@ -90,14 +94,26 @@
       ];
 
       # Login shell
-      profileExtra = lib.concatStringsSep "\n" ([
+      profileExtra = lib.concatStringsSep "\n\n" ([
           # Common
           ''
+            add_to_path() {
+              # add_to_path <path> [last]
+              [[ -n "$1" ]] || return 1
+              case ":''${PATH}:" in
+                *":''${1}:"*) ;; # already there
+                *) [[ "$2" == "last" ]] && PATH="''${PATH}:''${1}" || PATH="''${1}:''${PATH}";;
+              esac
+              export PATH
+            }
+
+            add_to_path "$GOBIN"
+            add_to_path "$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/scripts-private/bin"
+            add_to_path "$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/bin"
+
             export PS4='+ ''${BASH_SOURCE:-}:''${LINENO:-}: ''${FUNCNAME[0]:-}() [''${?:-}] → '
 
-            export PATH="$PATH:$GOBIN:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/scripts-private/bin:$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/bin"
             . "$HOME/Syncthing/SYNC_STUFF/githome/private_dotfiles/topics/tcdn/env/all/bash/04_aliases"
-
             . "$HOME/githome/dotfiles/topics/python/env/all/bash/03_functions"
           ''
         ]
@@ -106,13 +122,14 @@
           ''
             eval "$(/opt/homebrew/bin/brew shellenv)"
             . "$HOME/githome/dotfiles/topics/homebrew/env/Darwin/bash/03_functions"
-            export PATH="$HOME/.docker/bin:$PATH"
+            add_to_path "$HOME/.docker/bin"
           ''
         ]);
     };
 
     starship = {
       enable = true;
+      enableFishIntegration = false; # enabled manually
       settings = {
         add_newline = false;
         format = lib.concatStrings [
@@ -152,8 +169,11 @@
         };
         directory = {
           truncation_symbol = "…/";
-          truncate_to_repo = false;
           truncation_length = 4;
+          truncate_to_repo = false;
+          before_repo_root_style = "cyan";
+          repo_root_style = "bold cyan underline";
+          fish_style_pwd_dir_length = 3;
         };
         cmd_duration = {
           min_time = 1000;
