@@ -147,11 +147,11 @@
         "plugin_vim-varnish": "plugin_vim-varnish"
       },
       "locked": {
-        "lastModified": 1683270945,
-        "narHash": "sha256-qHQE8+3DXl734j9MyJugZt1xW5g0IHkn1GWm7apKwDw=",
+        "lastModified": 1683874456,
+        "narHash": "sha256-X0urwMO9ESd82IzYS6+UCRdiqFO7BkSEIQm2DtpQ6co=",
         "owner": "aorith",
         "repo": "neovim-flake",
-        "rev": "9a4f64b1710a2455482a264ff1f62d797ec1784f",
+        "rev": "f865904963a8fa6cb19ba70116d796a132d60c46",
         "type": "github"
       },
       "original": {
@@ -209,11 +209,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1683194677,
-        "narHash": "sha256-Am7aCGNy/h6RMnvg7Pn4PHQXZZq9FyIUA9klYxBwyDI=",
+        "lastModified": 1683408522,
+        "narHash": "sha256-9kcPh6Uxo17a3kK3XCHhcWiV1Yu1kYj22RHiymUhMkU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0d8145a5d81ebf6698077b21042380a3a66a11c7",
+        "rev": "897876e4c484f1e8f92009fd11b7d988a121a4e7",
         "type": "github"
       },
       "original": {
@@ -242,16 +242,16 @@
     "plugin_neo-tree-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1682256597,
-        "narHash": "sha256-Wf+/dJBn7g9ywOwP1BzXOeajo4bECngK82wSr80nWKQ=",
+        "lastModified": 1683639547,
+        "narHash": "sha256-hg7o4VyDDUS8feQU1N+h8yjZSyQblOrYIaKZr/9OGLc=",
         "owner": "nvim-neo-tree",
         "repo": "neo-tree.nvim",
-        "rev": "8d485aab32da9b8841d4af977f992b82b14af469",
+        "rev": "541f5c92d2492041afb354e2df6e74809094b051",
         "type": "github"
       },
       "original": {
         "owner": "nvim-neo-tree",
-        "ref": "2.59",
+        "ref": "2.61",
         "repo": "neo-tree.nvim",
         "type": "github"
       }
