@@ -27,7 +27,7 @@
       grep = "grep --color=auto";
       ".." = "cd ../";
       "..." = "cd ../..";
-      repos = ''cd "$(fd '\.git$' "$HOME/Syncthing/TES/gitlab" --max-depth 4 --type d --unrestricted --color never | fzf --delimiter / --with-nth -3)/.."'';
+      repos = ''cd "$(fd '\.git$' "$HOME/Syncthing/TES/gitlab" --max-depth 4 --type d --unrestricted --color never | fzf --delimiter / --with-nth -3,-4)/.."'';
       k = "kubectl";
       nixconf = "cd ${config.home.homeDirectory}/githome/nixconf";
       dotfiles = "cd ${config.home.homeDirectory}/githome/dotfiles";
