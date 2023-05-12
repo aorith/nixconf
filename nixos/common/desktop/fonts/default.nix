@@ -47,19 +47,6 @@ in {
       #iosevka-fixed
       #iosevka-nerd-term
       nerfonts-symbols
-
-      cantarell-fonts
-      dejavu_fonts
-      hack-font
-      jetbrains-mono
-      liberation_ttf
-      libertine
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-emoji
-      (nerdfonts.override {fonts = ["Hack" "JetBrainsMono"];})
     ];
   };
 
@@ -81,7 +68,7 @@ in {
     #"/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
     #"/usr/share/pixmaps" = mkRoSymBind "/run/current-system/sw/share/pixmaps";
     #"/usr/share/fonts" = mkRoSymBind "/run/current-system/sw/share/X11/fonts";
-    "/home/aorith/.local/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
+    #"/home/aorith/.local/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
     #"/usr/share/sounds" = mkRoSymBind "/run/current-system/sw/share/sounds";
     #"/usr/share/themes" = mkRoSymBind "/run/current-system/sw/share/themes";
     #"/usr/share/backgrounds" = mkRoSymBind "/run/current-system/sw/share/backgrounds";
