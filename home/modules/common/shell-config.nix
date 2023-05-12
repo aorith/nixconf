@@ -143,7 +143,6 @@
           "$git_status"
           "$nix_shell"
           "$python"
-          "$kubernetes"
           "$container"
           "$package" # curr dir is a repo for a package (cargo, python, helm, ...)
           "$jobs"
@@ -171,19 +170,12 @@
           truncation_symbol = "…/";
           truncation_length = 4;
           truncate_to_repo = false;
-          before_repo_root_style = "cyan";
-          repo_root_style = "bold cyan underline";
-          fish_style_pwd_dir_length = 3;
         };
         cmd_duration = {
           min_time = 1000;
         };
         python = {
           detect_extensions = [];
-        };
-        kubernetes = {
-          disabled = false;
-          detect_extensions = ["yaml"];
         };
       };
     };
