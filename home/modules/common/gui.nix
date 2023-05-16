@@ -14,12 +14,15 @@
       pkgs.wl-clipboard
       pkgs.xclip
       pkgs.xsel
+
+      # Linux only fonts
+      pkgs.cantarell-fonts
     ]
     ++ [
       # Common packages
 
 
-      pkgs.cantarell-fonts
+      # Fonts
       pkgs.dejavu_fonts
       pkgs.hack-font
       pkgs.jetbrains-mono
