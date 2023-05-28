@@ -5,11 +5,12 @@
     ]
     ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
       # Linux packages
-      pkgs.wezterm
       pkgs.alacritty
+      pkgs.keepassxc
       pkgs.mpv
+      pkgs.sublime4-dev
       pkgs.ungoogled-chromium
-      pkgs.sublime4
+      pkgs.wezterm
 
       pkgs.wl-clipboard
       pkgs.xclip

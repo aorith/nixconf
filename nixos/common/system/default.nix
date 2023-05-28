@@ -45,6 +45,9 @@
     };
   };
 
+  programs.adb.enable = true;
+  users.users.aorith.extraGroups = ["adbusers"];
+
   documentation = {
     enable = true;
     man.enable = true;
