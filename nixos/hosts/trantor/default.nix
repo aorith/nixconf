@@ -14,6 +14,8 @@ in {
     ../../common/desktop
     ../../common/steam
     ../../common/work
+
+    ../../common/homelab
   ];
 
   custom.fonts.lowdpi.enable = false;

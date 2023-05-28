@@ -22,7 +22,6 @@
     ++ [
       # Common packages
 
-
       # Fonts
       pkgs.dejavu_fonts
       pkgs.hack-font
