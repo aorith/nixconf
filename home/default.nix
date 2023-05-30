@@ -51,6 +51,17 @@ in {
     ];
   in
     mkHmCfg {inherit system username stateVer hmCfg extraModules;};
+  "aorith@msi" = let
+    system = "x86_64-linux";
+    username = "aorith";
+    stateVer = "22.11";
+    hmCfg = self.inputs.home-manager.lib.homeManagerConfiguration;
+    extraModules = [
+      ./modules/linux
+      ./modules/common
+    ];
+  in
+    mkHmCfg {inherit system username stateVer hmCfg extraModules;};
   "aorith@moria" = let
     system = "aarch64-darwin";
     username = "aorith";
