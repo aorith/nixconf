@@ -6,9 +6,7 @@
     ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
       # Linux packages
       pkgs.alacritty
-      pkgs.keepassxc
       pkgs.mpv
-      pkgs.sublime4-dev
       pkgs.ungoogled-chromium
       pkgs.wezterm
 
