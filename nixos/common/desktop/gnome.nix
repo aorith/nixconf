@@ -44,6 +44,7 @@
       pantheon.elementary-wallpapers
 
       gnomeExtensions.appindicator
+      gnomeExtensions.clipboard-indicator
       gnomeExtensions.gsconnect
     ];
   };
