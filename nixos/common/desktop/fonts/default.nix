@@ -47,6 +47,19 @@ in {
       #iosevka-fixed
       #iosevka-nerd-term
       nerfonts-symbols
+
+      cantarell-fonts
+      dejavu_fonts
+      hack-font
+      jetbrains-mono
+      liberation_ttf
+      libertine
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
+      (nerdfonts.override {fonts = ["Hack" "JetBrainsMono"];})
     ];
   };
 

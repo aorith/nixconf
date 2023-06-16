@@ -22,11 +22,7 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-  };
+  programs.gpaste.enable = true;
 
   environment = {
     gnome.excludePackages = with pkgs; [
@@ -40,8 +36,6 @@
       gnome.gnome-settings-daemon
       gnome.gnome-tweaks
       gnome.seahorse # keyring
-
-      pantheon.elementary-wallpapers
 
       gnomeExtensions.appindicator
       gnomeExtensions.clipboard-indicator

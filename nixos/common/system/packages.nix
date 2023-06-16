@@ -11,21 +11,50 @@
     inputs.agenix.packages.${pkgs.system}.default
 
     (pkgs.lib.lowPrio inetutils) # telnet, lowPrio since it has some collisions (hostname, ...)
+    #pkgs.pbcopy2 # overlay
+    inputs.neovim-flake.packages.${pkgs.system}.default
 
     age
+    alejandra
+    ansible
+    bash-completion
+    bat
+    bc
     btop
     clang
     commonsCompress
     coreutils-full
+    curl
+    diffutils
     dig
+    distrobox
     dstat
     efibootmgr
     fd
     ffmpeg-full
     file
+    findutils
+    fzf
+    git
+    gitui
+    glow
+    gnumake
+    gnused
     go
+    gron
+    htop
+    imagemagick
+    jq
+    just
+    killall
+    kubectl
+    lazygit
     lsof
+    minikube
     ncdu
+    nil
+    nmap
+    nvd
     nvme-cli
     openssl
     openvpn
@@ -33,11 +62,17 @@
     parted
     pciutils
     pstree
+    ripgrep
     smartmontools
     sysstat
+    terraform
+    tmux
+    tree
     unzip
     usbutils
     vim
+    wget
+    yq
   ];
 
   programs = {
