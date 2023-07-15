@@ -6,7 +6,7 @@
       config.allowUnfree = true;
     };
     pkgsFrom = {
-      stable = import self.inputs.nixpkgs-stable nixpkgsConfig;
+      unstable = import self.inputs.nixpkgs-unstable nixpkgsConfig;
     };
   in
     nixpkgs.lib.nixosSystem {

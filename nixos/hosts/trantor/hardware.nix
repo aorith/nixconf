@@ -48,31 +48,12 @@ in {
   services.btrfs.autoScrub.enable = true;
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
-    fsType = "btrfs";
-    options = defaultBtrfsOpts ++ ["subvol=root"];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
-    fsType = "btrfs";
-    options = defaultBtrfsOpts ++ ["subvol=home"];
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
-    fsType = "btrfs";
-    options = defaultBtrfsOpts ++ ["subvol=nix"];
-  };
-
-  fileSystems."/var" = {
-    device = "/dev/disk/by-uuid/ba2a6fe1-46f9-45aa-b42b-0fafa56e2c11";
-    fsType = "btrfs";
-    options = defaultBtrfsOpts ++ ["subvol=var"];
+    device = "/dev/disk/by-label/ROOT";
+    fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/B6FC-8DCC";
+    device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
 

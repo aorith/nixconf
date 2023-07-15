@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  pkgsFrom,
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
@@ -14,10 +15,13 @@
     #pkgs.pbcopy2 # overlay
     inputs.neovim-flake.packages.${pkgs.system}.default
 
+    pkgsFrom.unstable.distrobox
+    pkgsFrom.unstable.gitui
+    pkgsFrom.unstable.tmux
+
     age
     alejandra
     ansible
-    bash-completion
     bat
     bc
     btop
@@ -27,7 +31,6 @@
     curl
     diffutils
     dig
-    distrobox
     dstat
     efibootmgr
     fd
@@ -36,7 +39,6 @@
     findutils
     fzf
     git
-    gitui
     glow
     gnumake
     gnused
@@ -66,7 +68,6 @@
     smartmontools
     sysstat
     terraform
-    tmux
     tree
     unzip
     usbutils
@@ -76,11 +77,6 @@
   ];
 
   programs = {
-    bash = {
-      enableLsColors = true;
-      enableCompletion = true;
-    };
-
     dconf.enable = true;
     git.enable = true;
     gnupg.agent.enable = true;

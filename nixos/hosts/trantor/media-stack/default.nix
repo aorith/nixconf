@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  pkgsFrom,
+  ...
+}: let
   storage = "/mnt/storage";
   jellyfin_datadir = "${storage}/tank/data/nixos-containers/mediaconfs/jellyfin";
 
@@ -39,7 +43,7 @@ in {
       User = "${user.name}";
       Group = "${group.name}";
       WorkingDirectory = "/var/lib/jellyfin";
-      ExecStart = "${pkgs.jellyfin}/bin/jellyfin --datadir '/var/lib/jellyfin' --cachedir '/tmp/jellyfin-cache'";
+      ExecStart = "${pkgsFrom.unstable.jellyfin}/bin/jellyfin --datadir '/var/lib/jellyfin' --cachedir '/tmp/jellyfin-cache'";
       Restart = "on-failure";
       SuccessExitStatus = ["0" "143"];
       TimeoutSec = 15;
@@ -50,7 +54,7 @@ in {
     autoStart = false;
     privateNetwork = false;
     ephemeral = true;
-    nixpkgs = pkgs.path; # pkgsFrom.stable.path
+    nixpkgs = pkgsFrom.unstable.path;
 
     bindMounts = {
       "/MEDIA" = {
