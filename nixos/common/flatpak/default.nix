@@ -4,8 +4,8 @@
   systemd.timers."check-for-flatpak-updates" = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnBootSec = "5m";
-      OnUnitActiveSec = "5m";
+      OnBootSec = "10m";
+      OnUnitActiveSec = "2h";
       Unit = "check-for-flatpak-updates.service";
     };
   };
