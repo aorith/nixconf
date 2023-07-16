@@ -53,7 +53,7 @@ in {
       group = "aorith";
       configDir = "${storage}/tank/data/syncthing/_config/syncthing";
       dataDir = "${storage}/tank/data/syncthing";
-      guiAddress = "127.0.0.1:8384";
+      guiAddress = "10.255.255.7:8384";
     };
     fwupd.enable = true;
     flatpak.enable = true;

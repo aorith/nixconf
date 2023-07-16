@@ -16,10 +16,10 @@ in {
     };
     zsh = {
       enable = true;
-      syntaxHighlighting.enable = true;
-      enableCompletion = true;
-      enableBashCompletion = true;
       autosuggestions.enable = true;
+      enableBashCompletion = true;
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
     };
   };
 

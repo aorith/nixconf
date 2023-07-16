@@ -103,12 +103,6 @@ in {
       };
 
       services = {
-        jackett = {
-          enable = true;
-          user = "${user.name}";
-          group = "${group.name}";
-          dataDir = "/mediaconfs/jackett";
-        };
         transmission = {
           enable = true;
           user = "${user.name}";
