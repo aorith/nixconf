@@ -16,6 +16,7 @@ in {
     ../../common/work
 
     ../../common/homelab
+    ../../common/flatpak
   ];
 
   custom.fonts.lowdpi.enable = false;
@@ -56,7 +57,6 @@ in {
       guiAddress = "10.255.255.7:8384";
     };
     fwupd.enable = true;
-    flatpak.enable = true;
     gvfs.enable = true;
     openssh.enable = true;
   };

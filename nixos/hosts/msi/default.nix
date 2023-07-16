@@ -10,7 +10,7 @@ in {
     ../../common/users
     ../../common/system
     ../../common/desktop
-    #../../common/steam
+    ../../common/flatpak
   ];
 
   nix.settings.max-jobs = lib.mkDefault 8;
@@ -46,7 +46,6 @@ in {
       guiAddress = "127.0.0.1:8384";
     };
     fwupd.enable = true;
-    flatpak.enable = true;
     gvfs.enable = true;
     openssh.enable = true;
   };

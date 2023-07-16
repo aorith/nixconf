@@ -51,6 +51,7 @@
     killall
     kubectl
     lazygit
+    libnotify # notify-send
     lsof
     minikube
     ncdu
