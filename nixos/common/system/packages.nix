@@ -65,6 +65,7 @@
     parted
     pciutils
     pstree
+    python3Full
     ripgrep
     smartmontools
     sysstat

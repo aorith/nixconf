@@ -8,6 +8,7 @@
 in {
   environment.systemPackages = [
     pkgs.virt-manager
+    (lib.mkIf with_libvirtd pkgs.spice-gtk) # usb redirect
     (lib.mkIf with_podman pkgs.podman-compose)
   ];
 
@@ -17,6 +18,7 @@ in {
   ];
 
   virtualisation = {
+    spiceUSBRedirection.enable = with_libvirtd;
     libvirtd = {
       enable = true;
       onShutdown = "shutdown";
