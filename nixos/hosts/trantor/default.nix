@@ -42,9 +42,10 @@ in {
   environment.etc."wireplumber/main.lua.d/51-alsa-custom.lua".text = builtins.readFile ./51-alsa-custom.lua;
 
   environment.systemPackages = with pkgs; [
-    pavucontrol
     helvum # for pipewire
+    pavucontrol
     pulseaudio
+    syncthing
   ];
 
   services = {
@@ -65,5 +66,5 @@ in {
     "L /home/aorith/Syncthing - - - - ${storage}/tank/data/syncthing"
   ];
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

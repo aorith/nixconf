@@ -15,11 +15,13 @@ in {
   imports = [
     ./fonts
     ./gnome.nix
+    #./i3wm
   ];
 
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    xdgOpenUsePortal = true;
   };
 
   environment.systemPackages = [
@@ -38,10 +40,18 @@ in {
   ];
 
   services.xserver = {
+    enable = true;
+    libinput.enable = true;
     xkbOptions = "ctrl:nocaps"; # Capslock as CTRL
     layout = "es";
     xkbVariant = "";
     autoRepeatDelay = 300;
     autoRepeatInterval = 30;
+    displayManager.importedVariables = [
+      # include extra variables to systemd env: systemctl --user show-environment
+      "XDG_SESSION_TYPE"
+      "XDG_CURRENT_DESKTOP"
+      "XDG_SESSION_DESKTOP"
+    ];
   };
 }

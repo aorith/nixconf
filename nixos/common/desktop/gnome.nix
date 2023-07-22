@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   services.xserver = {
-    enable = true;
-    libinput.enable = true;
     desktopManager.gnome.enable = true;
     displayManager = {
       gdm = {
@@ -40,6 +38,7 @@
       gnomeExtensions.appindicator
       gnomeExtensions.clipboard-indicator
       gnomeExtensions.gsconnect
+      gnomeExtensions.pano
     ];
   };
 }

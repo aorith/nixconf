@@ -29,7 +29,7 @@ in {
     };
     # AMD 1600:
     # BIOS: "power supply idle control" == "typical current idle"
-    kernelParams = ["amd_iommu=on" "idle=nomwait" "rcu_nocbs=0-11"];
+    kernelParams = ["amd_iommu=on" "iommu=pt" "idle=nomwait" "rcu_nocbs=0-11"];
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     loader = {
