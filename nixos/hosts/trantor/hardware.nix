@@ -21,6 +21,9 @@ in {
     inputs.nixos-hardware.nixosModules.common-pc-hdd
   ];
 
+  # for dualboot
+  time.hardwareClockInLocalTime = true;
+
   boot = {
     #kernelPackages = pkgs.linuxPackages_latest; # https://nixos.wiki/wiki/Linux_kernel
     initrd = {
@@ -33,9 +36,11 @@ in {
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     loader = {
-      systemd-boot = {
+      grub = {
         enable = true;
-        configurationLimit = 20;
+        device = "nodev";
+        useOSProber = true;
+        efiSupport = true;
       };
       efi = {
         canTouchEfiVariables = true;
