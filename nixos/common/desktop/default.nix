@@ -14,6 +14,7 @@
 in {
   imports = [
     ./fonts
+    ./timers.nix
     ./gnome.nix
     #./i3wm
   ];
