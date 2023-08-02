@@ -3,7 +3,12 @@
   pkgs,
   pkgsFrom,
   ...
-}: {
+}: let
+  python-packages = ps:
+    with ps; [
+      requests
+    ];
+in {
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -18,6 +23,8 @@
     pkgsFrom.unstable.distrobox
     pkgsFrom.unstable.gitui
     pkgsFrom.unstable.tmux
+
+    (pkgs.python3.withPackages python-packages)
 
     age
     alejandra
@@ -65,7 +72,6 @@
     parted
     pciutils
     pstree
-    python3Full
     ripgrep
     smartmontools
     sysstat
