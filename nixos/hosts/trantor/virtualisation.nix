@@ -3,17 +3,17 @@
   pkgs,
   ...
 }: let
-  with_podman = true;
+  replace_docker_with_podman = false;
   with_libvirtd = true;
 in {
   environment.systemPackages = [
     pkgs.virt-manager
     (lib.mkIf with_libvirtd pkgs.spice-gtk) # usb redirect
-    (lib.mkIf with_podman pkgs.podman-compose)
+    (lib.mkIf replace_docker_with_podman pkgs.podman-compose)
   ];
 
   users.users.aorith.extraGroups = [
-    (lib.mkIf (!with_podman) "docker")
+    (lib.mkIf (!replace_docker_with_podman) "docker")
     (lib.mkIf with_libvirtd "libvirtd")
   ];
 
@@ -28,8 +28,7 @@ in {
     };
 
     docker = {
-      enable = !with_podman;
-      storageDriver = "btrfs";
+      enable = !replace_docker_with_podman;
       autoPrune = {
         dates = "daily";
         flags = ["--all" "--volumes"];
@@ -37,7 +36,7 @@ in {
     };
 
     podman = {
-      enable = with_podman;
+      enable = replace_docker_with_podman;
       defaultNetwork.settings.dns_enabled = true;
     };
   };
