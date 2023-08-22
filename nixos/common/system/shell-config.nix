@@ -11,7 +11,7 @@ in {
       enableCompletion = true;
     };
     fish = {
-      enable = true;
+      enable = false;
       useBabelfish = true;
     };
     zsh = {
