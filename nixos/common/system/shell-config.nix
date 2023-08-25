@@ -10,10 +10,6 @@ in {
       enableLsColors = true;
       enableCompletion = true;
     };
-    fish = {
-      enable = false;
-      useBabelfish = true;
-    };
     zsh = {
       enable = true;
       autosuggestions.enable = true;
@@ -25,8 +21,6 @@ in {
 
   environment.systemPackages = with pkgs; [
     pkgsFrom.unstable.starship
-
-    bash-completion
   ];
 
   environment.shellAliases = {

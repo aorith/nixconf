@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgsFrom,
   lib,
   ...
 }: let
@@ -26,10 +27,11 @@ in {
   };
 
   environment.systemPackages = [
-    pkgs.alacritty
-    pkgs.mpv
-    pkgs.ungoogled-chromium
-    pkgs.wezterm
+    pkgsFrom.unstable.alacritty
+    pkgsFrom.unstable.blackbox-terminal
+    pkgsFrom.unstable.mpv
+    pkgsFrom.unstable.ungoogled-chromium
+    pkgsFrom.unstable.wezterm
 
     pkgs.wl-clipboard
     pkgs.xclip
