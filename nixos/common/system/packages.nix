@@ -23,6 +23,7 @@ in {
     pkgsFrom.unstable.distrobox
     pkgsFrom.unstable.gitui
     pkgsFrom.unstable.tmux
+    pkgsFrom.unstable.nb
 
     (pkgs.python3.withPackages python-packages)
 
