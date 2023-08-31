@@ -5,7 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    neovim-flake.url = "github:aorith/neovim-flake";
+    neovim-flake = {
+      url = "github:aorith/dotfiles?dir=topics/nvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     agenix = {
       url = "github:ryantm/agenix";
