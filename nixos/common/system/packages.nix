@@ -62,6 +62,7 @@ in {
     libnotify # notify-send
     lsof
     minikube
+    mtpfs # FUSE driver
     ncdu
     nil
     nmap
