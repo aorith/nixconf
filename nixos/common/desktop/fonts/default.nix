@@ -59,7 +59,7 @@ in {
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-emoji
-      (nerdfonts.override {fonts = ["Hack" "JetBrainsMono" "IBMPlexMono"];})
+      (nerdfonts.override {fonts = ["Hack" "JetBrainsMono" "IBMPlexMono" "DejaVuSansMono"];})
     ];
   };
 
