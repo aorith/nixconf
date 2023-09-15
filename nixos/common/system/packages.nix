@@ -6,6 +6,8 @@
 }: let
   python-packages = ps:
     with ps; [
+      ipython
+      notebook
       requests
     ];
 in {
@@ -24,6 +26,7 @@ in {
     pkgsFrom.unstable.gitui
     pkgsFrom.unstable.tmux
     pkgsFrom.unstable.nb
+    pkgsFrom.unstable.lapce
 
     (pkgs.python3.withPackages python-packages)
 

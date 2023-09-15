@@ -29,6 +29,7 @@ in {
   environment.systemPackages = [
     pkgsFrom.unstable.alacritty
     pkgsFrom.unstable.blackbox-terminal
+    pkgsFrom.unstable.lite-xl
     pkgsFrom.unstable.mpv
     pkgsFrom.unstable.ungoogled-chromium
     pkgsFrom.unstable.wezterm
