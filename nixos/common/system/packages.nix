@@ -19,14 +19,14 @@ in {
     inputs.agenix.packages.${pkgs.system}.default
 
     (pkgs.lib.lowPrio inetutils) # telnet, lowPrio since it has some collisions (hostname, ...)
-    #pkgs.pbcopy2 # overlay
-    inputs.neovim-flake.packages.${pkgs.system}.default
+    inputs.neovim-deps.packages.${pkgs.system}.default
 
     pkgsFrom.unstable.distrobox
     pkgsFrom.unstable.gitui
-    pkgsFrom.unstable.tmux
-    pkgsFrom.unstable.nb
     pkgsFrom.unstable.lapce
+    pkgsFrom.unstable.nb
+    pkgsFrom.unstable.neovim
+    pkgsFrom.unstable.tmux
 
     (pkgs.python3.withPackages python-packages)
 
