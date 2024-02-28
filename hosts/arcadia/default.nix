@@ -2,7 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ./fail2ban.nix
-    ./caddy.nix
+    ./caddy
     ./../../modules/system
   ];
 
