@@ -22,8 +22,9 @@
     };
 
     environment.systemPackages = with pkgs; [
-      vim
       git
+      gnumake
+      vim
     ];
 
     services.openssh = {
