@@ -1,0 +1,108 @@
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    alacritty
+    calibre
+    chromium
+    evince
+    flameshot
+    google-chrome
+    keepassxc
+    mpv
+    transmission-gtk
+
+    wl-clipboard
+    xclip
+    xsel
+    xorg.xev
+    xorg.xprop
+    libnotify
+    pamixer
+    pulseaudioFull
+    pavucontrol
+
+    gnome.eog
+    gnome.file-roller
+    gnome.nautilus
+
+    solaar
+    logitech-udev-rules
+  ];
+
+  programs = {
+    firefox = {
+      enable = true;
+      languagePacks = ["en-US" "es-ES"];
+
+      /*
+      ---- POLICIES ----
+      */
+      # Check about:policies#documentation for options.
+      policies = {
+        DisableTelemetry = true;
+        DisableFirefoxStudies = true;
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
+        DisablePocket = true;
+        OverrideFirstRunPage = "tabliss";
+        OverridePostUpdatePage = "tabliss";
+        DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
+        DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
+        SearchBar = "unified"; # alternative: "separate"
+
+        /*
+        ---- EXTENSIONS ----
+        */
+        # Valid strings for installation_mode are "allowed", "blocked",
+        # "force_installed" and "normal_installed".
+        ExtensionSettings = with builtins; let
+          extension = shortId: uuid: {
+            name = uuid;
+            value = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/${shortId}/latest.xpi";
+              installation_mode = "normal_installed";
+            };
+          };
+        in
+          # To add additional extensions, find it on addons.mozilla.org, find
+          # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
+          # Then, download the XPI by filling it in to the install_url template, unzip it,
+          # run `jq .browser_specific_settings.gecko.id manifest.json` or
+          # `jq .applications.gecko.id manifest.json` to get the UUID
+          listToAttrs [
+            (extension "tree-style-tab" "treestyletab@piro.sakura.ne.jp")
+            (extension "tabliss" "extension@tabliss.io")
+          ];
+
+        /*
+        ---- PREFERENCES ----
+        */
+        # Check about:config for options.
+        Preferences = {
+          "extensions.pocket.enabled" = {
+            # Extension similar to bookmarks to save content to view it later
+            Value = false;
+            Status = "locked";
+          };
+          "browser.topsites.contile.enabled" = {
+            # Tiles with "top-sites" like Ama**on
+            Value = false;
+            Status = "locked";
+          };
+          "browser.formfill.enable" = {
+            # Remember form information
+            Value = false;
+            Status = "locked";
+          };
+          "browser.newtabpage.enabled" = {
+            Value = false;
+            Status = "locked";
+          };
+        };
+      };
+    };
+  };
+}

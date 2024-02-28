@@ -1,0 +1,5 @@
+
+172.28.10.60 integracion-madstk1 api.int.edge dashboard.int.edge signup.int.edge redmine.int.edge statics.int.edge
+172.28.10.61 prepro-madstk1      api.pre.edge dashboard.pre.edge signup.pre.edge redmine.pre.edge statics.pre.edge
+
+

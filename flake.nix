@@ -2,33 +2,65 @@
   description = "One Nix flake to rule them all";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
-    neovim-deps = {
-      url = "github:aorith/dotfiles?dir=topics/nvim";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs?ref=nixos-23.11";
 
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-programs-sqlite = {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    flake-registry = {
-      url = "github:nixos/flake-registry";
-      flake = false;
-    };
+    home-manager-stable.url = "github:nix-community/home-manager?ref=release-23.11";
+    home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    neovim-flake.url = "git+file:///home/aorith/githome/neovim-flake";
+    neovim-flake.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs: let
-    forAllSystems = inputs.nixpkgs.lib.genAttrs ["aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux"];
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    sops-nix,
+    ...
+  } @ inputs: let
+    forAllSystems = nixpkgs.lib.genAttrs ["aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux"];
   in {
-    nixosConfigurations = import ./nixos inputs;
-    formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
+    nixosConfigurations = {
+      # --- Desktop
+      # -----------
+      trantor = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          pkgs-stable = import nixpkgs-stable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
+        modules = [
+          ./hosts/trantor
+          ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
+        ];
+      };
+      # --- Hetzner VM
+      # --------------
+      arcadia = nixpkgs.lib.nixosSystem rec {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit inputs;
+          pkgs-stable = import nixpkgs-stable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
+        modules = [
+          ./hosts/arcadia
+        ];
+      };
+    };
+
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
