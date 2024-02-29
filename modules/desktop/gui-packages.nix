@@ -9,6 +9,7 @@
     keepassxc
     mpv
     transmission-gtk
+    gimp-with-plugins
 
     wl-clipboard
     xclip
@@ -20,14 +21,12 @@
     pulseaudioFull
     pavucontrol
 
-    gnome.eog
-    gnome.file-roller
-    gnome.nautilus
-
     solaar
     logitech-udev-rules
   ];
 
+  hardware.steam-hardware.enable = true;
+  services.flatpak.enable = true;
   programs = {
     firefox = {
       enable = true;
