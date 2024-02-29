@@ -1,7 +1,8 @@
 {pkgs, ...}: {
-  environment.systemPackages = [
-    pkgs.virt-manager
-    pkgs.spice-gtk
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    spice-gtk
+    cloud-utils
   ];
 
   users.users.aorith.extraGroups = [
