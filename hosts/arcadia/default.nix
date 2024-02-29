@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./fail2ban.nix
     ./caddy
+    ./wireguard.nix
     ./../../modules/system
   ];
 

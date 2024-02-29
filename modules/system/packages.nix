@@ -60,6 +60,7 @@
       unzip
       usbutils
       wget
+      wireguard-tools
       yq
     ];
   };
