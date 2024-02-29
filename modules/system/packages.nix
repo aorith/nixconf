@@ -50,6 +50,7 @@
       openvpn
       p7zip
       parted
+      pass
       pciutils
       ripgrep
       sysstat
