@@ -6,6 +6,7 @@
 }: {
   config = lib.mkIf config.custom.system.packages {
     programs = {
+      gnupg.agent.enable = true;
       htop.enable = true;
       iotop.enable = true;
       mtr.enable = true;
@@ -41,6 +42,7 @@
       file
       fzf
       gnumake
+      gnupg
       gron
       jq
       killall

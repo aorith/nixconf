@@ -73,7 +73,7 @@
           # run `jq .browser_specific_settings.gecko.id manifest.json` or
           # `jq .applications.gecko.id manifest.json` to get the UUID
           listToAttrs [
-            (extension "tree-style-tab" "treestyletab@piro.sakura.ne.jp")
+            (extension "sidebery" "{3c078156-979c-498b-8990-85f7987dd929}")
             (extension "tabliss" "extension@tabliss.io")
           ];
 
