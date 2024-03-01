@@ -10,11 +10,18 @@
 
   time.hardwareClockInLocalTime = true; # Dual boot
 
+  # Testing system76 scheduler.
+  services.system76-scheduler.enable = true;
+
   services.xserver.videoDrivers = ["amdgpu"];
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd"];
+  boot.kernelParams = [
+    # Preemption: Interrupt or pause current task in order to run a different task, usually with higher priority.
+    "preempt=full" # Reduce latency for real-time apps at the cost of throughput.
+  ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.efiSupport = true;
