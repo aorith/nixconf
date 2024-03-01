@@ -4,6 +4,7 @@
     ./fail2ban.nix
     ./caddy
     ./wireguard.nix
+    ./proxy.nix
     ./../../modules/system
   ];
 
