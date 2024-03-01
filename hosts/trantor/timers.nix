@@ -9,8 +9,8 @@
     };
   };
   systemd.services."update-gandi-domain" = {
+    path = with pkgs; [bash terraform jq curl];
     script = ''
-      export PATH="/home/aorith/.nix-profile/bin:/run/current-system/sw/bin:$PATH"
       ${pkgs.bash}/bin/bash "/home/aorith/Syncthing/KeePass/iou.re/update-gandi-domain.sh"
     '';
     serviceConfig = {
@@ -30,8 +30,8 @@
     };
   };
   systemd.services."backup-keepass" = {
+    path = with pkgs; [bash coreutils gawk findutils gnugrep];
     script = ''
-      export PATH="/home/aorith/.nix-profile/bin:/run/current-system/sw/bin:$PATH"
       ${pkgs.bash}/bin/bash "/home/aorith/githome/dotfiles/topics/systemd/keepass/backup-keepass.sh"
     '';
     serviceConfig = {
