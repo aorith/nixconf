@@ -61,7 +61,7 @@
       usbutils
       wget
       wireguard-tools
-      yq
+      yq-go
     ];
   };
 }
