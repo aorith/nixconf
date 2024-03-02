@@ -21,6 +21,8 @@
     networking.firewall = {
       enable = true;
       allowedTCPPorts = [22 80 443 22000];
+      allowedUDPPorts = [22000];
+      logRefusedConnections = false; # Reduce journal logs
     };
 
     environment.systemPackages = with pkgs; [
