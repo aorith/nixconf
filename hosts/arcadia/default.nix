@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./fail2ban.nix
     ./caddy
+    ./syncthing.nix
     ./wireguard.nix
     ./proxy.nix
     ./../../modules/system
@@ -20,8 +21,7 @@
     networking.enableIPv6 = false;
     networking.firewall = {
       enable = true;
-      allowedTCPPorts = [22 80 443 22000];
-      allowedUDPPorts = [22000];
+      allowedTCPPorts = [22 80 443];
       logRefusedConnections = false; # Reduce journal logs
     };
 
@@ -36,13 +36,6 @@
       settings.AllowUsers = ["aorith"];
       settings.PermitRootLogin = "prohibit-password";
       settings.PasswordAuthentication = false;
-    };
-
-    services = {
-      syncthing = {
-        enable = true;
-        guiAddress = "127.0.0.1:8384";
-      };
     };
 
     virtualisation.docker = {
