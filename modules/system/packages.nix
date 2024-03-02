@@ -23,6 +23,7 @@
 
       vim
       gitFull
+      riffdiff
       tmux
 
       ansible
@@ -30,6 +31,8 @@
       ffmpeg-full
       go
       terraform
+
+      nix-output-monitor
 
       # Basic cmdline tools
       (lib.lowPrio inetutils) # telnet, lowPrio since it has some collisions (hostname, ...)
