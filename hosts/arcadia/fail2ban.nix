@@ -5,21 +5,21 @@
 }: {
   services.fail2ban = {
     enable = true;
-    # Ban IP after 5 failures
-    maxretry = 5;
+    maxretry = 5; # By default ban IP after 5 failures
     ignoreIP = [
       # Whitelist some subnets
       "127.0.0.1"
       "172.17.0.0/16"
       "172.18.0.0/16"
+      "10.255.254.0/24"
       "notes.iou.re" # resolve the IP via DNS
       "home.iou.re"
     ];
-    bantime = "1h"; # First time ban time
+    bantime = "3d"; # First time ban time
     bantime-increment = {
       enable = true; # Enable increment of bantime after each violation
       multipliers = "1 2 4 8 16 32 64 128 256";
-      maxtime = "168h"; # Do not ban for more than 1 week
+      maxtime = "30d"; # Do not ban for more than 1 week
       overalljails = true; # Calculate the bantime based on all the violations
     };
 
@@ -27,6 +27,7 @@
       sshd.settings = {
         enabled = true;
         action = lib.concatStringsSep "\n         " ["%(action_)s[blocktype=DROP]" "ntfy"];
+        maxretry = 3;
       };
       caddy-notes.settings = {
         enabled = true;
