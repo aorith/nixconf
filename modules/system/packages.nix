@@ -21,7 +21,6 @@
         py-pkgs.requests
       ]))
 
-      vim
       gitFull
       riffdiff
       tmux
@@ -31,8 +30,6 @@
       ffmpeg-full
       go
       terraform
-
-      nix-output-monitor
 
       # Basic cmdline tools
       (lib.lowPrio inetutils) # telnet, lowPrio since it has some collisions (hostname, ...)

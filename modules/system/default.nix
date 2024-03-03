@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }: let
@@ -48,5 +49,32 @@ in {
 
     # Allow editing /etc/hosts as root (changes are discarded on rebuild)
     environment.etc.hosts.mode = "0644";
+
+    # Diff between system rebuilds
+    system.activationScripts.diff = {
+      supportsDryActivation = true;
+      text = ''
+        ${pkgs.coreutils}/bin/cat <<-EOF
+
+              +: Package is newly selected in environment.systemPackages.
+              -: Package is newly unselected.
+              *: Package is selected; state unchanged.
+              .: Package is not selected; it's a dependency.
+
+        EOF
+
+        ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+        echo
+      '';
+    };
+
+    # Packages available on all systems
+    environment.systemPackages = with pkgs; [
+      vim
+
+      nix-output-monitor
+      nvd # nix package version diff tool
+      nix-index # find which derivation provides a file (nix-index && nix-locate libc.so.6)
+    ];
   };
 }
