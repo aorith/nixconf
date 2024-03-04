@@ -39,6 +39,7 @@
       curl
       dig
       dstat
+      fd
       file
       fzf
       gnumake
