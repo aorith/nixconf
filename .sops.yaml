@@ -1,0 +1,11 @@
+# 1. Key should be stored in ~/.config/sops/age/keys.txt or referenced in the environment variable SOPS_AGE_KEY_FILE
+# 2. Edit secrets with 'sops secrets/file.yaml'
+keys:
+  - &main age1zj5u4swk9q6f2kgr5z5m30vz68hhyt5wr59zsd8z2vl6a9hexfnsd5j82w
+  - &arcadia age1addsd98g05cck4wfxfh2daex5jfvqnlp5gfcczz96vy4tya563jsem86g0
+creation_rules:
+  - path_regex: secrets/.*
+    key_groups:
+      - age:
+          - *main
+          - *arcadia

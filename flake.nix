@@ -42,6 +42,7 @@
         modules = [
           ./hosts/trantor
           ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
+          inputs.sops-nix.nixosModules.sops
         ];
       };
       # --- Hetzner VM
@@ -57,6 +58,7 @@
         };
         modules = [
           ./hosts/arcadia
+          inputs.sops-nix.nixosModules.sops
         ];
       };
     };

@@ -18,6 +18,7 @@ in {
     shell = mkOptionEnabled "shell";
     ssh = mkOptionEnabled "ssh";
     users = mkOptionEnabled "users";
+    sops = mkOptionEnabled "sops";
   };
 
   imports = [
@@ -26,6 +27,7 @@ in {
     ./shell.nix
     ./ssh.nix
     ./users.nix
+    ./sops.nix
   ];
 
   config = {

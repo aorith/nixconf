@@ -5,7 +5,10 @@
 }: {
   config = lib.mkIf config.custom.system.ssh {
     services.openssh = {
-      settings.PermitRootLogin = "prohibit-password";
+      settings = {
+        PermitRootLogin = "prohibit-password";
+        PasswordAuthentication = false;
+      };
 
       # disable IPv6
       listenAddresses = [

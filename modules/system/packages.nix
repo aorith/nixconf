@@ -56,6 +56,7 @@
       pass
       pciutils
       ripgrep
+      sops
       sysstat
       tree
       unzip
