@@ -25,8 +25,6 @@
         dconf write /org/gnome/desktop/interface/clock-show-weekday true
 
         dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
-
-        dconf write /system/locale/region 'es_ES.UTF-8'
       '';
     };
   };

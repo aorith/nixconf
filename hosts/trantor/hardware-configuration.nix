@@ -36,24 +36,28 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/fd3f9eb4-5fa6-4f63-99ac-0dce636f4134";
     fsType = "btrfs";
+    neededForBoot = true;
     options = ["subvol=root" "compress=zstd" "noatime" "nodiscard"];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/fd3f9eb4-5fa6-4f63-99ac-0dce636f4134";
     fsType = "btrfs";
+    neededForBoot = true; # required for sops-nix
     options = ["subvol=home" "compress=zstd" "noatime" "nodiscard"];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/fd3f9eb4-5fa6-4f63-99ac-0dce636f4134";
     fsType = "btrfs";
+    neededForBoot = true;
     options = ["subvol=nix" "compress=zstd" "noatime" "nodiscard"];
   };
 
   fileSystems."/var/log" = {
     device = "/dev/disk/by-uuid/fd3f9eb4-5fa6-4f63-99ac-0dce636f4134";
     fsType = "btrfs";
+    neededForBoot = true;
     options = ["subvol=log" "compress=zstd" "noatime" "nodiscard"];
   };
 
