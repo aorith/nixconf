@@ -5,12 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs?ref=nixos-23.11";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    home-manager-stable.url = "github:nix-community/home-manager?ref=release-23.11";
-    home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
-
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -19,13 +13,12 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     nixpkgs-stable,
     sops-nix,
     ...
   } @ inputs: let
-    forAllSystems = nixpkgs.lib.genAttrs ["aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux"];
+    eachSystem = nixpkgs.lib.genAttrs ["aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux"];
   in {
     nixosConfigurations = {
       # --- Desktop
@@ -43,7 +36,7 @@
           };
           modules = [
             ./hosts/trantor
-            inputs.sops-nix.nixosModules.sops
+            sops-nix.nixosModules.sops
           ];
         };
       # --- Hetzner VM
@@ -61,11 +54,11 @@
           };
           modules = [
             ./hosts/arcadia
-            inputs.sops-nix.nixosModules.sops
+            sops-nix.nixosModules.sops
           ];
         };
     };
 
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = eachSystem (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
