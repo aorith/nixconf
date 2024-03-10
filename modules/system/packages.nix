@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: {
   config = lib.mkIf config.custom.system.packages {
@@ -15,6 +16,8 @@
     };
 
     environment.systemPackages = with pkgs; [
+      inputs.neovim-flake.packages.${pkgs.system}.default
+
       (python3.withPackages (py-pkgs: [
         py-pkgs.ipython
         py-pkgs.notebook

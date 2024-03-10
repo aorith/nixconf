@@ -30,37 +30,40 @@
     nixosConfigurations = {
       # --- Desktop
       # -----------
-      trantor = nixpkgs.lib.nixosSystem rec {
+      trantor = let
         system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
+      in
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            pkgs-stable = import nixpkgs-stable {
+              inherit system;
+              config.allowUnfree = true;
+            };
           };
+          modules = [
+            ./hosts/trantor
+            inputs.sops-nix.nixosModules.sops
+          ];
         };
-        modules = [
-          ./hosts/trantor
-          ({inputs, ...}: {environment.systemPackages = [inputs.neovim-flake.packages.${system}.default];})
-          inputs.sops-nix.nixosModules.sops
-        ];
-      };
       # --- Hetzner VM
       # --------------
-      arcadia = nixpkgs.lib.nixosSystem rec {
+      arcadia = let
         system = "aarch64-linux";
-        specialArgs = {
-          inherit inputs;
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
+      in
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            pkgs-stable = import nixpkgs-stable {
+              inherit system;
+              config.allowUnfree = true;
+            };
           };
+          modules = [
+            ./hosts/arcadia
+            inputs.sops-nix.nixosModules.sops
+          ];
         };
-        modules = [
-          ./hosts/arcadia
-          inputs.sops-nix.nixosModules.sops
-        ];
-      };
     };
 
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
