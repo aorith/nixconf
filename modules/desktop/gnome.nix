@@ -7,8 +7,9 @@
         autoSuspend = false;
       };
       sessionCommands = ''
+        set -x
         dconf write /org/gnome/desktop/wm/preferences/resize-with-right-button true
-        dconf write /org/gnome/desktop/wm/preferences/action-right-click-titlebar 'menu'
+        dconf write /org/gnome/desktop/wm/preferences/action-right-click-titlebar "'menu'"
 
         dconf write /org/gnome/desktop/privacy/remember-recent-files false
         dconf write /org/gnome/desktop/privacy/remove-old-temp-files true
