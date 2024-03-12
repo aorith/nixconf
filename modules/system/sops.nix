@@ -1,8 +1,11 @@
 {
+  inputs,
   config,
   lib,
   ...
 }: {
+  imports = [inputs.sops-nix.nixosModules.sops];
+
   config = lib.mkIf config.custom.system.sops {
     sops.age.keyFile = "/home/aorith/.config/sops/age/keys.txt";
     sops.age.generateKey = false;
