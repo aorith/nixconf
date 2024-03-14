@@ -1,11 +1,11 @@
-{...}: {
+{
   imports = [
     ./hardware-configuration.nix
     ./timers.nix
-    ./../../modules/system
-    ./../../modules/desktop
-    ./../../modules/extra/virtualisation.nix
-    ./../../modules/te
+    ./../../modules/nixos/core
+    ./../../modules/nixos/optional/desktop
+    ./../../modules/nixos/optional/extra/virtualisation.nix
+    ./../../modules/nixos/optional/te
   ];
 
   networking.hostName = "trantor";
@@ -37,5 +37,5 @@
     hybrid-sleep.enable = false;
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "23.11";
 }

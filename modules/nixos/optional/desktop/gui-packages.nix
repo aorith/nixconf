@@ -1,10 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  unstable-pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
-    alacritty
+    unstable-pkgs.alacritty
     calibre
     chromium
     evince
-    flameshot
+    unstable-pkgs.flameshot
     google-chrome
     keepassxc
     mpv

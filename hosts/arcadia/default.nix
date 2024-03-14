@@ -6,13 +6,10 @@
     ./syncthing.nix
     ./wireguard.nix
     ./proxy.nix
-    ./../../modules/system
+    ./../../modules/nixos/core
   ];
 
   config = {
-    # Disable some custom modules
-    custom.system.packages = false;
-
     boot.loader.systemd-boot.enable = true;
     boot.loader.systemd-boot.configurationLimit = 7;
     boot.loader.efi.canTouchEfiVariables = true;

@@ -15,6 +15,7 @@ in {
   imports = [
     ./sound.nix
     ./fonts.nix
+    ./packages.nix
     ./gui-packages.nix
     ./gnome.nix
     #./kde.nix
