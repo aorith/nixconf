@@ -3,11 +3,11 @@
     "mini-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1710084747,
-        "narHash": "sha256-vNfn480Duribs3hNf3tSxc2IlUGbkhiDAjNhEbxYCXg=",
+        "lastModified": 1710420512,
+        "narHash": "sha256-sJVfm9kaGFwty4pO4i+UEuSspdLvxmepYq63OBzx5Wk=",
         "owner": "echasnovski",
         "repo": "mini.nvim",
-        "rev": "d7d079d6f99c95218d6059e0eaf83997990b2e0e",
+        "rev": "9968f6e221ae7bdac57a910c5bf2026186aa023c",
         "type": "github"
       },
       "original": {
@@ -25,11 +25,11 @@
         "vim-varnish": "vim-varnish"
       },
       "locked": {
-        "lastModified": 1710088575,
-        "narHash": "sha256-h75LWkES3iCaDgxj3/Hh23DXJJpFgLOhXtdmEUdOh6s=",
+        "lastModified": 1710448371,
+        "narHash": "sha256-07V5+EahtEKpJKJV+JHkUh2FmpG2YI8CmWbMZd2eJ2U=",
         "ref": "refs/heads/master",
-        "rev": "bfaf64f2e56ae976db5e5c2f7bdb5d4f982d4ffd",
-        "revCount": 69,
+        "rev": "c6e3705b6b0567118c186d208fbdc257e6867c3f",
+        "revCount": 70,
         "type": "git",
         "url": "file:///home/aorith/githome/neovim-flake"
       },
