@@ -1,11 +1,16 @@
 {inputs, ...}: {
   nixpkgs.config.allowUnfree = true;
 
-  # Make nix command use the same nixpkgs version
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix.registry = {
+    # Make nix command use the same nixpkgs version: 'nix shell nixpkgs#curl'
+    nixpkgs.flake = inputs.nixpkgs;
+    nixpkgs-unstable.flake = inputs.nixpkgs-unstable; # 'nix shell nixpkgs-unstable#curl'
+  };
+
   # Also the non-flake commands like 'nix-shell'
-  nix.nixPath = ["nixpkgs=/etc/nixpkgs"];
+  nix.nixPath = ["nixpkgs=/etc/nixpkgs" "nixpkgs-unstable=/etc/nixpkgs-unstable"];
   environment.etc."nixpkgs".source = inputs.nixpkgs.outPath;
+  environment.etc."nixpkgs-unstable".source = inputs.nixpkgs-unstable.outPath;
 
   nix.settings = {
     experimental-features = "nix-command flakes";
