@@ -1,15 +1,13 @@
 {pkgs, ...}: {
   programs.zsh = {
     enable = true;
-
-    # relative to ~
-    dotDir = ".config/zsh";
+    dotDir = ".config/zsh"; # relative to ~
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     enableAutosuggestions = true;
     history.size = 10000;
     history.share = true;
-    history.path = ".local/share/zsh/zsh_history";
+    history.path = "$HOME/.local/share/zsh/zsh_history";
 
     plugins = [
       {
