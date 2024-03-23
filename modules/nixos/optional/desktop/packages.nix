@@ -33,6 +33,7 @@
     sysstat
     unstable-pkgs.fzf
     unstable-pkgs.gron
+    unstable-pkgs.kubectl
     unstable-pkgs.riffdiff
     unstable-pkgs.yq-go
     unzip
