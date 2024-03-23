@@ -9,6 +9,7 @@
     enableAutosuggestions = true;
     history.size = 10000;
     history.share = true;
+    history.path = ".local/share/zsh/zsh_history";
 
     plugins = [
       {
