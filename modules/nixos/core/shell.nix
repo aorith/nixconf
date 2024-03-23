@@ -9,4 +9,7 @@
       enableCompletion = true;
     };
   };
+
+  # Completion for system packages
+  environment.pathsToLink = ["/share/zsh"];
 }

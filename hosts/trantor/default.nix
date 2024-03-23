@@ -6,6 +6,8 @@
     ./../../modules/nixos/optional/desktop
     ./../../modules/nixos/optional/extra/virtualisation.nix
     ./../../modules/nixos/optional/te
+
+    ./../../modules/hm/nixos-module.nix
   ];
 
   networking.hostName = "trantor";
