@@ -31,6 +31,15 @@
       };
     };
 
+    homeConfigurations = {
+      # --- Darwin Laptop
+      "aorith@moria" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+        modules = [./hosts/moria/home.nix];
+        extraSpecialArgs = {inherit inputs;};
+      };
+    };
+
     formatter = eachSystem (system: inputs.nixpkgs-unstable.legacyPackages.${system}.alejandra);
   };
 }

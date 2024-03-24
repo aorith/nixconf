@@ -6,9 +6,10 @@
     ./../../modules/nixos/optional/desktop
     ./../../modules/nixos/optional/extra/virtualisation.nix
     ./../../modules/nixos/optional/te
-
-    ./../../modules/hm/nixos-module.nix
+    ./../../modules/nixos/optional/home-manager.nix
   ];
+
+  home-manager.users.aorith = import ./home.nix;
 
   networking.hostName = "trantor";
   networking.networkmanager.enable = true;

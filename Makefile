@@ -1,13 +1,16 @@
+SHELL = bash
 CURRENTUID := $(shell id -u)
 
 ifeq ($(CURRENTUID), 0)
   $(error Run without root)
 endif
 
-.PHONY: switch boot dry-build update shell clean
+HMCONFIG := ${USER}@$(shell hostname -s)
+
+.PHONY: switch boot dry-build update shell clean home
 
 main:
-	@echo "Avalable options: "
+	@echo "Available options: "
 	@grep -Eo '^[a-zA-Z]+:' Makefile | grep -v '[m]ain:' | tr -d ':' | xargs -n1 echo "    make"
 
 switch:
@@ -33,3 +36,11 @@ clean:
 	sudo nix-store --gc
 	@echo "Running deduplication of the Nix store... may take a while"
 	sudo nix-store --optimise
+
+home:
+	@mkdir -p ~/.local/state/nix/profiles
+	@if type home-manager >/dev/null 2>&1; then\
+		home-manager switch --flake .#$(HMCONFIG);\
+	else\
+		nix run nixpkgs#home-manager switch -- --flake .#$(HMCONFIG);\
+	fi

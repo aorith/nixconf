@@ -5,9 +5,9 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     age
     git
+    sops
     gnumake
-    nixUnstable
-    (pkgs.callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
+    home-manager
     (nixos {nix.package = nixFlakes;}).nixos-rebuild
   ];
 

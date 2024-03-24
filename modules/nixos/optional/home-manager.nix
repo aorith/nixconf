@@ -9,6 +9,5 @@
   # Install packages to /etc/profiles instead of $HOME/.nix-profile, this will become the default.
   home-manager.useUserPackages = true;
 
-  home-manager.users.aorith = import ./home-linux.nix;
   home-manager.extraSpecialArgs = {inherit inputs;};
 }
