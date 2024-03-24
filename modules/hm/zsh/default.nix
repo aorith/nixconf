@@ -5,6 +5,7 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     enableAutosuggestions = true;
+    defaultKeymap = "emacs";
     history.size = 10000;
     history.share = true;
     history.path = "$HOME/.local/share/zsh/zsh_history";
@@ -42,13 +43,22 @@
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
-
-      emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/aliases.sh'
-      emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/env.sh'
-      emulate sh -c 'source ~/githome/dotfiles/topics/shell/src/bash/functions.sh'
     '';
 
     initExtra = ''
+      # Use incremental search
+      bindkey "^R" history-incremental-search-backward
+      # Sane delete key behaviour
+      bindkey "^[[3~" delete-char
+
+      # Titles
+      precmd () {
+        print -Pn "\e]0;zsh [%~]\a"
+      }
+      preexec () {
+        print -Pn "\e]0;$1 [%~]\a"
+      }
+
       unsetopt correct # autocorrect commands
 
       setopt hist_ignore_all_dups # remove older duplicate entries from history
@@ -62,6 +72,10 @@
       setopt auto_menu # automatically use menu completion
       zstyle ':completion:*' menu select # select completions with arrow keys
       zstyle ':completion:*' group-name "" # group results by category
+
+      emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/aliases.sh'
+      emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/env.sh'
+      emulate sh -c 'source ~/githome/dotfiles/topics/shell/src/bash/functions.sh'
     '';
 
     shellAliases = {
