@@ -27,8 +27,8 @@
     # When free disk space in /nix/store drops below min-free during a build, Nix performs a
     # garbage-collection until max-free bytes are available or there is no more garbage.
     # A value of 0 (the default) disables this feature.
-    min-free = 128000000; # 128 MB
-    max-free = 1000000000; # 1 GB
+    min-free = 256000000; # 256 MB
+    max-free = 2000000000; # 2 GB
 
     # If set to true, Nix will fall back to building from source if a binary substitute
     # fails. This is equivalent to the –fallback flag. The default is false.
