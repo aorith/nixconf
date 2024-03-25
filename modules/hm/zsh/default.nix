@@ -8,7 +8,7 @@
     defaultKeymap = "emacs";
     history.size = 10000;
     history.share = true;
-    history.path = "$HOME/.local/share/zsh/zsh_history";
+    history.path = "$HOME/.config/zsh/.zsh_history";
 
     plugins = [
       {
