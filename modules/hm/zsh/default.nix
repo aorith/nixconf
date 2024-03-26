@@ -52,12 +52,10 @@
       bindkey "^[[3~" delete-char
 
       # Titles
-      precmd () {
-        print -Pn "\e]0;zsh [%~]\a"
-      }
-      preexec () {
-        print -Pn "\e]0;$1 [%~]\a"
-      }
+      __title_precmd () { print -Pn -- "\e]0;zsh [%~]\a" }
+      __title_preexec () { print -n -- "\e]0;$1 " && print -Pn -- "[%~]\a" }
+      precmd_functions+=(__title_precmd)
+      preexec_functions+=(__title_preexec)
 
       unsetopt correct # autocorrect commands
 
