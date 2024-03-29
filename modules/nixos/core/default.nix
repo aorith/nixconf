@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./nix.nix
+    ./btrfs.nix
     ./packages.nix
     ./shell.nix
     ./ssh.nix
