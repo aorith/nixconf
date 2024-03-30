@@ -26,7 +26,7 @@
     jails = {
       sshd.settings = {
         enabled = true;
-        action = lib.concatStringsSep "\n         " ["%(action_)s[blocktype=DROP]" "ntfy"];
+        action = lib.concatStringsSep "\n         " [''iptables-multiport[name=SSH, port="22,22022"]'' "ntfy"];
         maxretry = 3;
       };
       caddy-notes.settings = {
