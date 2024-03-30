@@ -18,7 +18,7 @@
     networking.enableIPv6 = false;
     networking.firewall = {
       enable = true;
-      allowedTCPPorts = [22 80 443];
+      allowedTCPPorts = [22022 80 443];
       logRefusedConnections = false; # Reduce journal logs
     };
 
@@ -33,6 +33,12 @@
       settings.AllowUsers = ["aorith"];
       settings.PermitRootLogin = "prohibit-password";
       settings.PasswordAuthentication = false;
+      listenAddresses = [
+        {
+          addr = "0.0.0.0";
+          port = 22022;
+        }
+      ];
     };
 
     virtualisation.docker = {

@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   services.openssh = {
     settings = {
       PermitRootLogin = "prohibit-password";
@@ -6,7 +6,7 @@
     };
 
     # disable IPv6
-    listenAddresses = [
+    listenAddresses = lib.mkDefault [
       {
         addr = "0.0.0.0";
         port = 22;
