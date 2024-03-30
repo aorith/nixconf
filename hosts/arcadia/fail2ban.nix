@@ -33,7 +33,7 @@
         enabled = true;
         filter = "caddy-notes";
         logpath = "/var/log/caddy/notes.log";
-        action = lib.concatStringsSep "\n         " ["%(action_)s[blocktype=DROP]" "ntfy"];
+        action = lib.concatStringsSep "\n         " ["iptables-allports" "ntfy"];
         backend = "auto";
         maxretry = 5;
         findtime = 600;
