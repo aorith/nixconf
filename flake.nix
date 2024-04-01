@@ -11,7 +11,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    neovim-flake.url = "git+file:///home/aorith/githome/neovim-flake";
+    neovim-flake.url = "git+file:///home/aorith/githome/neovim-flake?shallow=1";
     neovim-flake.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
