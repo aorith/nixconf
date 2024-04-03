@@ -46,18 +46,18 @@
         "vim-varnish": "vim-varnish"
       },
       "locked": {
-        "lastModified": 1711365790,
-        "narHash": "sha256-otuQVHBXA55oS5d1enlTXRFJZHr5QWueSEBpzHKoJio=",
+        "lastModified": 1712115586,
+        "narHash": "sha256-GouU2IVIWQOKqOVY74J2POvYdlvFzLI88OydEY5MAVE=",
         "ref": "refs/heads/master",
-        "rev": "cdac877c337286e7122276029e74d5e1e101c8ab",
+        "rev": "badfd25fc07a558b5d807c2573dab16c5cb1b670",
         "shallow": true,
         "type": "git",
-        "url": "file:///home/aorith/githome/neovim-flake"
+        "url": "file:../neovim-flake"
       },
       "original": {
         "shallow": true,
         "type": "git",
-        "url": "file:///home/aorith/githome/neovim-flake"
+        "url": "file:../neovim-flake"
       }
     },
     "nixpkgs": {
