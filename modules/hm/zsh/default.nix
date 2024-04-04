@@ -70,6 +70,7 @@
       setopt auto_menu # automatically use menu completion
       zstyle ':completion:*' menu select # select completions with arrow keys
       zstyle ':completion:*' group-name "" # group results by category
+      zstyle ':completion:*' special-dirs true # need this for ..<TAB>, so it adds the '/'
 
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/aliases.sh'
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/env.sh'
