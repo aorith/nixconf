@@ -7,6 +7,7 @@
     ./wireguard.nix
     ./proxy.nix
     ./../../modules/nixos/core
+    ./../../modules/nixos/optional/extra/yarr.nix
   ];
 
   config = {
