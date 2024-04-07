@@ -46,10 +46,10 @@
         "vim-varnish": "vim-varnish"
       },
       "locked": {
-        "lastModified": 1712478191,
-        "narHash": "sha256-krl6h7IKAYuQGzeEHIZrhpLzJm4lVqUNY3xYY1nAFqc=",
+        "lastModified": 1712487117,
+        "narHash": "sha256-1JmRHoEqbak5U0yeG537prnW/xyNeJNA4WNBCkgVixk=",
         "ref": "refs/heads/master",
-        "rev": "582284047580ca1d536e0ebf94de7ff5991c49fc",
+        "rev": "879652d47b47d9803e943a42d88c504da0a772d6",
         "shallow": true,
         "type": "git",
         "url": "file:../neovim-flake"
