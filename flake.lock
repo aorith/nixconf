@@ -52,12 +52,12 @@
         "rev": "879652d47b47d9803e943a42d88c504da0a772d6",
         "shallow": true,
         "type": "git",
-        "url": "file:../neovim-flake"
+        "url": "file:./../neovim-flake"
       },
       "original": {
         "shallow": true,
         "type": "git",
-        "url": "file:../neovim-flake"
+        "url": "file:./../neovim-flake"
       }
     },
     "nixpkgs": {
