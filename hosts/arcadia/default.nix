@@ -9,6 +9,7 @@
     ./../../modules/nixos/core
     ./../../modules/nixos/optional/extra/yarr.nix
     ./yarr.nix
+    ./silverbullet.nix
   ];
 
   config = {
