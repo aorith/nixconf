@@ -48,16 +48,15 @@
       "locked": {
         "lastModified": 1712878338,
         "narHash": "sha256-NkTOBkLFyxCYfd2vIkq8nKor9C9TBsGBNPPW5daetnc=",
-        "ref": "refs/heads/master",
+        "owner": "aorith",
+        "repo": "neovim-flake",
         "rev": "aaecde0f5260ada5b700626d425c6019794e3f23",
-        "shallow": true,
-        "type": "git",
-        "url": "file:./../neovim-flake"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "file:./../neovim-flake"
+        "owner": "aorith",
+        "repo": "neovim-flake",
+        "type": "github"
       }
     },
     "nixpkgs": {
@@ -94,11 +93,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1712608508,
-        "narHash": "sha256-vMZ5603yU0wxgyQeHJryOI+O61yrX2AHwY6LOFyV1gM=",
+        "lastModified": 1712791164,
+        "narHash": "sha256-3sbWO1mbpWsLepZGbWaMovSO7ndZeFqDSdX0hZ9nVyw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4cba8b53da471aea2ab2b0c1f30a81e7c451f4b6",
+        "rev": "1042fd8b148a9105f3c0aca3a6177fd1d9360ba5",
         "type": "github"
       },
       "original": {
