@@ -16,6 +16,19 @@
   networking.enableIPv6 = false;
   networking.firewall.enable = false;
 
+  services.openssh = {
+    enable = true;
+    settings.AllowUsers = ["aorith"];
+    settings.PermitRootLogin = "prohibit-password";
+    settings.PasswordAuthentication = false;
+    listenAddresses = [
+      {
+        addr = "10.255.255.7";
+        port = 22;
+      }
+    ];
+  };
+
   services = {
     syncthing = {
       enable = true;
