@@ -1,8 +1,18 @@
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./../../modules/hm/darwin
     ./../../modules/hm/zsh
   ];
+
+  # Add different nixpkgs refs as module args
+  _module.args.unstable-pkgs = import inputs.nixpkgs-unstable {
+    system = "${pkgs.system}";
+    config.allowUnfree = true;
+  };
 
   home.username = "aorith";
   home.homeDirectory = "/Users/aorith";

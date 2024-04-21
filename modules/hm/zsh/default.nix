@@ -43,9 +43,7 @@
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
-    '';
 
-    initExtra = ''
       # Use incremental search
       bindkey "^R" history-incremental-search-backward
       # Sane delete key behaviour
@@ -72,6 +70,10 @@
       zstyle ':completion:*' group-name "" # group results by category
       zstyle ':completion:*' special-dirs true # need this for ..<TAB>, so it adds the '/'
 
+      typeset -U PATH
+    '';
+
+    initExtra = ''
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/aliases.sh'
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/env.sh'
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/src/bash/functions.sh'
