@@ -1,5 +1,8 @@
 {
-  imports = [../../modules/hm/zsh];
+  imports = [
+    ../../modules/hm/zsh
+    ./../../modules/hm/packages
+  ];
 
   home.username = "aorith";
   home.homeDirectory = "/home/aorith";
