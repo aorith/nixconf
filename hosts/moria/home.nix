@@ -4,9 +4,8 @@
   ...
 }: {
   imports = [
+    ./../../modules/hm
     ./../../modules/hm/darwin
-    ./../../modules/hm/zsh
-    ./../../modules/hm/packages
   ];
 
   # Add different nixpkgs refs as module args
