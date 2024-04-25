@@ -44,11 +44,6 @@
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
 
-      # Use incremental search
-      bindkey "^R" history-incremental-search-backward
-      # Sane delete key behaviour
-      bindkey "^[[3~" delete-char
-
       # Titles
       __title_precmd () { print -Pn -- "\e]0;zsh [%~]\a" }
       __title_preexec () { print -n -- "\e]0;$1 " && print -Pn -- "[%~]\a" }
@@ -56,10 +51,10 @@
       preexec_functions+=(__title_preexec)
 
       unsetopt correct # autocorrect commands
+      unsetopt inc_append_history # save history entries as soon as they are entered
 
       setopt hist_ignore_all_dups # remove older duplicate entries from history
       setopt hist_reduce_blanks # remove superfluous blanks from history items
-      setopt inc_append_history # save history entries as soon as they are entered
       setopt rm_star_wait # wait for 10 seconds confirmation when running rm with *
       setopt auto_param_slash # complete folders with / at end
 
@@ -77,6 +72,11 @@
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/aliases.sh'
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/env.sh'
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/src/bash/functions.sh'
+
+      # Use incremental search
+      bindkey "^R" history-incremental-search-backward
+      # Sane delete key behaviour
+      bindkey "^[[3~" delete-char
     '';
 
     shellAliases = {
