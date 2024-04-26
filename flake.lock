@@ -46,11 +46,11 @@
         "vim-varnish": "vim-varnish"
       },
       "locked": {
-        "lastModified": 1713725602,
-        "narHash": "sha256-86JfzLf5eO42M5pMx4E1zCqtMxHhUk5lHVo5k9l2Kew=",
+        "lastModified": 1714153557,
+        "narHash": "sha256-uatznUpyvG+vcKbb3oFYpp/m6YWSdId/rICi9kIRXPc=",
         "owner": "aorith",
         "repo": "neovim-flake",
-        "rev": "3f29b23d03e89ee940f3b9c18966a4e7acb636c0",
+        "rev": "de8c6e90e30c17c6dc55fe85d8a871c27c511090",
         "type": "github"
       },
       "original": {
