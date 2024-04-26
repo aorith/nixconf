@@ -1,4 +1,4 @@
-{
+{unstable-pkgs, ...}: {
   programs.fzf.enable = true;
   programs.bash = {
     enable = true;

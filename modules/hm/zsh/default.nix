@@ -73,10 +73,19 @@
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/etc/common/env.sh'
       emulate sh -c 'source ~/githome/dotfiles/topics/shell/src/bash/functions.sh'
 
-      # Use incremental search
-      bindkey "^R" history-incremental-search-backward
-      # Sane delete key behaviour
+      # Fix home, delete, ... keys
       bindkey "^[[3~" delete-char
+      case $TERM_PROGRAM in
+      tmux)
+          bindkey "^[[1~" beginning-of-line
+          bindkey "^[[4~" end-of-line
+          ;;
+      WezTerm)
+          # Ctrl-V + <key>
+          bindkey "^[OH" beginning-of-line
+          bindkey "^[OF" end-of-line
+          ;;
+      esac
     '';
 
     shellAliases = {

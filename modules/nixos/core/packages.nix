@@ -23,6 +23,7 @@
     fd
     file
     git
+    git-lfs
     gnumake
     gnupg
     killall

@@ -5,25 +5,26 @@
 }: {
   environment.systemPackages = with pkgs; [
     unstable-pkgs.alacritty
+    unstable-pkgs.flameshot
+    unstable-pkgs.wezterm
+
     calibre
     chromium
     evince
-    unstable-pkgs.flameshot
+    gimp-with-plugins
     google-chrome
     keepassxc
+    libnotify
     mpv
+    pamixer
+    pavucontrol
+    pulseaudioFull
     transmission-gtk
-    gimp-with-plugins
-
     wl-clipboard
     xclip
-    xsel
     xorg.xev
     xorg.xprop
-    libnotify
-    pamixer
-    pulseaudioFull
-    pavucontrol
+    xsel
 
     solaar
     logitech-udev-rules
