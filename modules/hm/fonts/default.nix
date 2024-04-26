@@ -17,16 +17,16 @@
     hack-font
     ubuntu_font_family
 
-    (input-fonts.overrideAttrs
-      (prev: {
-        acceptLicense = true;
-        src = pkgs.fetchzip {
-          name = "input-fonts-${prev.version}";
-          url = "https://input.djr.com/build/?fontSelection=whole&a=0&g=0&i=serifs&l=serifs&zero=slash&asterisk=0&braces=0&preset=default&line-height=1&accept=I+do&email=&.zip";
-          hash = "sha256-cRjtsh4c4bWgkke7vUIqbVF9zqp1V4t/qwShsOCNqGs=";
-          stripRoot = false;
-        };
-      }))
+    # (input-fonts.overrideAttrs
+    #   (prev: {
+    #     acceptLicense = true;
+    #     src = pkgs.fetchzip {
+    #       name = "input-fonts-${prev.version}";
+    #       url = "https://input.djr.com/build/?fontSelection=whole&a=0&g=0&i=serifs&l=serifs&zero=slash&asterisk=0&braces=0&preset=default&line-height=1&accept=I+do&email=&.zip";
+    #       hash = "sha256-cRjtsh4c4bWgkke7vUIqbVF9zqp1V4t/qwShsOCNqGs=";
+    #       stripRoot = false;
+    #     };
+    #   }))
 
     (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly" "IosevkaTerm"];})
   ];
