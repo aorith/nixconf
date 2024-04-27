@@ -17,6 +17,8 @@
     hack-font
     ubuntu_font_family
 
+    (callPackage ./custom-fonts.nix {})
+
     # (input-fonts.overrideAttrs
     #   (prev: {
     #     acceptLicense = true;
