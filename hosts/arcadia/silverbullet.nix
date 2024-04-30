@@ -14,7 +14,7 @@
       enable = true;
       package = unstable-pkgs.silverbullet.overrideAttrs (oldAttrs: rec {
         version = "0.7.7";
-        src = oldAttrs.fetchurl {
+        src = pkgs.fetchurl {
           url = "https://github.com/silverbulletmd/silverbullet/releases/download/${version}/silverbullet.js";
           hash = "sha256-EhHPysliRi1bv/skS4+ljQW6qFsijmSup1+7/fVfFdg=";
         };
