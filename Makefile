@@ -7,6 +7,8 @@ endif
 
 HMCONFIG := ${USER}@$(shell hostname -s)
 
+export NIX_CONFIG := experimental-features = nix-command flakes
+
 .PHONY: switch boot dry-build update shell clean home
 
 main:
