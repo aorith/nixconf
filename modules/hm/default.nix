@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -22,7 +23,7 @@
     nixpkgs-unstable.flake = inputs.nixpkgs-unstable; # 'nix shell nixpkgs-unstable#curl'
   };
 
-  nix.package = pkgs.nix;
+  nix.package = lib.mkDefault pkgs.nix;
 
   nix.settings = {
     experimental-features = "nix-command flakes";

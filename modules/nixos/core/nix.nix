@@ -8,9 +8,7 @@
   };
 
   # Also the non-flake commands like 'nix-shell'
-  nix.nixPath = ["nixpkgs=/etc/nixpkgs" "nixpkgs-unstable=/etc/nixpkgs-unstable"];
-  environment.etc."nixpkgs".source = inputs.nixpkgs.outPath;
-  environment.etc."nixpkgs-unstable".source = inputs.nixpkgs-unstable.outPath;
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs.outPath}" "nixpkgs-unstable=${inputs.nixpkgs-unstable.outPath}"];
 
   nix.settings = {
     experimental-features = "nix-command flakes";
@@ -22,7 +20,7 @@
     connect-timeout = 5;
 
     # The number of lines of the tail of the log to show if a build fails.
-    log-lines = 30;
+    log-lines = 60;
 
     # When free disk space in /nix/store drops below min-free during a build, Nix performs a
     # garbage-collection until max-free bytes are available or there is no more garbage.
