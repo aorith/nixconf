@@ -14,7 +14,6 @@
     noto-fonts-emoji
 
     material-design-icons
-    hack-font
     ubuntu_font_family
 
     (callPackage ./custom-fonts.nix {})
@@ -30,7 +29,14 @@
     #     };
     #   }))
 
-    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly" "IosevkaTerm"];})
+    (nerdfonts.override {
+      fonts = [
+        "NerdFontsSymbolsOnly"
+        "IosevkaTerm"
+        "SourceCodePro"
+        "JetBrainsMono"
+      ];
+    })
   ];
 
   fonts.fontconfig.enable = true;
