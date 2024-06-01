@@ -4,7 +4,7 @@
     dotDir = ".config/zsh"; # relative to ~
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     defaultKeymap = "emacs";
     history.size = 10000;
     history.share = true;

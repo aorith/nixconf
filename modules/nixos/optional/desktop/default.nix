@@ -27,9 +27,9 @@ in {
     pkgs.gnome.adwaita-icon-theme
   ];
 
+  services.libinput.enable = true;
   services.xserver = {
     enable = lib.mkDefault true;
-    libinput.enable = true;
     xkb.options = "ctrl:nocaps"; # Capslock as CTRL
     xkb.layout = "es";
     autoRepeatDelay = 300;
