@@ -1,13 +1,12 @@
 {
-  inputs,
   pkgs,
   unstable-pkgs,
   ...
 }: {
-  imports = [
-    # Remove on next nixos release
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/silverbullet.nix"
-  ];
+  # imports = [
+  #   # 24.05 is already here
+  #   # "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/silverbullet.nix"
+  # ];
 
   config = {
     services.silverbullet = {
