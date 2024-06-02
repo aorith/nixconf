@@ -5,6 +5,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
 
+    mynur.url = "github:aorith/nur";
+    mynur.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     home-manager.url = "github:nix-community/home-manager?ref=release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -40,6 +43,6 @@
       };
     };
 
-    formatter = eachSystem (system: inputs.nixpkgs-unstable.legacyPackages.${system}.alejandra);
+    formatter = eachSystem (system: inputs.nixpkgs-unstable.legacyPackages.${system}.nixfmt-rfc-style);
   };
 }

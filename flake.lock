@@ -37,6 +37,26 @@
         "type": "github"
       }
     },
+    "mynur": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1717321613,
+        "narHash": "sha256-l0akYlBEhmOhAvBxtVeMFFjYF/wOMFkVhxXUmYmCxMo=",
+        "owner": "aorith",
+        "repo": "nur",
+        "rev": "1e9041a0d50ec7ffd3a65ad5bc1d69b45dbbb649",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aorith",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "neovim-flake": {
       "inputs": {
         "mini-nvim": "mini-nvim",
@@ -110,6 +130,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "mynur": "mynur",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
