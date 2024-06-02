@@ -1,5 +1,1 @@
-{
-  nixpkgs.overlays = [
-    (import ./tmux)
-  ];
-}
+{ nixpkgs.overlays = [ (import ./tmux) ]; }

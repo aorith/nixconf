@@ -1,8 +1,11 @@
 {
   networking.firewall = {
     # https://docs.syncthing.net/users/firewall.html#local-firewall
-    allowedTCPPorts = [22000];
-    allowedUDPPorts = [21027 22000];
+    allowedTCPPorts = [ 22000 ];
+    allowedUDPPorts = [
+      21027
+      22000
+    ];
   };
 
   services = {

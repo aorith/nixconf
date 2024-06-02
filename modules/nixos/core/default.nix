@@ -4,7 +4,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./nix.nix
     ./btrfs.nix
@@ -22,13 +23,20 @@
   };
 
   # Generate hostId from the hostname
-  networking.hostId = builtins.substring 24 8 (builtins.hashString "md5" "${config.networking.hostName}");
+  networking.hostId = builtins.substring 24 8 (
+    builtins.hashString "md5" "${config.networking.hostName}"
+  );
 
   boot.tmp.useTmpfs = true;
 
   time.timeZone = "Europe/Madrid";
   i18n.defaultLocale = "en_GB.UTF-8"; # Use 'en_GB' so dates have 'dd/mm/YYYY' format
-  i18n.supportedLocales = ["C.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" "en_GB.UTF-8/UTF-8" "es_ES.UTF-8/UTF-8"];
+  i18n.supportedLocales = [
+    "C.UTF-8/UTF-8"
+    "en_US.UTF-8/UTF-8"
+    "en_GB.UTF-8/UTF-8"
+    "es_ES.UTF-8/UTF-8"
+  ];
   i18n.extraLocaleSettings = {
     LC_MONETARY = "es_ES.UTF-8";
     LC_TIME = "es_ES.UTF-8";

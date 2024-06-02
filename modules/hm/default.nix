@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./packages
     ./programs.nix
@@ -30,6 +31,9 @@
     min-free = 256000000; # 256 MB
     max-free = 2000000000; # 2 GB
     auto-optimise-store = true;
-    nix-path = ["nixpkgs=${inputs.nixpkgs.outPath}" "nixpkgs-unstable=${inputs.nixpkgs.outPath}"];
+    nix-path = [
+      "nixpkgs=${inputs.nixpkgs.outPath}"
+      "nixpkgs-unstable=${inputs.nixpkgs.outPath}"
+    ];
   };
 }

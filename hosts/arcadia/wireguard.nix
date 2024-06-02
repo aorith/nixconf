@@ -1,14 +1,15 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [wireguard-tools];
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [ wireguard-tools ];
 
-  networking.firewall.allowedUDPPorts = [45340];
+  networking.firewall.allowedUDPPorts = [ 45340 ];
   networking.useNetworkd = true;
   systemd.network = {
     enable = true;
     # Interface
     networks.wg0 = {
       matchConfig.Name = "wg0";
-      address = ["10.255.254.1/24"];
+      address = [ "10.255.254.1/24" ];
       networkConfig = {
         IPMasquerade = "ipv4";
         IPForward = true;
@@ -31,7 +32,7 @@
             wireguardPeerConfig = {
               # Trantor
               PublicKey = "qpJpTU8yDNyuCZ9kjolGDMA/Wz25BM5NReieARaWyVI=";
-              AllowedIPs = ["10.255.254.7/32"];
+              AllowedIPs = [ "10.255.254.7/32" ];
               PersistentKeepalive = 15;
               PresharedKeyFile = "/etc/wireguard-keys/wg0.psk";
             };
@@ -40,7 +41,7 @@
             wireguardPeerConfig = {
               # Phone
               PublicKey = "TbRB49Gl1WY5aLDbAyZEzLg+wHRq2Sul/CDYxqfvDU8=";
-              AllowedIPs = ["10.255.254.3/32"];
+              AllowedIPs = [ "10.255.254.3/32" ];
               PersistentKeepalive = 15;
               PresharedKeyFile = "/etc/wireguard-keys/wg0.psk";
             };

@@ -1,8 +1,5 @@
+{ pkgs, lib, ... }:
 {
-  pkgs,
-  lib,
-  ...
-}: {
   services.fail2ban = {
     enable = true;
     maxretry = 5; # By default ban IP after 5 failures
@@ -26,14 +23,20 @@
     jails = {
       sshd.settings = {
         enabled = true;
-        action = lib.concatStringsSep "\n         " [''iptables-multiport[name=SSH, port="22,22022"]'' "ntfy"];
+        action = lib.concatStringsSep "\n         " [
+          ''iptables-multiport[name=SSH, port="22,22022"]''
+          "ntfy"
+        ];
         maxretry = 3;
       };
       caddy-notes.settings = {
         enabled = true;
         filter = "caddy-notes";
         logpath = "/var/log/caddy/notes.log";
-        action = lib.concatStringsSep "\n         " ["iptables-allports" "ntfy"];
+        action = lib.concatStringsSep "\n         " [
+          "iptables-allports"
+          "ntfy"
+        ];
         backend = "auto";
         maxretry = 5;
         findtime = 600;
@@ -43,15 +46,19 @@
 
   environment.etc = {
     # Define an action that will trigger a Ntfy push notification upon the issue of every new ban
-    "fail2ban/action.d/ntfy.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
-      [Definition]
-      norestored = true
-      actionban = ${pkgs.curl}/bin/curl -H "Title: [<name>] <ip> has been banned" -d "<name> jail has banned <ip> from accessing $(${pkgs.hostname}/bin/hostname) after <failures> attempts." https://ntfy.sh/fail2ban-aorith
-    '');
+    "fail2ban/action.d/ntfy.local".text = pkgs.lib.mkDefault (
+      pkgs.lib.mkAfter ''
+        [Definition]
+        norestored = true
+        actionban = ${pkgs.curl}/bin/curl -H "Title: [<name>] <ip> has been banned" -d "<name> jail has banned <ip> from accessing $(${pkgs.hostname}/bin/hostname) after <failures> attempts." https://ntfy.sh/fail2ban-aorith
+      ''
+    );
     # Filter for notes access
-    "fail2ban/filter.d/caddy-notes.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
-      [Definition]
-      failregex = ^.*"remote_ip":"<HOST>",.*?auth\?error=1".*$
-    '');
+    "fail2ban/filter.d/caddy-notes.local".text = pkgs.lib.mkDefault (
+      pkgs.lib.mkAfter ''
+        [Definition]
+        failregex = ^.*"remote_ip":"<HOST>",.*?auth\?error=1".*$
+      ''
+    );
   };
 }

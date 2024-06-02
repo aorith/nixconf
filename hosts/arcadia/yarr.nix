@@ -1,8 +1,5 @@
+{ pkgs, unstable-pkgs, ... }:
 {
-  pkgs,
-  unstable-pkgs,
-  ...
-}: {
   services.yarr = {
     enable = true;
     package = unstable-pkgs.yarr;

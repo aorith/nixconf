@@ -1,7 +1,5 @@
 {
-  imports = [
-    ../../modules/hm
-  ];
+  imports = [ ../../modules/hm ];
 
   home.username = "aorith";
   home.homeDirectory = "/home/aorith";

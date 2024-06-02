@@ -1,4 +1,5 @@
-{unstable-pkgs, ...}: {
+{ unstable-pkgs, ... }:
+{
   home.packages = with unstable-pkgs; [
     liberation_ttf # metric compatible with Arial, Times New Roman and Courier New
 
@@ -16,7 +17,7 @@
     material-design-icons
     ubuntu_font_family
 
-    (callPackage ./custom-fonts.nix {})
+    (callPackage ./custom-fonts.nix { })
 
     # (input-fonts.overrideAttrs
     #   (prev: {

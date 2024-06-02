@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     virt-manager
     spice-gtk
@@ -16,7 +17,10 @@
       enable = true;
       onShutdown = "shutdown";
       onBoot = "ignore";
-      allowedBridges = ["br0" "virbr0"];
+      allowedBridges = [
+        "br0"
+        "virbr0"
+      ];
       qemu.ovmf.enable = true;
     };
 
@@ -24,7 +28,10 @@
       enable = true;
       autoPrune = {
         dates = "daily";
-        flags = ["--all" "--volumes"];
+        flags = [
+          "--all"
+          "--volumes"
+        ];
       };
     };
 

@@ -1,7 +1,5 @@
 {
-  networking.hostFiles = [./hosts];
+  networking.hostFiles = [ ./hosts ];
 
-  security.pki.certificateFiles = [
-    ./tca.pem
-  ];
+  security.pki.certificateFiles = [ ./tca.pem ];
 }

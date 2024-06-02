@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./hardware-configuration.nix
     ./fail2ban.nix
@@ -21,7 +22,11 @@
     networking.enableIPv6 = false;
     networking.firewall = {
       enable = true;
-      allowedTCPPorts = [22022 80 443];
+      allowedTCPPorts = [
+        22022
+        80
+        443
+      ];
       logRefusedConnections = false; # Reduce journal logs
     };
 
@@ -33,7 +38,7 @@
 
     services.openssh = {
       enable = true;
-      settings.AllowUsers = ["aorith"];
+      settings.AllowUsers = [ "aorith" ];
       settings.PermitRootLogin = "prohibit-password";
       settings.PasswordAuthentication = false;
       listenAddresses = [
@@ -48,10 +53,13 @@
       enable = true;
       autoPrune = {
         dates = "daily";
-        flags = ["--all" "--volumes"];
+        flags = [
+          "--all"
+          "--volumes"
+        ];
       };
     };
-    users.users.aorith.extraGroups = ["docker"];
+    users.users.aorith.extraGroups = [ "docker" ];
 
     system.stateVersion = "23.11"; # Did you read the comment?
   };

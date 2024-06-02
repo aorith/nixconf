@@ -3,21 +3,27 @@
   pkgs,
   modulesPath,
   ...
-}: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+}:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   time.hardwareClockInLocalTime = true; # Dual boot
 
   # Testing system76 scheduler.
   services.system76-scheduler.enable = true;
 
-  services.xserver.videoDrivers = ["amdgpu"];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelModules = ["kvm-amd"];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.kernelParams = [
     # Preemption: Interrupt or pause current task in order to run a different task, usually with higher priority.
     "preempt=full" # Reduce latency for real-time apps at the cost of throughput.
@@ -35,28 +41,44 @@
     device = "/dev/disk/by-uuid/fd3f9eb4-5fa6-4f63-99ac-0dce636f4134";
     fsType = "btrfs";
     neededForBoot = true;
-    options = ["subvol=root" "compress=zstd" "noatime"];
+    options = [
+      "subvol=root"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/fd3f9eb4-5fa6-4f63-99ac-0dce636f4134";
     fsType = "btrfs";
     neededForBoot = true; # required for sops-nix
-    options = ["subvol=home" "compress=zstd" "noatime"];
+    options = [
+      "subvol=home"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/fd3f9eb4-5fa6-4f63-99ac-0dce636f4134";
     fsType = "btrfs";
     neededForBoot = true;
-    options = ["subvol=nix" "compress=zstd" "noatime"];
+    options = [
+      "subvol=nix"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/var/log" = {
     device = "/dev/disk/by-uuid/fd3f9eb4-5fa6-4f63-99ac-0dce636f4134";
     fsType = "btrfs";
     neededForBoot = true;
-    options = ["subvol=log" "compress=zstd" "noatime"];
+    options = [
+      "subvol=log"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/boot" = {
@@ -72,19 +94,28 @@
   fileSystems."/mnt/storage/tank" = {
     device = "/dev/disk/by-label/TANK";
     fsType = "btrfs";
-    options = ["compress=zstd" "noatime"];
+    options = [
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/mnt/storage/disk1" = {
     device = "/dev/disk/by-label/DISK1";
     fsType = "ext4";
-    options = ["defaults" "noatime"];
+    options = [
+      "defaults"
+      "noatime"
+    ];
   };
 
   fileSystems."/mnt/storage/disk2" = {
     device = "/dev/disk/by-label/DISK2";
     fsType = "ext4";
-    options = ["defaults" "noatime"];
+    options = [
+      "defaults"
+      "noatime"
+    ];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

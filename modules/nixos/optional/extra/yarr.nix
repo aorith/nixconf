@@ -3,16 +3,20 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.services.yarr;
   defaultUser = "yarr";
   defaultGroup = defaultUser;
-in {
+in
+{
   options = {
     services.yarr = {
-      enable = lib.mkEnableOption (lib.mdDoc "yarr (yet another rss reader) is a web-based feed aggregator which can be used both as a desktop application and a personal self-hosted server.");
+      enable = lib.mkEnableOption (
+        lib.mdDoc "yarr (yet another rss reader) is a web-based feed aggregator which can be used both as a desktop application and a personal self-hosted server."
+      );
 
-      package = lib.mkPackageOptionMD pkgs "yarr" {};
+      package = lib.mkPackageOptionMD pkgs "yarr" { };
 
       envFile = lib.mkOption {
         type = lib.types.nullOr lib.types.path;
@@ -31,21 +35,19 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [
-      cfg.package
-    ];
+    environment.systemPackages = [ cfg.package ];
 
     users.users.${defaultUser} = {
       description = "Yarr user";
       group = defaultGroup;
       isSystemUser = true;
     };
-    users.groups.${defaultGroup} = {};
+    users.groups.${defaultGroup} = { };
 
     systemd.services.yarr = {
       description = "Yarr Feed Reader service";
-      wantedBy = ["multi-user.target"];
-      after = ["network.target"];
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
 
       serviceConfig = {
         ExecStart = "${cfg.package}/bin/yarr";
@@ -53,13 +55,11 @@ in {
         DynamicUser = true;
         StateDirectory = "yarr";
         StateDirectoryMode = "0700";
-        Environment = [
-          "XDG_CONFIG_HOME=%S"
-        ];
+        Environment = [ "XDG_CONFIG_HOME=%S" ];
         EnvironmentFile = lib.mkIf (cfg.envFile != null) "${cfg.envFile}";
         # Hardening
-        CapabilityBoundingSet = [""];
-        DeviceAllow = [""];
+        CapabilityBoundingSet = [ "" ];
+        DeviceAllow = [ "" ];
         LockPersonality = true;
         MemoryDenyWriteExecute = true;
         PrivateDevices = true;
@@ -73,12 +73,19 @@ in {
         ProtectKernelModules = true;
         ProtectKernelTunables = true;
         ProtectProc = "invisible";
-        RestrictAddressFamilies = ["AF_INET" "AF_INET6" "AF_UNIX"];
+        RestrictAddressFamilies = [
+          "AF_INET"
+          "AF_INET6"
+          "AF_UNIX"
+        ];
         RestrictNamespaces = true;
         RestrictRealtime = true;
         RestrictSUIDSGID = true;
         SystemCallArchitectures = "native";
-        SystemCallFilter = ["@system-service" "~@privileged"];
+        SystemCallFilter = [
+          "@system-service"
+          "~@privileged"
+        ];
         UMask = "0077";
       };
     };

@@ -1,5 +1,6 @@
-{inputs, ...}: {
-  imports = [inputs.sops-nix.nixosModules.sops];
+{ inputs, ... }:
+{
+  imports = [ inputs.sops-nix.nixosModules.sops ];
 
   sops.age.keyFile = "/home/aorith/.config/sops/age/keys.txt";
   sops.age.generateKey = false;

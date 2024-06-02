@@ -1,7 +1,4 @@
-{
-  stdenv,
-  fetchurl,
-}:
+{ stdenv, fetchurl }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "custom-fonts";
   version = "1.0.0";

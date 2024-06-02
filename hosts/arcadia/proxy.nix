@@ -1,5 +1,5 @@
 {
-  networking.firewall.allowedTCPPorts = [8888];
+  networking.firewall.allowedTCPPorts = [ 8888 ];
   services.tinyproxy = {
     enable = true;
     settings = {

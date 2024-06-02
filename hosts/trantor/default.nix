@@ -18,7 +18,7 @@
 
   services.openssh = {
     enable = true;
-    settings.AllowUsers = ["aorith"];
+    settings.AllowUsers = [ "aorith" ];
     settings.PermitRootLogin = "prohibit-password";
     settings.PasswordAuthentication = false;
     listenAddresses = [
@@ -39,12 +39,10 @@
       guiAddress = "10.255.255.7:8384";
     };
   };
-  systemd.tmpfiles.rules = [
-    "L /home/aorith/Syncthing - - - - /mnt/storage/tank/data/syncthing"
-  ];
+  systemd.tmpfiles.rules = [ "L /home/aorith/Syncthing - - - - /mnt/storage/tank/data/syncthing" ];
 
   programs.adb.enable = true;
-  users.users.aorith.extraGroups = ["adbusers"];
+  users.users.aorith.extraGroups = [ "adbusers" ];
 
   systemd.targets = {
     sleep.enable = false;

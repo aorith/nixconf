@@ -12,5 +12,5 @@
   };
 
   # Completion for system packages
-  environment.pathsToLink = ["/share/zsh"];
+  environment.pathsToLink = [ "/share/zsh" ];
 }

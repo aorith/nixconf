@@ -1,8 +1,5 @@
+{ pkgs, unstable-pkgs, ... }:
 {
-  pkgs,
-  unstable-pkgs,
-  ...
-}: {
   environment.systemPackages = with pkgs; [
     unstable-pkgs.alacritty
     unstable-pkgs.flameshot
@@ -35,11 +32,12 @@
   programs = {
     firefox = {
       enable = true;
-      languagePacks = ["en-US" "es-ES"];
+      languagePacks = [
+        "en-US"
+        "es-ES"
+      ];
 
-      /*
-      ---- POLICIES ----
-      */
+      # ---- POLICIES ----
       # Check about:policies#documentation for options.
       policies = {
         DisableTelemetry = true;
@@ -57,20 +55,20 @@
         DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
         SearchBar = "unified"; # alternative: "separate"
 
-        /*
-        ---- EXTENSIONS ----
-        */
+        # ---- EXTENSIONS ----
         # Valid strings for installation_mode are "allowed", "blocked",
         # "force_installed" and "normal_installed".
-        ExtensionSettings = with builtins; let
-          extension = shortId: uuid: {
-            name = uuid;
-            value = {
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/${shortId}/latest.xpi";
-              installation_mode = "normal_installed";
+        ExtensionSettings =
+          with builtins;
+          let
+            extension = shortId: uuid: {
+              name = uuid;
+              value = {
+                install_url = "https://addons.mozilla.org/firefox/downloads/latest/${shortId}/latest.xpi";
+                installation_mode = "normal_installed";
+              };
             };
-          };
-        in
+          in
           # To add additional extensions, find it on addons.mozilla.org, find
           # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
           # Then, download the XPI by filling it in to the install_url template, unzip it,
@@ -81,9 +79,7 @@
             (extension "tabliss" "extension@tabliss.io")
           ];
 
-        /*
-        ---- PREFERENCES ----
-        */
+        # ---- PREFERENCES ----
         # Check about:config for options.
         Preferences = {
           "extensions.pocket.enabled" = {

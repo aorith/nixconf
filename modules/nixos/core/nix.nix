@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   nixpkgs.config.allowUnfree = true;
 
   nix.registry = {
@@ -8,7 +9,10 @@
   };
 
   # Also the non-flake commands like 'nix-shell'
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs.outPath}" "nixpkgs-unstable=${inputs.nixpkgs-unstable.outPath}"];
+  nix.nixPath = [
+    "nixpkgs=${inputs.nixpkgs.outPath}"
+    "nixpkgs-unstable=${inputs.nixpkgs-unstable.outPath}"
+  ];
 
   nix.settings = {
     experimental-features = "nix-command flakes";
@@ -45,7 +49,10 @@
     warn-dirty = false;
 
     # Allow the use of cachix
-    trusted-users = ["root" "aorith"];
+    trusted-users = [
+      "root"
+      "aorith"
+    ];
 
     builders-use-substitutes = true;
   };

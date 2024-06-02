@@ -1,17 +1,19 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
-  indexThemeText = theme: lib.generators.toINI {} {"icon theme" = {Inherits = "${theme}";};};
+{ pkgs, lib, ... }:
+let
+  indexThemeText =
+    theme:
+    lib.generators.toINI { } {
+      "icon theme" = {
+        Inherits = "${theme}";
+      };
+    };
 
-  mkDefaultCursorFile = theme:
-    pkgs.writeTextDir
-    "share/icons/default/index.theme"
-    "${indexThemeText theme}";
+  mkDefaultCursorFile =
+    theme: pkgs.writeTextDir "share/icons/default/index.theme" "${indexThemeText theme}";
 
   defaultCursorPkg = mkDefaultCursorFile "Adwaita";
-in {
+in
+{
   imports = [
     ./sound.nix
     ./fonts.nix

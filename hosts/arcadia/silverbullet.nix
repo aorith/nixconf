@@ -1,8 +1,5 @@
+{ pkgs, unstable-pkgs, ... }:
 {
-  pkgs,
-  unstable-pkgs,
-  ...
-}: {
   # imports = [
   #   # 24.05 is already here
   #   # "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/silverbullet.nix"
@@ -30,6 +27,9 @@
     # GIT_COMMITTER_EMAIL="git-plugin@silverbullet"
     # GIT_AUTHOR_NAME="aorith"
     # GIT_AUTHOR_EMAIL="git-plugin@silverbullet"
-    systemd.services.silverbullet.path = with pkgs; [git openssh];
+    systemd.services.silverbullet.path = with pkgs; [
+      git
+      openssh
+    ];
   };
 }

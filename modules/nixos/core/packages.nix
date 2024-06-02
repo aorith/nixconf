@@ -3,10 +3,9 @@
   pkgs,
   unstable-pkgs,
   ...
-}: {
-  imports = [
-    ./../../../overlays
-  ];
+}:
+{
+  imports = [ ./../../../overlays ];
 
   programs = {
     gnupg.agent.enable = true;

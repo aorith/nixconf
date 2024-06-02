@@ -18,31 +18,45 @@
     neovim-flake.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = inputs: let
-    eachSystem = inputs.nixpkgs.lib.genAttrs ["aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux"];
-  in {
-    nixosConfigurations = {
-      # --- Desktop
-      trantor = inputs.nixpkgs.lib.nixosSystem {
-        modules = [./hosts/trantor];
-        specialArgs = {inherit inputs;};
+  outputs =
+    inputs:
+    let
+      eachSystem = inputs.nixpkgs.lib.genAttrs [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "x86_64-linux"
+      ];
+    in
+    {
+      nixosConfigurations = {
+        # --- Desktop
+        trantor = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/trantor ];
+          specialArgs = {
+            inherit inputs;
+          };
+        };
+        # --- Hetzner VM
+        arcadia = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/arcadia ];
+          specialArgs = {
+            inherit inputs;
+          };
+        };
       };
-      # --- Hetzner VM
-      arcadia = inputs.nixpkgs.lib.nixosSystem {
-        modules = [./hosts/arcadia];
-        specialArgs = {inherit inputs;};
-      };
-    };
 
-    homeConfigurations = {
-      # --- Darwin Laptop
-      "aorith@moria" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [./hosts/moria/home.nix];
-        extraSpecialArgs = {inherit inputs;};
+      homeConfigurations = {
+        # --- Darwin Laptop
+        "aorith@moria" = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [ ./hosts/moria/home.nix ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
       };
-    };
 
-    formatter = eachSystem (system: inputs.nixpkgs-unstable.legacyPackages.${system}.nixfmt-rfc-style);
-  };
+      formatter = eachSystem (system: inputs.nixpkgs-unstable.legacyPackages.${system}.nixfmt-rfc-style);
+    };
 }
