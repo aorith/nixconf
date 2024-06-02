@@ -13,7 +13,7 @@
       ll = "${pkgs.eza}/bin/eza -lh --git --git-repos --icons=auto";
       #ls = "${pkgs.eza}/bin/eza"; # some flags like '-t' do not behave like ls
 
-      cat = "${pkgs.bat}/bin/bat --plain --theme='Monokai Extended'";
+      cat = "${pkgs.bat}/bin/bat -P --plain --theme='ansi'";
     };
   };
 }
