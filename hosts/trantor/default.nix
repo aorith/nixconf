@@ -10,6 +10,7 @@
   ];
 
   home-manager.users.aorith = import ./home.nix;
+  security.sudo.wheelNeedsPassword = false;
 
   networking.hostName = "trantor";
   networking.networkmanager.enable = true;
