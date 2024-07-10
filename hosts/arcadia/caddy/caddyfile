@@ -12,6 +12,13 @@ notes.iou.re {
 		}
 	}
 
+	@logMatcher {
+                # Skip logs that do not start with a '.', caddy (go) regexp does not support negative lookaheads
+		path_regexp ^/[^\.].*$
+	}
+	# Will be renamed to log_skip on >= 2.8.0
+	skip_log @logMatcher
+
 	reverse_proxy 127.0.0.1:3000 {
 		header_down Strict-Transport-Security max-age=31536000;
 	}
