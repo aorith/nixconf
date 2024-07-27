@@ -5,6 +5,7 @@
     ./../../modules/nixos/core
     ./../../modules/nixos/optional/desktop
     ./../../modules/nixos/optional/extra/virtualisation.nix
+    ./../../modules/nixos/optional/extra/steam.nix
     ./../../modules/nixos/optional/te
     ./../../modules/nixos/optional/home-manager.nix
   ];
