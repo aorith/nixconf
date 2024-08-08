@@ -9,10 +9,10 @@
     services.silverbullet = {
       enable = true;
       package = unstable-pkgs.silverbullet.overrideAttrs (oldAttrs: rec {
-        version = "0.8.5";
+        version = "0.9.0";
         src = pkgs.fetchurl {
           url = "https://github.com/silverbulletmd/silverbullet/releases/download/${version}/silverbullet.js";
-          hash = "sha256-L3EQ9VY/bJp9n2y+F1ok52YbOwv3xxpE2QlKa/Y90Kg=";
+          hash = "sha256-EoDq85jrEU6akBYrrpO+ddkp+3fF18ePjVEdQ2a18BM=";
         };
       });
       listenPort = 3000;
