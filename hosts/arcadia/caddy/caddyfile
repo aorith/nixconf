@@ -68,4 +68,5 @@ bree.iou.re {
 	bind 0.0.0.0
 
 	root * %%bree_root%%
+	file_server
 }
