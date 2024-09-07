@@ -62,3 +62,10 @@ dav.iou.re {
 		header_down Strict-Transport-Security max-age=31536000;
 	}
 }
+
+bree.iou.re {
+	tls aomanu+caddy@gmail.com
+	bind 0.0.0.0
+
+	root * %%bree_root%%
+}
