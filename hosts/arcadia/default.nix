@@ -12,6 +12,7 @@
     ./yarr.nix
     ./silverbullet.nix
     ./webdav.nix
+    ./i2p.nix
   ];
 
   config = {
