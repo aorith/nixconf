@@ -7,9 +7,9 @@
 {
   imports = [
     ./packages
-    ./programs.nix
-    ./fonts
-    ./zsh
+    # ./programs.nix
+    # ./fonts
+    # ./zsh
   ];
 
   # Add different nixpkgs refs as module args

@@ -31,7 +31,7 @@
     #   }))
 
     (nerdfonts.override {
-     # Font names: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix
+      # Font names: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix
       fonts = [
         "IosevkaTerm"
         "JetBrainsMono"
