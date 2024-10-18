@@ -27,6 +27,8 @@
         dconf write /org/gnome/desktop/interface/clock-show-weekday true
 
         dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
+
+        dconf write /org/gnome/mutter/experimental-features "['scale-monitor-framebuffer']"
       '';
     };
   };
