@@ -1,8 +1,7 @@
-{
-  lib,
-  pkgs,
-  modulesPath,
-  ...
+{ lib
+, pkgs
+, modulesPath
+, ...
 }:
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -10,7 +9,7 @@
   time.hardwareClockInLocalTime = true; # Dual boot
 
   # Testing system76 scheduler.
-  services.system76-scheduler.enable = true;
+  #services.system76-scheduler.enable = true;
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
@@ -28,6 +27,8 @@
     # Preemption: Interrupt or pause current task in order to run a different task, usually with higher priority.
     "preempt=full" # Reduce latency for real-time apps at the cost of throughput.
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.loader.grub.enable = true;
   boot.loader.grub.efiSupport = true;
