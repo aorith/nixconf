@@ -63,6 +63,15 @@ dav.iou.re {
 	}
 }
 
+varnishlog.iou.re {
+	tls aomanu+caddy@gmail.com
+	bind 0.0.0.0
+
+	reverse_proxy 127.0.0.1:8080 {
+		header_down Strict-Transport-Security max-age=31536000;
+	}
+}
+
 bree.iou.re {
 	tls aomanu+caddy@gmail.com
 	bind 0.0.0.0

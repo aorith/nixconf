@@ -13,6 +13,7 @@
     ./silverbullet.nix
     ./webdav.nix
     ./i2p.nix
+    ./varnishlog-parser.nix
   ];
 
   config = {
