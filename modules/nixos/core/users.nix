@@ -1,6 +1,6 @@
-{ config, ... }:
 {
-  users.mutableUsers = false;
+  users.mutableUsers = true;
+  # users.mutableUsers = false;
 
   users.groups.aorith = {
     members = [ "aorith" ];
@@ -17,10 +17,10 @@
       "systemd-journal"
     ];
     linger = true;
-    hashedPasswordFile = config.sops.secrets.aorith-hashedPassword.path;
+    # hashedPasswordFile = config.sops.secrets.aorith-hashedPassword.path;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKmfktrz3eMNZ6aVJcvFC4ABOwMvS3g0gVuCAQKMwDSl aorith@msp"
     ];
   };
-  users.users.root.hashedPasswordFile = config.sops.secrets.root-hashedPassword.path;
+  # users.users.root.hashedPasswordFile = config.sops.secrets.root-hashedPassword.path;
 }
