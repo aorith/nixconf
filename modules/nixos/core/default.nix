@@ -13,7 +13,7 @@
     ./shell.nix
     ./ssh.nix
     ./users.nix
-    ./sops.nix
+    # ./sops.nix
   ];
 
   # Add different nixpkgs refs as module args
