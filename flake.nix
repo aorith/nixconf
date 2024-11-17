@@ -44,9 +44,9 @@
             inherit inputs;
           };
         };
-        # --- VM
-        vm = inputs.nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/vm ];
+        # --- NixOS VM (unstable)
+        nixos = inputs.nixpkgs-unstable.lib.nixosSystem {
+          modules = [ ./hosts/nixos ];
           specialArgs = {
             inherit inputs;
           };
