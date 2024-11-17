@@ -21,16 +21,17 @@
       CacheDirectory = "silverbullet";
     };
 
-    # For the git plugin
+    # For the git plugin: 
+    #   Get a (beta) token scoped for this repo: https://github.com/settings/tokens
+    #   Permissions: Contents -> R/W
+    #   Replace origin with 'https://GITHUBTOKEN@github.com/username/repo.git'
     # envFile:
-    # GIT_SSH_COMMAND="ssh -o IdentitiesOnly=yes -i /etc/silverbullet.ssh.key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-    # GIT_COMMITTER_NAME="aorith"
-    # GIT_COMMITTER_EMAIL="git-plugin@silverbullet"
-    # GIT_AUTHOR_NAME="aorith"
-    # GIT_AUTHOR_EMAIL="git-plugin@silverbullet"
+    #   GIT_COMMITTER_NAME="aorith"
+    #   GIT_COMMITTER_EMAIL="git-plugin@silverbullet"
+    #   GIT_AUTHOR_NAME="aorith"
+    #   GIT_AUTHOR_EMAIL="git-plugin@silverbullet"
     systemd.services.silverbullet.path = with pkgs; [
       git
-      openssh
     ];
   };
 }
