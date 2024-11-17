@@ -28,18 +28,21 @@
       "10.255.255.8/24"
     ];
     routes = [
-      { routeConfig.Gateway = "10.255.255.1"; }
+      { Gateway = "10.255.255.1"; }
     ];
     # make the routes on this interface a dependency for network-online.target
     linkConfig.RequiredForOnline = "routable";
   };
 
   environment.systemPackages = with pkgs; [
-    inputs.neovim-flake.packages.${pkgs.system}.default
+    inputs.neovim-flake.packages.${pkgs.system}.nvim-without-config
     gnumake
   ];
 
   services.openssh.enable = true;
+  programs.ssh.startAgent = true;
+
+  systemd.tmpfiles.rules = [ "L /home/aorith/Syncthing - - - - /mnt/storage/tank/data/syncthing" ];
 
   system.stateVersion = "25.05";
 }

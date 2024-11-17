@@ -4,8 +4,8 @@
 
   nix.registry = {
     # Make nix command use the same nixpkgs version: 'nix shell nixpkgs#curl'
-    nixpkgs.flake = lib.mkDefault inputs.nixpkgs;
-    nixpkgs-unstable.flake = lib.mkDefault inputs.nixpkgs-unstable; # 'nix shell nixpkgs-unstable#curl'
+    nixpkgs.flake = lib.mkForce inputs.nixpkgs;
+    nixpkgs-unstable.flake = lib.mkForce inputs.nixpkgs-unstable; # 'nix shell nixpkgs-unstable#curl'
   };
 
   # Also the non-flake commands like 'nix-shell'
@@ -13,6 +13,12 @@
     "nixpkgs=${inputs.nixpkgs.outPath}"
     "nixpkgs-unstable=${inputs.nixpkgs-unstable.outPath}"
   ];
+
+  # https://github.com/LnL7/nix-darwin/issues/1082
+  nixpkgs.flake = {
+    setFlakeRegistry = false;
+    setNixPath = false;
+  };
 
   nix.settings = {
     experimental-features = "nix-command flakes";

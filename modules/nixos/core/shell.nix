@@ -3,7 +3,7 @@
   programs = {
     bash = {
       enableLsColors = true;
-      enableCompletion = true;
+      completion.enable = true;
 
       shellAliases = {
         l = "${pkgs.eza}/bin/eza -lah --git --git-repos --icons=auto";
