@@ -1,11 +1,11 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
   nix.registry = {
     # Make nix command use the same nixpkgs version: 'nix shell nixpkgs#curl'
-    nixpkgs.flake = inputs.nixpkgs;
-    nixpkgs-unstable.flake = inputs.nixpkgs-unstable; # 'nix shell nixpkgs-unstable#curl'
+    nixpkgs.flake = lib.mkDefault inputs.nixpkgs;
+    nixpkgs-unstable.flake = lib.mkDefault inputs.nixpkgs-unstable; # 'nix shell nixpkgs-unstable#curl'
   };
 
   # Also the non-flake commands like 'nix-shell'
