@@ -2,6 +2,11 @@ notes.iou.re {
 	tls aomanu+caddy@gmail.com
 	bind 0.0.0.0
 
+        basic_auth {
+            # mkpasswd --method=bcrypt
+            Sb $2b$05$8zy3vL2nCUP8ie8F4Y5CL.rSK10vuHhvm5c1GguBVLetq0eA0yWIC
+        }
+
 	log notes {
 		level INFO
 		format json
