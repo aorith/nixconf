@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstable-pkgs, ... }:
 let
   bree-index = pkgs.writeTextDir "bree/www/index.html" (builtins.readFile ./bree.html);
   caddyfile = pkgs.writeText "caddyfile" (
@@ -11,5 +11,6 @@ in
   services.caddy = {
     enable = true;
     configFile = caddyfile.outPath;
+    package = unstable-pkgs.caddy;
   };
 }
