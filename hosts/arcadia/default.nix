@@ -39,6 +39,8 @@
       vim
     ];
 
+    services.cron.enable = true;
+
     services.openssh = {
       enable = true;
       settings.AllowUsers = [ "aorith" ];
