@@ -12,7 +12,7 @@
       address = [ "10.255.254.1/24" ];
       networkConfig = {
         IPMasquerade = "ipv4";
-        IPForward = true;
+        IPv4Forwarding = true;
       };
     };
     # Netdev & Peers
