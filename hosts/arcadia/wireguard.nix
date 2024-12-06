@@ -29,22 +29,18 @@
         };
         wireguardPeers = [
           {
-            wireguardPeerConfig = {
-              # Trantor
-              PublicKey = "qpJpTU8yDNyuCZ9kjolGDMA/Wz25BM5NReieARaWyVI=";
-              AllowedIPs = [ "10.255.254.7/32" ];
-              PersistentKeepalive = 15;
-              PresharedKeyFile = "/etc/wireguard-keys/wg0.psk";
-            };
+            # Trantor
+            PublicKey = "qpJpTU8yDNyuCZ9kjolGDMA/Wz25BM5NReieARaWyVI=";
+            AllowedIPs = [ "10.255.254.7/32" ];
+            PersistentKeepalive = 15;
+            PresharedKeyFile = "/etc/wireguard-keys/wg0.psk";
           }
           {
-            wireguardPeerConfig = {
-              # Phone
-              PublicKey = "TbRB49Gl1WY5aLDbAyZEzLg+wHRq2Sul/CDYxqfvDU8=";
-              AllowedIPs = [ "10.255.254.3/32" ];
-              PersistentKeepalive = 15;
-              PresharedKeyFile = "/etc/wireguard-keys/wg0.psk";
-            };
+            # Phone
+            PublicKey = "TbRB49Gl1WY5aLDbAyZEzLg+wHRq2Sul/CDYxqfvDU8=";
+            AllowedIPs = [ "10.255.254.3/32" ];
+            PersistentKeepalive = 15;
+            PresharedKeyFile = "/etc/wireguard-keys/wg0.psk";
           }
         ];
       };

@@ -16,7 +16,6 @@
     pamixer
     pavucontrol
     pulseaudioFull
-    transmission-gtk
     wl-clipboard
     xclip
     xorg.xev

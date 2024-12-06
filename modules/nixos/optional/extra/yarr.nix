@@ -16,7 +16,7 @@ in
         lib.mdDoc "yarr (yet another rss reader) is a web-based feed aggregator which can be used both as a desktop application and a personal self-hosted server."
       );
 
-      package = lib.mkPackageOptionMD pkgs "yarr" { };
+      package = lib.mkPackageOption pkgs "yarr" { };
 
       envFile = lib.mkOption {
         type = lib.types.nullOr lib.types.path;

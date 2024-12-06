@@ -20,13 +20,12 @@ in
     ./packages.nix
     ./gui-packages.nix
     ./gnome.nix
-    #./kde.nix
   ];
 
   environment.systemPackages = [
     # Fix cursor theme: https://github.com/NixOS/nixpkgs/issues/22652
     defaultCursorPkg
-    pkgs.gnome.adwaita-icon-theme
+    pkgs.adwaita-icon-theme
   ];
 
   services.libinput.enable = true;

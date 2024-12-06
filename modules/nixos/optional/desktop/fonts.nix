@@ -17,17 +17,6 @@
 
       material-design-icons
       ubuntu_font_family
-
-      (nerdfonts.override {
-        # Font names: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix
-        fonts = [
-          "IosevkaTerm"
-          "JetBrainsMono"
-          "NerdFontsSymbolsOnly"
-          "Recursive"
-          "SourceCodePro"
-        ];
-      })
     ];
   };
 }

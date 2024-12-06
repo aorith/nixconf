@@ -21,7 +21,7 @@
       CacheDirectory = "silverbullet";
     };
 
-    # For the git plugin: 
+    # For the git plugin:
     #   Get a (beta) token scoped for this repo: https://github.com/settings/tokens
     #   Permissions: Contents -> R/W
     #   Replace origin with 'https://GITHUBTOKEN@github.com/username/repo.git'

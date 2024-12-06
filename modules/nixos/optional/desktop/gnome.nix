@@ -37,16 +37,12 @@
 
   environment = {
     gnome.excludePackages = with pkgs; [
-      gnome-photos
       gnome-tour
-      gnome.geary
-      gnome.gnome-music
-      gnome.totem
     ];
     systemPackages = with pkgs; [
-      gnome.gnome-settings-daemon
-      gnome.gnome-tweaks
-      gnome.seahorse # keyring
+      gnome-settings-daemon
+      gnome-tweaks
+      seahorse # keyring
 
       gnomeExtensions.appindicator
       gnomeExtensions.clipboard-indicator

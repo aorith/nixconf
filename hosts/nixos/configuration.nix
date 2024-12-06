@@ -2,10 +2,9 @@
 
 { pkgs, ... }:
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
@@ -14,7 +13,6 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Madrid";
-
 
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
@@ -30,4 +28,3 @@
 
   system.stateVersion = "25.05";
 }
-
