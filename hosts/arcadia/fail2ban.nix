@@ -65,20 +65,22 @@
         actionban = ${pkgs.curl}/bin/curl -H "Title: [<name>] <ip> has been banned" -d "<name> jail has banned <ip> from accessing $(${pkgs.hostname}/bin/hostname) after <failures> attempts." https://ntfy.sh/fail2ban-aorith
       ''
     );
+
     # Filter for notes access
     "fail2ban/filter.d/caddy-notes.local".text = pkgs.lib.mkDefault (
       pkgs.lib.mkAfter ''
         [Definition]
-        datepattern = "ts":{Epoch},
+        datepattern = ,"ts":{Epoch}
         failregex = ^.*"remote_ip":"<HOST>",.*?auth\?error=1".*$
       ''
     );
 
-    # fail2ban-regex --VD -d '"ts":{Epoch},' /var/log/caddy/notes.log '(?i)^.*"remote_ip":"<HOST>",.*?"Authorization".*"status":401,.*$'
+    # fail2ban-regex --VD -d ',"ts":{Epoch}' /var/log/caddy/notes.log '(?i)^.*"remote_ip":"<HOST>",.*?"Authorization".*"status":401,.*$'
+    # note: don't use '"ts":{Epoch},' with a comma after '{Epoch}', it expects epoch without decimals and caddy logs: ...,"ts":1734162061.2562792,...
     "fail2ban/filter.d/caddy-notes-basic-auth.local".text = pkgs.lib.mkDefault (
       pkgs.lib.mkAfter ''
         [Definition]
-        datepattern = "ts":{Epoch},
+        datepattern = ,"ts":{Epoch}
         failregex = (?i)^.*"remote_ip":"<HOST>",.*?"Authorization".*"status":401,.*$
       ''
     );
