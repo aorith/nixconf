@@ -11,7 +11,7 @@
   services = {
     syncthing = {
       enable = true;
-      guiAddress = "127.0.0.1:8384";
+      guiAddress = "10.255.254.1:8384";
     };
   };
 }

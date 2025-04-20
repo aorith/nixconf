@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [ wireguard-tools ];
 
   networking.firewall.allowedUDPPorts = [ 45340 ];
+  networking.firewall.trustedInterfaces = [ "wg0" ];
   networking.useNetworkd = true;
   systemd.network = {
     enable = true;

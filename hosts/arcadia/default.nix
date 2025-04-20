@@ -6,13 +6,13 @@
     ./caddy
     ./syncthing.nix
     ./wireguard.nix
-    ./proxy.nix
+    #./proxy.nix
     ./../../modules/nixos/core
     ./../../modules/nixos/optional/extra/yarr.nix
     ./yarr.nix
     ./silverbullet.nix
-    ./webdav.nix
-    ./i2p.nix
+    #./webdav.nix
+    #./i2p.nix
     ./varnishlog-parser.nix
   ];
 
