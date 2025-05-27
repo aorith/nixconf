@@ -2,7 +2,7 @@
   description = "One Nix flake to rule them all";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
