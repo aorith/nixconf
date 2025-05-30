@@ -13,6 +13,7 @@
     #./webdav.nix
     #./i2p.nix
     ./varnishlog-parser.nix
+    ./nginx.nix
   ];
 
   config = {
