@@ -20,21 +20,27 @@ in
     recommendedOptimisation = true;
     defaultListen = [
       {
+        addr = "127.0.0.1";
+        port = 8000;
+        ssl = false;
+      }
+      {
         addr = "10.255.254.1";
         port = 7676;
         ssl = true;
       }
     ];
     virtualHosts = {
-      somehost =
+      notes =
         let
           cert = tls-cert { alt = [ "IP:10.255.254.1" ]; };
         in
         {
-          serverName = "someserver";
+          serverName = "_";
+          default = true;
+          forceSSL = true;
           sslCertificate = "${cert}/cert.crt";
           sslCertificateKey = "${cert}/cert.key";
-          forceSSL = true;
           locations."/".proxyPass = "http://10.255.254.1:3000/";
         };
     };
