@@ -2,23 +2,15 @@
   description = "One Nix flake to rule them all";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.05";
+    #nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    mynur.url = "github:aorith/nur";
-    mynur.inputs.nixpkgs.follows = "nixpkgs-unstable";
-
-    home-manager.url = "github:nix-community/home-manager?ref=release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    neovim-flake.url = "github:aorith/neovim-flake";
-    neovim-flake.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs =

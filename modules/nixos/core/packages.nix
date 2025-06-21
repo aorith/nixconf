@@ -27,11 +27,9 @@
     git-lfs
     gnumake
     gnupg
-    inputs.mynur.packages.${pkgs.system}.varnishlog-tui
     killall
     sops
     tmux
-    tmux # from overlays
     tree
     unstable-pkgs.curl
     unstable-pkgs.fzf

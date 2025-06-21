@@ -6,8 +6,6 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    inputs.neovim-flake.packages.${pkgs.system}.nvim-without-config
-
     (python3.withPackages (py-pkgs: [
       py-pkgs.ipython
       py-pkgs.notebook
