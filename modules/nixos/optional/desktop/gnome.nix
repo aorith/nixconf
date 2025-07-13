@@ -1,12 +1,10 @@
 { pkgs, ... }:
 {
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.autoSuspend = true;
+  services.displayManager.gdm.enable = true;
   services.xserver = {
-    desktopManager.gnome.enable = true;
     displayManager = {
-      gdm = {
-        enable = true;
-        autoSuspend = false;
-      };
       sessionCommands = ''
         set -x
         dconf write /org/gnome/desktop/wm/preferences/resize-with-right-button true

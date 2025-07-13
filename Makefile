@@ -9,7 +9,7 @@ HMCONFIG := ${USER}@$(shell hostname -s)
 
 export NIX_CONFIG := experimental-features = nix-command flakes
 
-.PHONY: switch boot dry-build update shell clean home
+.PHONY: switch boot dry-build update shell clean
 
 main:
 	@echo "Available options: "
@@ -38,11 +38,3 @@ clean:
 	sudo nix-store --gc
 	@echo "Running deduplication of the Nix store... may take a while"
 	sudo nix-store --optimise
-
-home:
-	@mkdir -p ~/.local/state/nix/profiles
-	@if type home-manager >/dev/null 2>&1; then\
-		home-manager switch --flake .#$(HMCONFIG);\
-	else\
-		nix run nixpkgs#home-manager switch -- --flake .#$(HMCONFIG);\
-	fi

@@ -9,7 +9,6 @@ pkgs.mkShell {
     git
     sops
     gnumake
-    home-manager
     (nixos { nix.package = nixFlakes; }).nixos-rebuild
   ];
 

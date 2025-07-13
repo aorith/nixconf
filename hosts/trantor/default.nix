@@ -7,10 +7,8 @@
     ./../../modules/nixos/optional/extra/virtualisation.nix
     ./../../modules/nixos/optional/extra/steam.nix
     ./../../modules/nixos/optional/te
-    ./../../modules/nixos/optional/home-manager.nix
   ];
 
-  home-manager.users.aorith = import ./home.nix;
   security.sudo.wheelNeedsPassword = false;
 
   networking.hostName = "trantor";
