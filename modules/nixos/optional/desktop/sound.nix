@@ -1,7 +1,6 @@
 { lib, pkgs, ... }:
 {
   # Enable sound.
-  hardware.pulseaudio.enable = lib.mkForce false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

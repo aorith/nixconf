@@ -17,6 +17,7 @@
     inputs@{
       self,
       nixpkgs,
+      nixpkgs-unstable,
       systems,
       treefmt-nix,
       ...
@@ -36,6 +37,13 @@
             inherit inputs;
           };
         };
+        # --- MSI Laptop
+        alpaca = nixpkgs-unstable.lib.nixosSystem {
+          modules = [ ./hosts/alpaca ];
+          specialArgs = {
+            inherit inputs;
+          };
+        };
         # --- Hetzner VM
         arcadia = nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/arcadia ];
@@ -44,20 +52,9 @@
           };
         };
         # --- NixOS VM (unstable)
-        nixos = inputs.nixpkgs-unstable.lib.nixosSystem {
+        nixos = nixpkgs-unstable.lib.nixosSystem {
           modules = [ ./hosts/nixos ];
           specialArgs = {
-            inherit inputs;
-          };
-        };
-      };
-
-      homeConfigurations = {
-        # --- Darwin Laptop
-        "aorith@moria" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          modules = [ ./hosts/moria/home.nix ];
-          extraSpecialArgs = {
             inherit inputs;
           };
         };

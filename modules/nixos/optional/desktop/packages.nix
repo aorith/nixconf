@@ -19,7 +19,7 @@
     unstable-pkgs.terraform
 
     bat
-    dstat
+    dool # dstat
     fd
     ncdu
     nmap
