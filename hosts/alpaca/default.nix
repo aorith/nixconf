@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./../../modules/nixos/core
     ./../../modules/nixos/optional/desktop
+    ./../../modules/nixos/optional/neovim.nix
   ];
 
   security.sudo.wheelNeedsPassword = false;

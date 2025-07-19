@@ -17,6 +17,7 @@
     unstable-pkgs.distrobox
     unstable-pkgs.go
     unstable-pkgs.terraform
+    opentofu
 
     bat
     dool # dstat

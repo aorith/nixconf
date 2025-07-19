@@ -1,7 +1,7 @@
 { unstable-pkgs, ... }:
 {
   fonts = {
-    enableDefaultPackages = false; # installs extra fonts
+    enableDefaultPackages = true; # basic set of fonts and reasonable coverage of Unicode
     packages = with unstable-pkgs; [
       liberation_ttf # metric compatible with Arial, Times New Roman and Courier New
 
@@ -17,6 +17,9 @@
 
       material-design-icons
       ubuntu_font_family
+
+      nerd-fonts.iosevka-term
+      nerd-fonts.hack
     ];
   };
 }
