@@ -10,14 +10,27 @@ rss.iou.re {
 	redir http://10.255.254.1:7070/
 }
 
-#pub.iou.re {
-#	tls aomanu+caddy@gmail.com
-#	bind 0.0.0.0
-#
-#	reverse_proxy 127.0.0.1:8101 {
-#		header_down Strict-Transport-Security max-age=31536000;
-#	}
-#}
+pub.iou.re {
+	tls aomanu+caddy@gmail.com
+	bind 0.0.0.0
+
+	log pub {
+		level INFO
+		format json
+		output file /var/log/caddy/pub.log {
+			roll_size 50MiB
+			roll_keep 10
+			roll_keep_for 196h
+		}
+	}
+
+	reverse_proxy 127.0.0.1:8111 {
+		header_up Accept-Encoding "{http.request.header.Accept-Encoding}"
+		transport http {
+			compression off
+		}
+	}
+}
 
 #dav.iou.re {
 #	tls aomanu+caddy@gmail.com
@@ -41,6 +54,11 @@ varnishlog.iou.re {
 			roll_keep_for 196h
 		}
 	}
+
+	respond /robots.txt <<TXT
+		User-agent: *
+		Disallow:
+		TXT 200
 
 	reverse_proxy 127.0.0.1:8080 {
 		header_down Strict-Transport-Security max-age=31536000;
