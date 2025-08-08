@@ -24,6 +24,7 @@
     bat
     dool # dstat
     fd
+    gh
     ncdu
     nmap
     openssl
