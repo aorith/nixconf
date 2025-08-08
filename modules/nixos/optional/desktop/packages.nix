@@ -12,6 +12,8 @@
       py-pkgs.requests
     ]))
 
+    inputs.neovim-flake.packages.${pkgs.system}.nvim-without-config
+
     ansible
     ffmpeg-full
     unstable-pkgs.distrobox

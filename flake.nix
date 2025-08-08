@@ -4,7 +4,10 @@
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
+    # Using unstable everywhere atm
     nixpkgs-unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
+
+    neovim-flake.url = "github:aorith/neovim-flake";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
