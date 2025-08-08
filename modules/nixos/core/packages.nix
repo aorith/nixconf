@@ -28,6 +28,7 @@
     gnumake
     gnupg
     killall
+    nixfmt
     sops
     tmux
     tree
@@ -35,7 +36,6 @@
     unstable-pkgs.fzf
     unstable-pkgs.gotools
     unstable-pkgs.jq
-    unstable-pkgs.nixfmt-rfc-style
     unstable-pkgs.ripgrep
     wget
     wireguard-tools

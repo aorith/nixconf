@@ -8,11 +8,11 @@
         "vim-varnish": "vim-varnish"
       },
       "locked": {
-        "lastModified": 1754676209,
-        "narHash": "sha256-6xe87TAWDjvVpYsWPqMEs3HPWhP/vHqFRHJgZpp5hNY=",
+        "lastModified": 1754676778,
+        "narHash": "sha256-yIQLiBD21P88oYBPj7sav5ik69CSOGSVD5aMH12QjhA=",
         "owner": "aorith",
         "repo": "neovim-flake",
-        "rev": "4fb35ae7117863ef3c0dbfcb5ba8b9047167dd9f",
+        "rev": "42287052148a14963cd5200af3bc9c4867fcd926",
         "type": "github"
       },
       "original": {
