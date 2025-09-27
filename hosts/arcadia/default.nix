@@ -14,6 +14,7 @@
     #./i2p.nix
     ./varnishlog-parser.nix
     ./nginx.nix
+    ./notes.nix
   ];
 
   config = {
