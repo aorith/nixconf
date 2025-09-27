@@ -19,6 +19,7 @@
   environment.systemPackages = with pkgs; [
     (lib.lowPrio inetutils) # telnet, lowPrio since it has some collisions (hostname, ...)
     bc
+    cryptsetup
     dig
     entr # Run arbitrary commands when files change (don't remember which program required it)
     fd
