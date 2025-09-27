@@ -43,6 +43,7 @@
 
     services.openssh = {
       enable = true;
+      openFirewall = false;
       settings.AllowUsers = [ "aorith" ];
       settings.PermitRootLogin = "prohibit-password";
       settings.PasswordAuthentication = false;

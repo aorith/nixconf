@@ -5,6 +5,6 @@
     package = unstable-pkgs.yarr;
     address = "10.255.254.1";
     port = 7070;
-    authFilePath = "/etc/yarr.auth";
+    #authFilePath = "/etc/yarr.auth";
   };
 }
