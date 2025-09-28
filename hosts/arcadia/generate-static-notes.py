@@ -12,7 +12,7 @@ PORT: int = 8323
 CSS = """
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  max-width: 1024px;
+  max-width: 1280px;
   margin: auto;
   padding: 2rem;
 }
