@@ -2,7 +2,6 @@ import datetime
 import os
 import subprocess
 import sys
-from hashlib import md5
 from html import escape
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
@@ -64,17 +63,6 @@ code.updated_at {
 
 def find_md_files() -> list[Path]:
     return sorted(Path(".").glob("**/*.md"))
-
-
-def calculate_md5() -> str:
-    md5_sum = md5()
-    for f in find_md_files():
-        try:
-            with Path(f).open() as fd:
-                md5_sum.update("".join(fd.readlines()).encode())
-        except Exception as e:
-            print(e)
-    return md5_sum.hexdigest()
 
 
 def convert_md_to_html(md_file: Path, html_file: Path):
