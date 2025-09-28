@@ -1,8 +1,7 @@
+import datetime
 import os
 import subprocess
 import sys
-import threading
-import time
 from hashlib import md5
 from html import escape
 from http.server import HTTPServer, SimpleHTTPRequestHandler
@@ -14,13 +13,9 @@ PORT: int = 8323
 CSS = """
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  max-width: 900px;
+  max-width: 1024px;
   margin: auto;
   padding: 2rem;
-}
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 1.2em;
-  color: #111;
 }
 a {
   color: #0366d6;
@@ -28,13 +23,6 @@ a {
 }
 a:hover {
   text-decoration: underline;
-}
-ul {
-  list-style-type: none;
-  padding-left: 1em;
-}
-li {
-  margin: 0.2em 0;
 }
 pre, code {
   font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
@@ -45,12 +33,42 @@ pre {
   border-radius: 4px;
   border: 1px solid #ddd;
 }
+li {
+  margin: 0.4em 0;
+}
+div.items {
+  display: grid;
+  grid-template-areas: "a a a";
+  grid-auto-rows: auto;
+  gap: 1em;
+  justify-content: center;
+}
+div.item {
+  border-radius: 6px;
+  border: 2px solid #f0f0f0;
+  padding: 0.3em;
+}
+a.itemtitle {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+button {
+  font-family: monospace;
+  margin: 1.4em;
+}
+code.updated_at {
+  font-size: 0.8em;
+}
 """
+
+
+def find_md_files() -> list[Path]:
+    return sorted(Path(".").glob("**/*.md"))
 
 
 def calculate_md5() -> str:
     md5_sum = md5()
-    for f in sorted(Path(".").glob("*/*.md")):
+    for f in find_md_files():
         try:
             with Path(f).open() as fd:
                 md5_sum.update("".join(fd.readlines()).encode())
@@ -68,7 +86,7 @@ def convert_md_to_html(md_file: Path, html_file: Path):
 def build_index_html():
     tree: dict[Path, list[Path]] = {}
 
-    for f in sorted(Path(".").glob("*/*.md")):
+    for f in find_md_files():
         rel_root = f.parent
         if rel_root in tree:
             tree[rel_root].append(f)
@@ -77,26 +95,26 @@ def build_index_html():
 
     sorted_dirs = sorted(tree.keys(), key=lambda p: str(p).lower())
 
-    html_lines = ["<ul>"]
+    html_lines = ['<div class="items">']
     for d in sorted_dirs:
-        indent = "  " * len(d.parts)
         if d != Path("."):
-            html_lines.append(f"{indent}<li><strong>{escape(str(d))}</strong></li>")
-            html_lines.append(f"{indent}<ul>")
-            inner_indent = indent + "  "
-        else:
-            inner_indent = indent
+            html_lines.append('<div class="item">')
+            html_lines.append(
+                f"<a class='itemtitle' href='{escape(d.as_posix())}'>{escape(str(d))}</a>"
+            )
+            html_lines.append("<ul>")
 
         for f in tree[d]:
             html_name = f.name.rstrip(".md") + ".html"
             link_path = (d / html_name).as_posix()
+            link_name = f.name.rstrip(".md").replace("-", " ").replace("_", " ").title()
             html_lines.append(
-                f"{inner_indent}<li><a href='{escape(link_path)}'>{escape(f.name)}</a></li>"
+                f"<li><a href='{escape(link_path)}'>{escape(link_name)}</a></li>"
             )
 
         if d != Path("."):
-            html_lines.append(f"{indent}</ul>")
-    html_lines.append("</ul>")
+            html_lines.append("</ul></div>")
+    html_lines.append("</div>")
     return "\n".join(html_lines)
 
 
@@ -106,7 +124,7 @@ def generate_site(dest_dir: Path):
     css_file = dest_dir / "style.css"
     _ = css_file.write_text(CSS)
 
-    for f in sorted(Path(".").glob("*/*.md")):
+    for f in find_md_files():
         rel_root = f.parent
         out_dir = dest_dir / rel_root
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -124,7 +142,10 @@ def generate_site(dest_dir: Path):
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<h1>Notes Index</h1>
+<form action="/regenerate" method="post">
+    <button name="regenerate" value="regenerate">REGENERATE</button>
+    <code class="updated_at">Updated at: {datetime.datetime.now(tz=datetime.UTC).isoformat(sep=" ", timespec="seconds")}</code>
+</form>
 {build_index_html()}
 </body>
 </html>
@@ -135,11 +156,24 @@ def generate_site(dest_dir: Path):
 
 
 def serve(dest_dir: Path, addr: str = "127.0.0.1", port: int = 8323):
-    # This class is used to specify the directory to serve without
-    # using os.chdir
     class Handler(SimpleHTTPRequestHandler):
         def __init__(self, *args, **kwargs):
+            # This is used to specify the directory to serve without using os.chdir
             super().__init__(*args, directory=dest_dir, **kwargs)
+
+        def do_POST(self):
+            if self.path == "/regenerate":
+                try:
+                    generate_site(dest_dir)
+                    self.send_response(301)
+                    self.send_header("Location", "/")
+                    self.end_headers()
+                except Exception as e:
+                    self.send_error(
+                        500, f"Re-generation of html from md files failed: {e}"
+                    )
+            else:
+                self.send_error(404, "Not Found")
 
     httpd = HTTPServer((addr, port), Handler)
     print(f"Serving at http://{addr}:{port}")
@@ -160,23 +194,7 @@ def main():
 
     os.chdir(notes_dir)
     generate_site(dest_dir)
-    last_md5_sum: str = calculate_md5()
-
-    t = threading.Thread(target=serve, args=(dest_dir, ADDR, PORT), daemon=True)
-    t.start()
-
-    try:
-        while True:
-            time.sleep(10)
-            md5_sum = calculate_md5()
-            if md5_sum != last_md5_sum:
-                last_md5_sum = md5_sum
-                try:
-                    generate_site(dest_dir)
-                except Exception as e:
-                    print(e)
-    except KeyboardInterrupt:
-        sys.exit(0)
+    serve(dest_dir, ADDR, PORT)
 
 
 if __name__ == "__main__":
