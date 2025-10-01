@@ -10,14 +10,20 @@ in
     description = "Static Notes";
     wantedBy = [ "multi-user.target" ];
     path = with pkgs; [
-      pandoc
+      quarto
+      strip-ansi
     ];
     serviceConfig = {
-      User = "syncthing";
-      Group = "syncthing";
+      User = "root";
+      Group = "root";
       ExecStart = "${static_notes_script}/bin/generate-static-notes.py /var/lib/syncthing/SYNC_STUFF/notes/zk/notes /tmp/notes";
       Restart = "on-failure";
-      WorkingDirectory = "/var/lib/syncthing/SYNC_STUFF/notes/zk/notes";
+      Environment = [
+        "NO_COLOR=1"
+        "PYTHON_UNBUFFERED=1"
+        "HOME=/tmp/.quarto"
+        "XDG_CACHE_HOME=/tmp/.quarto/cache"
+      ];
     };
   };
 }
