@@ -38,6 +38,7 @@
     unstable-pkgs.gotools
     unstable-pkgs.jq
     unstable-pkgs.ripgrep
+    vim
     wget
     wireguard-tools
   ];

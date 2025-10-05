@@ -12,7 +12,7 @@
       py-pkgs.requests
     ]))
 
-    inputs.neovim-flake.packages.${pkgs.system}.nvim-without-config
+    inputs.neovim-flake.packages.${pkgs.system}.vanilla
 
     ansible
     ffmpeg-full

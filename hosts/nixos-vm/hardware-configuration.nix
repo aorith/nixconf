@@ -14,48 +14,50 @@
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
+  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
+  hardware.graphics.enable = true;
+
   boot.initrd.availableKernelModules = [
     "ahci"
-    "xhci_pci"
+    "ehci_pci"
+    "sd_mod"
+    "sr_mod"
+    "uhci_hcd"
+    "virtio_blk"
     "virtio_pci"
     "virtio_scsi"
-    "sr_mod"
-    "virtio_blk"
+    "xhci_pci"
   ];
   boot.initrd.kernelModules = [ "virtiofs" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
+    device = "/dev/disk/by-partlabel/root";
     fsType = "ext4";
   };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-partlabel/EFI";
+    fsType = "vfat";
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
+  };
 
-  fileSystems."/mnt/storage/disk1" = {
-    device = "disk1";
-    fsType = "virtiofs";
+  # NFS
+  fileSystems."/mnt/disk1" = {
+    device = "10.255.255.7:/mnt/disk1";
+    fsType = "nfs";
     options = [ "nofail" ];
   };
 
-  fileSystems."/mnt/storage/disk2" = {
-    device = "disk2";
-    fsType = "virtiofs";
-    options = [ "nofail" ];
-  };
-
-  fileSystems."/mnt/storage/tank" = {
-    device = "tank";
-    fsType = "virtiofs";
-    options = [ "nofail" ];
-  };
-
-  fileSystems."/home/aorith/githome" = {
-    device = "githome";
-    fsType = "virtiofs";
-    options = [ "nofail" ];
-  };
-
-  swapDevices = [ ];
+  #fileSystems."/mnt/storage/tank" = {
+  #  device = "tank";
+  #  fsType = "virtiofs";
+  #  options = [ "nofail" ];
+  #};
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

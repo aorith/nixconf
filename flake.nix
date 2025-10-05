@@ -55,8 +55,8 @@
           };
         };
         # --- NixOS VM (unstable)
-        nixos = nixpkgs-unstable.lib.nixosSystem {
-          modules = [ ./hosts/nixos ];
+        nixos-vm = nixpkgs-unstable.lib.nixosSystem {
+          modules = [ ./hosts/nixos-vm ];
           specialArgs = {
             inherit inputs;
           };

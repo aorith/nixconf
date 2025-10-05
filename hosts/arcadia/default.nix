@@ -34,12 +34,6 @@
       logRefusedConnections = false; # Reduce journal logs
     };
 
-    environment.systemPackages = with pkgs; [
-      git
-      gnumake
-      vim
-    ];
-
     services.cron.enable = true;
 
     services.openssh = {

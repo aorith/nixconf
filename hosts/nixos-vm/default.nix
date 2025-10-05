@@ -3,17 +3,24 @@
   imports = [
     ./hardware-configuration.nix
     ./../../modules/nixos/core
+    ./syncthing.nix
+    ./media-stack.nix
   ];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
+  environment.systemPackages = [
+    inputs.neovim-flake.packages.${pkgs.system}.vanilla
+  ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 7;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   services.spice-vdagentd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
   networking = {
-    hostName = "nixos";
+    hostName = "nixos-vm";
     networkmanager.enable = true;
     useNetworkd = true;
     useDHCP = false;
@@ -23,7 +30,7 @@
   };
 
   systemd.network.networks."10-wan" = {
-    matchConfig.Name = "enp1s0";
+    matchConfig.Name = "ens18";
     address = [
       "10.255.255.8/24"
     ];
@@ -34,14 +41,8 @@
     linkConfig.RequiredForOnline = "routable";
   };
 
-  environment.systemPackages = with pkgs; [
-    gnumake
-  ];
-
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
-
-  systemd.tmpfiles.rules = [ "L /home/aorith/Syncthing - - - - /mnt/storage/tank/data/syncthing" ];
 
   system.stateVersion = "25.05";
 }
