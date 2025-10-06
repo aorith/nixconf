@@ -72,3 +72,22 @@ bree.iou.re {
 	root * %%bree_root%%
 	file_server
 }
+
+whoami.iou.re {
+	tls aomanu+caddy@gmail.com
+	bind 0.0.0.0
+
+	log whoami {
+		level INFO
+		format json
+		output file /var/log/caddy/whoami.log {
+			roll_size 10MiB
+			roll_keep 10
+			roll_keep_for 196h
+		}
+	}
+
+	reverse_proxy 127.0.0.1:8600 {
+		header_down Strict-Transport-Security max-age=31536000;
+	}
+}

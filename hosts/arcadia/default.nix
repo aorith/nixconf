@@ -15,6 +15,7 @@
     ./varnishlog-parser.nix
     ./nginx.nix
     ./notes.nix
+    ./whoami.nix
   ];
 
   config = {
