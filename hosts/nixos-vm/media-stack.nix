@@ -63,9 +63,33 @@ in
       group = "${group.name}";
     };
 
-    # amule = {
-    #   enable = true;
-    #   user = "${user.name}";
-    # };
+    # EXPERIMENTAL
+    # I2P (Invisible Internet Project) is an anonymous, decentralized overlay network.
+    # It routes traffic inside its own encrypted network of peers
+    i2pd = {
+      enable = true;
+      port = 10100; # UDP - open it optionally
+      proto = {
+        http = {
+          # Web interface
+          enable = true;
+          address = "10.255.255.8";
+          port = 10101;
+        };
+        httpProxy = {
+          # Test: curl "http://notbob.i2p" --proxy 10.255.255.8:10102
+          enable = true;
+          address = "10.255.255.8";
+          port = 10102;
+          # NOTE: outproxy: Address of a proxy server inside I2P, which is used to visit regular Internet
+          # outproxy = "http://false.i2p";
+        };
+        sam = {
+          enable = true;
+          port = 10103;
+        };
+      };
+    };
+
   };
 }
