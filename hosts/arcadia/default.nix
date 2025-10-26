@@ -2,20 +2,19 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./../../modules/nixos/core
     ./fail2ban.nix
     ./caddy
     ./syncthing.nix
     ./wireguard.nix
-    #./proxy.nix
-    ./../../modules/nixos/core
+    ./proxy.nix
     ./yarr.nix
     ./silverbullet.nix
-    #./webdav.nix
-    #./i2p.nix
     ./varnishlog-parser.nix
     ./nginx.nix
     ./notes.nix
     ./whoami.nix
+    ./webdav.nix
   ];
 
   config = {

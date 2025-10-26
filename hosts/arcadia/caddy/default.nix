@@ -1,9 +1,9 @@
 { pkgs, unstable-pkgs, ... }:
 let
   bree-index = pkgs.writeTextDir "bree/www/index.html" (builtins.readFile ./bree.html);
-  caddyfile = pkgs.writeText "caddyfile" (
+  caddyfile = pkgs.writeText "Caddyfile" (
     builtins.replaceStrings [ "%%bree_root%%" ] [ "${bree-index.outPath}/bree/www" ] (
-      builtins.readFile ./caddyfile
+      builtins.readFile ./Caddyfile
     )
   );
 in

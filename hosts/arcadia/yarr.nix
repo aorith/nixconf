@@ -3,7 +3,7 @@
   services.yarr = {
     enable = true;
     package = unstable-pkgs.yarr;
-    address = "10.255.254.1";
+    address = "127.0.0.1";
     port = 7070;
     #authFilePath = "/etc/yarr.auth";
   };
