@@ -51,6 +51,12 @@
       ];
     };
 
+    users.users.aorith.openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKmfktrz3eMNZ6aVJcvFC4ABOwMvS3g0gVuCAQKMwDSl aorith@msp"
+      # Termux:
+      "from=\"10.255.254.0/24\" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHNYo2UDjYeGnvf8WhyAIh7AnAEI5NNXchgibAZXcnks u0_a480@localhost"
+    ];
+
     virtualisation.docker = {
       enable = true;
       autoPrune = {
