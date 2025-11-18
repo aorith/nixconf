@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     unstable-pkgs.alacritty
     unstable-pkgs.flameshot
-    #unstable-pkgs.wezterm
+    unstable-pkgs.ghostty
 
     calibre
     chromium

@@ -31,13 +31,13 @@
     killall
     nixfmt
     sops
-    tmux
     tree
     unstable-pkgs.curl
     unstable-pkgs.fzf
     unstable-pkgs.gotools
     unstable-pkgs.jq
     unstable-pkgs.ripgrep
+    tmux
     vim
     wget
     wireguard-tools
