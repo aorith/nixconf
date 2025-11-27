@@ -24,7 +24,7 @@
     };
   };
 
-  # Hourly graph - every hour
+  # Hourly/Monthly graph - every hour
   systemd.timers."vnstati-hourly" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
@@ -37,6 +37,7 @@
     path = with pkgs; [ vnstat ];
     script = ''
       ${pkgs.vnstat}/bin/vnstati -i enp1s0 -h 24 -o /srv/www/hourly.png
+      ${pkgs.vnstat}/bin/vnstati -i enp1s0 -m 12 -o /srv/www/monthly.png
     '';
     serviceConfig = {
       Type = "oneshot";
