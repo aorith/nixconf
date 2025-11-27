@@ -35,6 +35,7 @@
     };
 
     services.cron.enable = true;
+    services.vnstat.enable = true;
 
     services.openssh = {
       enable = true;
