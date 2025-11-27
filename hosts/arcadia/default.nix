@@ -15,6 +15,7 @@
     ./notes.nix
     ./whoami.nix
     ./webdav.nix
+    ./timers.nix
   ];
 
   config = {

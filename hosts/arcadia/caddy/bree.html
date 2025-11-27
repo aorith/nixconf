@@ -1,105 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bree - El Póney Pisador</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Bree - El Póney Pisador</title>
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				background: rgba(0, 0, 0, 0.9);
+				min-height: 100dvh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 2rem;
+			}
+			
+			.container {
+				background: rgba(0, 0, 0, 0.75);
+				backdrop-filter: blur(10px);
+				border-radius: 1.5rem;
+				padding: 3rem 2.5rem;
+				max-width: 600px;
+				width: 100%;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+			}
+			
+			.section {
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+				margin-bottom: 2rem;
+			}
+			
+			h3 {
+				color: #90ee90;
+				font-size: 1.5rem;
+				font-weight: 600;
+				margin-bottom: 0.5rem;
+				letter-spacing: 0.5px;
+			}
+			
+			a {
+				color: #fff;
+				text-decoration: none;
+				padding: 0.75rem 1.25rem;
+				background: rgba(255, 255, 255, 0.05);
+				border-radius: 0.5rem;
+				transition: all 0.2s;
+				font-size: 1.1rem;
+			}
+			
+			a:hover {
+				background: rgba(100, 230, 100, 0.15);
+				color: #64e664;
+				transform: translateX(4px);
+			}
+			
+			p {
+				color: #aaa;
+				text-align: center;
+				margin-top: 1rem;
+				font-size: 0.95rem;
+			}
+			
+			code {
+				background: rgba(255, 255, 255, 0.1);
+				padding: 0.2rem 0.5rem;
+				border-radius: 0.25rem;
+				font-family: 'Courier New', monospace;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="section">
+				<a href="https://10.255.255.7:8384/" target="_blank">Syncthing - Trantor</a>
+				<a href="https://127.0.0.1:8384/" target="_blank">Syncthing - Localhost</a>
+			</div>
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: rgba(0, 0, 0, 0.9);
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
+			<div class="section">
+				<h3>Trantor Nixos VM</h3>
+				<a href="http://10.255.255.8:8080" target="_blank">QBittorrent</a>
+				<a href="http://10.255.255.8:7878" target="_blank">Radarr (Movies)</a>
+				<a href="http://10.255.255.8:8989" target="_blank">Sonarr (Shows)</a>
+				<a href="http://10.255.255.8:6767" target="_blank">Bazarr</a>
+				<a href="http://10.255.255.8:8096" target="_blank">Jellyfin</a>
+				<a href="http://10.255.255.8:9696" target="_blank">Prowlarr</a>
+			</div>
 
-    .container {
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(10px);
-      border-radius: 1.5rem;
-      padding: 3rem 2.5rem;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    }
+			<div class="section">
+				<h3>Arcadia (VPN)</h3>
+				<a href="https://notes.iou.re:7676" target="_blank">Static Notes</a>
+				<a href="https://silverbullet.iou.re:7676" target="_blank">Silverbullet</a>
+				<a href="https://yarr.iou.re:7676" target="_blank">Yarr</a>
+				<a href="https://dav.iou.re:7676/joplin/" target="_blank">WebDAV (Joplin)</a>
+				<a href="http://10.255.254.1:8384" target="_blank">Syncthing</a>
+			</div>
 
-    .section {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
+			<p>Tiny proxy is available at <code>10.255.254.1:8888</code></p>
 
-    h3 {
-      color: #90ee90;
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.5px;
-    }
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      padding: 0.75rem 1.25rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0.5rem;
-      transition: all 0.2s;
-      font-size: 1.1rem;
-    }
-
-    a:hover {
-      background: rgba(100, 230, 100, 0.15);
-      color: #64e664;
-      transform: translateX(4px);
-    }
-
-    p {
-      color: #aaa;
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.95rem;
-    }
-
-    code {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 0.2rem 0.5rem;
-      border-radius: 0.25rem;
-      font-family: 'Courier New', monospace;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="section">
-      <a href="https://10.255.255.7:8384/" target="_blank">Syncthing - Trantor</a>
-      <a href="https://127.0.0.1:8384/" target="_blank">Syncthing - Localhost</a>
-    </div>
-
-    <div class="section">
-      <h3>Trantor Nixos VM</h3>
-      <a href="http://10.255.255.8:8080" target="_blank">QBittorrent</a>
-      <a href="http://10.255.255.8:7878" target="_blank">Radarr (Movies)</a>
-      <a href="http://10.255.255.8:8989" target="_blank">Sonarr (Shows)</a>
-      <a href="http://10.255.255.8:6767" target="_blank">Bazarr</a>
-      <a href="http://10.255.255.8:8096" target="_blank">Jellyfin</a>
-      <a href="http://10.255.255.8:9696" target="_blank">Prowlarr</a>
-    </div>
-
-    <div class="section">
-      <h3>Arcadia (VPN)</h3>
-      <a href="https://notes.iou.re:7676" target="_blank">Static Notes</a>
-      <a href="https://silverbullet.iou.re:7676" target="_blank">Silverbullet</a>
-      <a href="https://yarr.iou.re:7676" target="_blank">Yarr</a>
-      <a href="https://dav.iou.re:7676/joplin/" target="_blank">WebDAV (Joplin)</a>
-      <a href="http://10.255.254.1:8384" target="_blank">Syncthing</a>
-    </div>
-
-    <p>Tiny proxy is available at <code>10.255.254.1:8888</code></p>
-  </div>
-</body>
+			<br>
+			<div class="section">
+				<img alt="5m graph" src="5m-graph.png">
+				<img alt="hourly graph" src="hourly.png">
+				<img alt="summary graph" src="summary.png">
+			</div>
+		</div>
+	</body>
 </html>

@@ -17,6 +17,7 @@ main:
 
 switch:
 	sudo nixos-rebuild switch -L --flake .#
+	@if [[ "$${HOSTNAME}" == "arcadia" ]]; then sudo cp -v hosts/arcadia/caddy/bree.html /srv/www/index.html; fi
 
 boot:
 	sudo nixos-rebuild boot -L --flake .#
