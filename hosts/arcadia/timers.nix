@@ -17,6 +17,7 @@
     path = with pkgs; [ vnstat ];
     script = ''
       ${pkgs.vnstat}/bin/vnstati -i enp1s0 -5g -o /srv/www/5m-graph.png
+      ${pkgs.vnstat}/bin/vnstati -i wg0 -5g -o /srv/www/wg0-5m-graph.png
     '';
     serviceConfig = {
       Type = "oneshot";
@@ -38,6 +39,8 @@
     script = ''
       ${pkgs.vnstat}/bin/vnstati -i enp1s0 -h 24 -o /srv/www/hourly.png
       ${pkgs.vnstat}/bin/vnstati -i enp1s0 -m 12 -o /srv/www/monthly.png
+      ${pkgs.vnstat}/bin/vnstati -i wg0 -h 24 -o /srv/www/wg0-hourly.png
+      ${pkgs.vnstat}/bin/vnstati -i wg0 -m 12 -o /srv/www/wg0-monthly.png
     '';
     serviceConfig = {
       Type = "oneshot";
@@ -58,6 +61,7 @@
     path = with pkgs; [ vnstat ];
     script = ''
       ${pkgs.vnstat}/bin/vnstati -i enp1s0 -s -o /srv/www/summary.png
+      ${pkgs.vnstat}/bin/vnstati -i wg0 -s -o /srv/www/wg0-summary.png
     '';
     serviceConfig = {
       Type = "oneshot";
