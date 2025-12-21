@@ -2,6 +2,18 @@ varnishlog.iou.re {
 	tls aomanu+caddy@gmail.com
 	bind 0.0.0.0
 
+	@unchecked not header Cookie *opensesame*
+
+	handle @unchecked {
+		header Content-Type text/html
+		respond <<EOF
+			<script>
+				document.cookie = 'opensesame=1; Path=/;';
+				window.location.reload();
+			</script>
+		EOF 418
+	}
+
 	log vlog {
 		level INFO
 		format json
@@ -26,6 +38,18 @@ bree.iou.re {
 	tls aomanu+caddy@gmail.com
 	bind 0.0.0.0
 
+	@unchecked not header Cookie *opensesame*
+
+	handle @unchecked {
+		header Content-Type text/html
+		respond <<EOF
+			<script>
+				document.cookie = 'opensesame=1; Path=/;';
+				window.location.reload();
+			</script>
+		EOF 418
+	}
+
 	root * /srv/www
 	file_server
 }
@@ -48,3 +72,36 @@ whoami.iou.re {
 		header_down Strict-Transport-Security max-age=31536000;
 	}
 }
+
+foticos.iou.re {
+	tls aomanu+caddy@gmail.com
+	bind 0.0.0.0
+
+	@unchecked not header Cookie *opensesame*
+
+	handle @unchecked {
+		header Content-Type text/html
+		respond <<EOF
+			<script>
+				document.cookie = 'opensesame=1; Path=/;';
+				window.location.reload();
+			</script>
+		EOF 418
+	}
+
+	log foticos {
+		level INFO
+		format json
+		output file /var/log/caddy/foticos.log {
+			roll_size 10MiB
+			roll_keep 10
+			roll_keep_for 196h
+		}
+	}
+
+	reverse_proxy 127.0.0.1:2283 {
+		header_down Strict-Transport-Security max-age=31536000;
+	}
+}
+
+# vim: ft=caddyfile noexpandtab

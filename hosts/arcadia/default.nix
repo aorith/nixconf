@@ -12,9 +12,7 @@
     ./silverbullet.nix
     ./varnishlog-parser.nix
     ./nginx.nix
-    ./notes.nix
     ./whoami.nix
-    ./webdav.nix
     ./timers.nix
   ];
 

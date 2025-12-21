@@ -9,14 +9,13 @@
       "172.17.0.0/16"
       "172.18.0.0/16"
       "10.255.254.0/24"
-      "notes.iou.re" # resolve the IP via DNS
-      "home.iou.re"
+      "bree.iou.re" # resolve the IP via DNS
     ];
-    bantime = "3d"; # First time ban time
+    bantime = "15m"; # First time ban time
     bantime-increment = {
       enable = true; # Enable increment of bantime after each violation
-      multipliers = "1 2 4 8 16 32 64 128 256";
-      maxtime = "30d"; # Do not ban for more than 1 week
+      multipliers = "1 4 32 128 512 1024 2048 4096 8192";
+      maxtime = "30d"; # Do not ban for more than this time
       overalljails = true; # Calculate the bantime based on all the violations
     };
 
@@ -29,22 +28,10 @@
         ];
         maxretry = 3;
       };
-      caddy-notes.settings = {
+      foticos.settings = {
         enabled = true;
-        filter = "caddy-notes";
-        logpath = "/var/log/caddy/notes.log";
-        action = lib.concatStringsSep "\n         " [
-          "iptables-allports"
-          "ntfy"
-        ];
-        backend = "auto";
-        maxretry = 5;
-        findtime = 600;
-      };
-      caddy-notes-basic-auth.settings = {
-        enabled = true;
-        filter = "caddy-notes-basic-auth";
-        logpath = "/var/log/caddy/notes.log";
+        filter = "foticos";
+        logpath = "/var/log/caddy/foticos.log";
         action = lib.concatStringsSep "\n         " [
           "iptables-allports"
           "ntfy"
@@ -66,22 +53,13 @@
       ''
     );
 
-    # Filter for notes access
-    "fail2ban/filter.d/caddy-notes.local".text = pkgs.lib.mkDefault (
-      pkgs.lib.mkAfter ''
-        [Definition]
-        datepattern = ,"ts":{Epoch}
-        failregex = ^.*"remote_ip":"<HOST>",.*?auth\?error=1".*$
-      ''
-    );
-
-    # fail2ban-regex --VD -d ',"ts":{Epoch}' /var/log/caddy/notes.log '(?i)^.*"remote_ip":"<HOST>",.*?"Authorization".*"status":401,.*$'
+    # fail2ban-regex --VD -d ',"ts":{Epoch}' /var/log/caddy/foticos.log '(?i)^.*"remote_ip":"<HOST>",.*,"uri":"/api/auth/login.*"status":401,.*$'
     # note: don't use '"ts":{Epoch},' with a comma after '{Epoch}', it expects epoch without decimals and caddy logs: ...,"ts":1734162061.2562792,...
-    "fail2ban/filter.d/caddy-notes-basic-auth.local".text = pkgs.lib.mkDefault (
+    "fail2ban/filter.d/foticos.local".text = pkgs.lib.mkDefault (
       pkgs.lib.mkAfter ''
         [Definition]
         datepattern = ,"ts":{Epoch}
-        failregex = (?i)^.*"remote_ip":"<HOST>",.*?"Authorization".*"status":401,.*$
+        failregex = (?i)^.*"remote_ip":"<HOST>",.*,"uri":"/api/auth/login.*"status":401,.*$
       ''
     );
   };
