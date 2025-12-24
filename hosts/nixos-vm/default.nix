@@ -15,6 +15,7 @@
   boot.loader.systemd-boot.configurationLimit = 7;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
   security.sudo.wheelNeedsPassword = false;
