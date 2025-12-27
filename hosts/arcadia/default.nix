@@ -9,7 +9,6 @@
     ./wireguard.nix
     ./proxy.nix
     ./yarr.nix
-    ./silverbullet.nix
     ./varnishlog-parser.nix
     ./nginx.nix
     ./whoami.nix
