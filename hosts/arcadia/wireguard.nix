@@ -30,6 +30,13 @@
         };
         wireguardPeers = [
           {
+            # Nixos-vm
+            PublicKey = "0+wv8SrdQDG64U3Coz5yzlJLMnX7ReDNaopKzY4p1RA=";
+            AllowedIPs = [ "10.255.254.8/32" ];
+            PersistentKeepalive = 15;
+            PresharedKeyFile = "/etc/wireguard-keys/wg0.psk";
+          }
+          {
             # Trantor
             PublicKey = "qpJpTU8yDNyuCZ9kjolGDMA/Wz25BM5NReieARaWyVI=";
             AllowedIPs = [ "10.255.254.7/32" ];
