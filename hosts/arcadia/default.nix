@@ -23,6 +23,24 @@
 
     networking.hostName = "arcadia";
     networking.enableIPv6 = false;
+    networking.nftables = {
+      enable = true;
+      tables = {
+        portmon = {
+          name = "portmon";
+          enable = true;
+          family = "inet";
+          content = ''
+            chain input {
+                type filter hook input priority -10; policy accept;
+
+                #meta l4proto tcp tcp dport { 22, 3306 } tcp flags & (fin|syn|rst|ack) == syn meter portmon-ssh { ip saddr limit rate 2/minute } log prefix "PORTMON-SYN: "
+                meta l4proto tcp tcp dport { 22, 3306 } tcp flags & (fin|syn|rst|ack) == syn log prefix "PORTMON-SYN: "
+            }
+          '';
+        };
+      };
+    };
     networking.firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -58,6 +76,8 @@
 
     virtualisation.docker = {
       enable = true;
+      extraOptions = "--iptables=False --firewall-backend=nftables";
+      extraPackages = [ pkgs.nftables ];
       autoPrune = {
         dates = "daily";
         flags = [

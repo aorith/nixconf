@@ -23,7 +23,7 @@
       sshd.settings = {
         enabled = true;
         action = lib.concatStringsSep "\n         " [
-          ''iptables-multiport[name=SSH, port="22,22022"]''
+          "nftables-allports"
           "ntfy"
         ];
         maxretry = 3;
@@ -33,12 +33,23 @@
         filter = "foticos";
         logpath = "/var/log/caddy/foticos.log";
         action = lib.concatStringsSep "\n         " [
-          "iptables-allports"
+          "nftables-allports"
           "ntfy"
         ];
         backend = "auto";
         maxretry = 5;
         findtime = 600;
+      };
+      portmon.settings = {
+        enabled = true;
+        filter = "portmon";
+        backend = "systemd";
+        journalmatch = "_TRANSPORT=kernel";
+        action = lib.concatStringsSep "\n         " [
+          "nftables-allports"
+          "ntfy"
+        ];
+        maxretry = 1;
       };
     };
   };
@@ -59,7 +70,15 @@
       pkgs.lib.mkAfter ''
         [Definition]
         datepattern = ,"ts":{Epoch}
-        failregex = (?i)^.*"remote_ip":"<HOST>",.*,"uri":"/api/auth/login.*"status":401,.*$
+        failregex = (?i)^.*"remote_ip":"<ADDR>",.*,"uri":"/api/auth/login.*"status":401,.*$
+      ''
+    );
+
+    "fail2ban/filter.d/portmon.local".text = pkgs.lib.mkDefault (
+      pkgs.lib.mkAfter ''
+        [Definition]
+        failregex = ^.*PORTMON-SYN: .* SRC=<ADDR>.* DST=.*$
+        journalmatch = _TRANSPORT=kernel
       ''
     );
   };
