@@ -77,7 +77,7 @@
     "fail2ban/filter.d/portmon.local".text = pkgs.lib.mkDefault (
       pkgs.lib.mkAfter ''
         [Definition]
-        failregex = ^.*PORTMON-SYN: .* SRC=<ADDR>.* DST=.*$
+        failregex = ^.*PORTMON: .* SRC=<ADDR>.* DST=.*$
         journalmatch = _TRANSPORT=kernel
       ''
     );

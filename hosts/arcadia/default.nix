@@ -32,10 +32,10 @@
           family = "inet";
           content = ''
             chain input {
-                type filter hook input priority -10; policy accept;
+                type filter hook input priority -200
 
-                #meta l4proto tcp tcp dport { 22, 3306 } tcp flags & (fin|syn|rst|ack) == syn meter portmon-ssh { ip saddr limit rate 2/minute } log prefix "PORTMON-SYN: "
-                meta l4proto tcp tcp dport { 22, 3306 } tcp flags & (fin|syn|rst|ack) == syn log prefix "PORTMON-SYN: "
+                tcp dport { 22, 3306 } log prefix "PORTMON: "
+                udp dport { 22, 3306 } log prefix "PORTMON: "
             }
           '';
         };
