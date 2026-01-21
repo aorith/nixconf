@@ -31,11 +31,23 @@
           enable = true;
           family = "inet";
           content = ''
-            chain input {
-                type filter hook input priority -200
+            set whitelist4 {
+              type ipv4_addr
+              flags interval # cidr ranges
+              elements = { 127.0.0.1/24, 10.255.254.0/24, 172.17.0.0/16, 172.18.0.0/16 }
+            }
 
-                tcp dport { 22, 3306 } log prefix "PORTMON: "
-                udp dport { 22, 3306 } log prefix "PORTMON: "
+            set ban4 {
+              type ipv4_addr
+              flags timeout
+              timeout 8h
+            }
+
+            chain input {
+                type filter hook input priority -10
+
+                ip saddr @ban4 drop
+                meta l4proto { tcp, udp } th dport { 22, 3306 } ip saddr != @whitelist4 add @ban4 { ip saddr } drop
             }
           '';
         };

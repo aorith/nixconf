@@ -41,7 +41,7 @@
         findtime = 600;
       };
       portmon.settings = {
-        enabled = true;
+        enabled = false;
         filter = "portmon";
         backend = "systemd";
         journalmatch = "_TRANSPORT=kernel";
@@ -74,12 +74,12 @@
       ''
     );
 
-    "fail2ban/filter.d/portmon.local".text = pkgs.lib.mkDefault (
-      pkgs.lib.mkAfter ''
-        [Definition]
-        failregex = ^.*PORTMON: .* SRC=<ADDR>.* DST=.*$
-        journalmatch = _TRANSPORT=kernel
-      ''
-    );
+#   "fail2ban/filter.d/portmon.local".text = pkgs.lib.mkDefault (
+#     pkgs.lib.mkAfter ''
+#       [Definition]
+#       failregex = ^.*PORTMON: .* SRC=<ADDR>.* DST=.*$
+#       journalmatch = _TRANSPORT=kernel
+#     ''
+#   );
   };
 }
