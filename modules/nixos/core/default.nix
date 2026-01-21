@@ -53,9 +53,7 @@
   '';
 
   # Disable LLMNR (name resolution on the local network)
-  services.resolved.extraConfig = ''
-    LLMNR=no
-  '';
+  services.resolved.settings.Resolve.LLMNR = "no";
 
   # Allow editing /etc/hosts as root (changes are discarded on rebuild)
   environment.etc.hosts.mode = "0644";
