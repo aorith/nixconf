@@ -28,6 +28,10 @@
     useHostResolvConf = false;
     firewall.enable = false;
     enableIPv6 = false;
+
+    wg-quick.interfaces = {
+      wg0.configFile = "/etc/wireguard-keys/nixos-vm.conf";
+    };
   };
 
   systemd.network.networks."10-wan" = {
