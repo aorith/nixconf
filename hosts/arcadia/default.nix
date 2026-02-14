@@ -47,7 +47,7 @@
                 type filter hook input priority -10
 
                 ip saddr @ban4 drop
-                meta l4proto { tcp, udp } th dport { 22, 3306 } ip saddr != @whitelist4 add @ban4 { ip saddr } log prefix "FW-BAN: " drop
+                meta l4proto { tcp, udp } th dport { 22, 3306, 22021, 22023 } ip saddr != @whitelist4 add @ban4 { ip saddr } log prefix "FW-BAN: " drop
             }
           '';
         };
