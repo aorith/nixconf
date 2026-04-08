@@ -40,14 +40,14 @@
             set ban4 {
               type ipv4_addr
               flags timeout
-              timeout 8h
+              timeout 24h
             }
 
             chain input {
                 type filter hook input priority -10
 
                 ip saddr @ban4 drop
-                meta l4proto { tcp, udp } th dport { 22, 3306, 22021, 22023 } ip saddr != @whitelist4 add @ban4 { ip saddr } log prefix "FW-BAN: " drop
+                meta l4proto { tcp, udp } th dport { 22, 3306, 22021, 22022, 22023, 22024, 22026, 22027 } ip saddr != @whitelist4 add @ban4 { ip saddr } log prefix "FW-BAN: " drop
             }
           '';
         };
@@ -56,9 +56,9 @@
     networking.firewall = {
       enable = true;
       allowedTCPPorts = [
-        22022
         80
         443
+        22025
       ];
       logRefusedConnections = false; # Reduce journal logs
     };
@@ -75,7 +75,7 @@
       listenAddresses = [
         {
           addr = "0.0.0.0";
-          port = 22022;
+          port = 22025;
         }
       ];
     };

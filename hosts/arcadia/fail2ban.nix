@@ -73,13 +73,5 @@
         failregex = (?i)^.*"remote_ip":"<ADDR>",.*,"uri":"/api/auth/login.*"status":401,.*$
       ''
     );
-
-#   "fail2ban/filter.d/portmon.local".text = pkgs.lib.mkDefault (
-#     pkgs.lib.mkAfter ''
-#       [Definition]
-#       failregex = ^.*PORTMON: .* SRC=<ADDR>.* DST=.*$
-#       journalmatch = _TRANSPORT=kernel
-#     ''
-#   );
   };
 }

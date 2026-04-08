@@ -30,6 +30,10 @@
   services.grafana = {
     enable = true;
     settings = {
+      security = {
+        # https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#file-provider
+        secret_key = "$__file{/etc/grafana-secret-key}";
+      };
       server = {
         http_addr = "10.255.254.1";
         http_port = 3000;
