@@ -7,11 +7,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1783593103,
-        "narHash": "sha256-hekvXRm9YlLaNaZE+i7s8kJ4bctZ8zLT/xBfKQD07dA=",
+        "lastModified": 1783614505,
+        "narHash": "sha256-HP6i7SwYPzZK1t0O2O7AE6jgvkBDMFYBCe+axkLEjjo=",
         "owner": "aorith",
         "repo": "neovim-flake",
-        "rev": "919e49c904023e363aff503e7df1847a0e99161e",
+        "rev": "cd67aafeb79647a23ac9672e11c52d9589d4e630",
         "type": "github"
       },
       "original": {
