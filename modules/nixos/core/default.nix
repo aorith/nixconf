@@ -18,7 +18,7 @@
 
   # Add different nixpkgs refs as module args
   _module.args.unstable-pkgs = import inputs.nixpkgs-unstable {
-    system = "${pkgs.system}";
+    system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
   };
 

@@ -8,7 +8,7 @@
   ];
 
   environment.systemPackages = [
-    inputs.neovim-flake.packages.${pkgs.system}.vanilla
+    inputs.neovim-flake.packages.${pkgs.stdenv.hostPlatform.system}.vanilla
   ];
 
   boot.loader.systemd-boot.enable = true;
