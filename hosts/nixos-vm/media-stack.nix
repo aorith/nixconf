@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   user = {
     name = "media-stack";
@@ -61,6 +61,25 @@ in
       enable = true;
       user = "${user.name}";
       group = "${group.name}";
+    };
+
+    amule = {
+      enable = true;
+      user = "${user.name}";
+      group = "${group.name}";
+      ExternalConnectPasswordFile = "/home/${user.name}/.amule-ec-passwd";
+      WebServerPasswordFile = "/home/${user.name}/.amule-ec-passwd";
+      settings = {
+        WebServer = {
+          Enabled = 1;
+          Port = 4711;
+        };
+
+        eMule = {
+          TempDir = "/mnt/disk1/media/.downloading-amule";
+          IncomingDir = "/mnt/disk1/media/downloads";
+        };
+      };
     };
 
     # EXPERIMENTAL

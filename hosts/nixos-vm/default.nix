@@ -3,12 +3,17 @@
   imports = [
     ./hardware-configuration.nix
     ./../../modules/nixos/core
+    ./../../modules/nixos/optional/desktop
     ./syncthing.nix
     ./media-stack.nix
   ];
 
   environment.systemPackages = [
     inputs.neovim-flake.packages.${pkgs.stdenv.hostPlatform.system}.vanilla
+    pkgs.awscli2
+    pkgs.kubectl
+    pkgs.kubecolor
+    pkgs.openvpn
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -22,7 +27,12 @@
 
   networking = {
     hostName = "nixos-vm";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      plugins = [
+        pkgs.networkmanager-openvpn
+      ];
+    };
     useNetworkd = true;
     useDHCP = false;
     useHostResolvConf = false;

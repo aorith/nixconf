@@ -19,7 +19,7 @@ in
     ./fonts.nix
     ./packages.nix
     ./gui-packages.nix
-    ./gnome.nix
+    ./kde.nix
   ];
 
   environment.systemPackages = [

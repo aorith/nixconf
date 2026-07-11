@@ -13,10 +13,10 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      noto-fonts-emoji
+      noto-fonts-color-emoji
 
       material-design-icons
-      ubuntu_font_family
+      ubuntu-classic
 
       nerd-fonts.iosevka-term
       nerd-fonts.hack

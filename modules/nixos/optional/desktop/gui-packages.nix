@@ -18,8 +18,8 @@
     pulseaudioFull
     wl-clipboard
     xclip
-    xorg.xev
-    xorg.xprop
+    xev
+    xprop
     xsel
 
     solaar
