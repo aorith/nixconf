@@ -14,6 +14,7 @@
     ./whoami.nix
     ./timers.nix
     ./victoriametrics.nix
+    ./dns.nix
   ];
 
   config = {
