@@ -3,7 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     ./../../modules/nixos/core
-    ./../../modules/nixos/optional/desktop
     ./syncthing.nix
     ./media-stack.nix
   ];

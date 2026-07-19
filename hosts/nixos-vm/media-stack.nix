@@ -28,8 +28,6 @@ in
     initialHashedPassword = "$6$nZjdJqbWrot/3qp1$gxUvzKo0o.6bjLmZqdifRXLDuilPFkzfl7rG7MNKH0HYY6R.d.lKIzo9V18vIOw6bPx46vUEbkWIWbgCPF2L11";
   };
 
-  environment.systemPackages = [ pkgs.amule-gui ];
-
   services = {
     jellyfin = {
       enable = true;
