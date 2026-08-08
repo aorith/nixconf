@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "la-coby-lista": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786206254,
+        "narHash": "sha256-XsviuwLuoe8CvD+HtIPyf+bhUwITVb6c/trOZzEnSoQ=",
+        "ref": "refs/heads/master",
+        "rev": "cac0a1dacf14a5d5bf61930bb4c0d5868685dfd7",
+        "revCount": 8,
+        "type": "git",
+        "url": "ssh://git@github.com/aorith/la-coby-lista.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/aorith/la-coby-lista.git"
+      }
+    },
     "neovim-flake": {
       "inputs": {
         "nixpkgs": "nixpkgs",
@@ -7,11 +23,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1784458105,
-        "narHash": "sha256-322mxC69g+2OCPIwS1Mdv+8+uZJ63fdJsl4vzyMhiAg=",
+        "lastModified": 1786188140,
+        "narHash": "sha256-mghNBXMKfpXU84NKN7ey4aw2gdBpuX6QbExZDyo8+a8=",
         "owner": "aorith",
         "repo": "neovim-flake",
-        "rev": "7be4d0bf49e4bef43ce9b9126324b4b8c185e3f9",
+        "rev": "5a9045d9e008ce3f4b6836bc7413eb2ba2f13ac0",
         "type": "github"
       },
       "original": {
@@ -38,11 +54,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1784356753,
-        "narHash": "sha256-12KrbMiWLcf8m7pCvAtZh1ZrgF85ZXDXvfR/fWTKy84=",
+        "lastModified": 1785967620,
+        "narHash": "sha256-IItrdb7Puk05RqOBWZYFC5X6Wl1sJmCfh5MWVHw5iMM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "61b7c44c4073f0b827768aff0049561b5110ea5a",
+        "rev": "b7c2ada94fe99c15b0dbcf4d11fd7850b957a436",
         "type": "github"
       },
       "original": {
@@ -54,11 +70,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1784356753,
-        "narHash": "sha256-12KrbMiWLcf8m7pCvAtZh1ZrgF85ZXDXvfR/fWTKy84=",
+        "lastModified": 1785967620,
+        "narHash": "sha256-IItrdb7Puk05RqOBWZYFC5X6Wl1sJmCfh5MWVHw5iMM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "61b7c44c4073f0b827768aff0049561b5110ea5a",
+        "rev": "b7c2ada94fe99c15b0dbcf4d11fd7850b957a436",
         "type": "github"
       },
       "original": {
@@ -70,6 +86,7 @@
     },
     "root": {
       "inputs": {
+        "la-coby-lista": "la-coby-lista",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
@@ -154,11 +171,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784369104,
-        "narHash": "sha256-47cxbcZODibHv3rELFQ9vZly0vUNkND/atn/U7HLeb0=",
+        "lastModified": 1785945821,
+        "narHash": "sha256-NLSyTCW4K4ofhNBllt3omPasm6QpralXH1DBZOc91Dw=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "df3c0640565d04a0261253cdd89fce78ec50168a",
+        "rev": "ae7910970dddc408fe6ab1c8e4b277bb21d72dc0",
         "type": "github"
       },
       "original": {

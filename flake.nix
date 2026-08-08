@@ -14,6 +14,11 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    la-coby-lista = {
+      url = "git+ssh://git@github.com/aorith/la-coby-lista.git";
+      flake = false;
+    };
   };
 
   outputs =

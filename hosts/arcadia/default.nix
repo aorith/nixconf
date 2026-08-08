@@ -15,6 +15,7 @@
     ./timers.nix
     ./victoriametrics.nix
     ./dns.nix
+    ./la-coby-lista.nix
   ];
 
   config = {
