@@ -1,5 +1,5 @@
 varnishlog.iou.re {
-	tls aomanu+caddy@gmail.com
+	tls @CERT_PATH@ @KEY_PATH@
 	bind 0.0.0.0
 
 	@unchecked not header Cookie *opensesame*
@@ -35,7 +35,7 @@ varnishlog.iou.re {
 }
 
 bree.iou.re {
-	tls aomanu+caddy@gmail.com
+	tls @CERT_PATH@ @KEY_PATH@
 	bind 0.0.0.0
 
 	@unchecked not header Cookie *opensesame*
@@ -55,7 +55,7 @@ bree.iou.re {
 }
 
 whoami.iou.re {
-	tls aomanu+caddy@gmail.com
+	tls @CERT_PATH@ @KEY_PATH@
 	bind 0.0.0.0
 
 	log whoami {
@@ -73,35 +73,45 @@ whoami.iou.re {
 	}
 }
 
-foticos.iou.re {
-	tls aomanu+caddy@gmail.com
+cobylista.iou.re {
+	tls @CERT_PATH@ @KEY_PATH@
 	bind 0.0.0.0
 
-	@unchecked not header Cookie *opensesame*
-
-	handle @unchecked {
-		header Content-Type text/html
-		respond <<EOF
-			<script>
-				document.cookie = 'opensesame=1; Path=/;';
-				window.location.reload();
-			</script>
-		EOF 418
-	}
-
-	log foticos {
+	log cobylista {
 		level INFO
 		format json
-		output file /var/log/caddy/foticos.log {
+		output file /var/log/caddy/cobylista.log {
 			roll_size 10MiB
 			roll_keep 10
 			roll_keep_for 196h
 		}
 	}
 
-	reverse_proxy 127.0.0.1:2283 {
+	reverse_proxy 127.0.0.1:8754 {
 		header_down Strict-Transport-Security max-age=31536000;
 	}
 }
+
+#https://vault.iou.re {
+#	tls @CERT_PATH@ @KEY_PATH@
+#	bind 10.255.254.1
+#
+#	log vault {
+#		level INFO
+#		format json
+#		output file /var/log/caddy/vault.log {
+#			roll_size 10MiB
+#			roll_keep 10
+#			roll_keep_for 196h
+#		}
+#	}
+#
+#	@blocked not remote_ip 10.255.254.0/24
+#	respond @blocked "Nope" 403
+#
+#	reverse_proxy 127.0.0.1:8222 {
+#		header_up X-Real-IP {remote_host}
+#	}
+#}
 
 # vim: ft=caddyfile noexpandtab
