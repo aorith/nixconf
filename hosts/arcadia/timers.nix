@@ -80,7 +80,6 @@
   };
   systemd.services."backup-keepass" = {
     path = with pkgs; [
-      vnstat
       gawk
       openssl
       findutils

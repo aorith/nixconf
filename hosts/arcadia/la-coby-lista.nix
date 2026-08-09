@@ -17,7 +17,13 @@ in
   systemd.services.coby-lista = {
     description = "coby-lista";
     wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
+    after = [
+      "network.target"
+      "syncthing.service"
+    ];
+    unitConfig = {
+      ConditionPathExists = "/var/lib/syncthing/luks-mounted";
+    };
     serviceConfig = {
       ExecStart = runScript;
       User = "syncthing";
