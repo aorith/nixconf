@@ -5,6 +5,7 @@
     ./../../modules/nixos/core
     ./syncthing.nix
     ./media-stack.nix
+    ./docker.nix
   ];
 
   environment.systemPackages = [
