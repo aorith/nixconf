@@ -3,11 +3,11 @@
     "la-coby-lista": {
       "flake": false,
       "locked": {
-        "lastModified": 1786373913,
-        "narHash": "sha256-CWmhQPTwRLCtxzDZTzg8Oc2Vi5DHTztJgR7cN3cGCEs=",
+        "lastModified": 1787482280,
+        "narHash": "sha256-YXPVHfQTJOIY2xUF6bUe56M0k+Z2whkMldc9pwp6c28=",
         "ref": "refs/heads/master",
-        "rev": "73e1f1b68871d9a89855b9360fb9e7ba7d567619",
-        "revCount": 16,
+        "rev": "af848436debf4ec0d46785ad9082a831c9ed0a3a",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://git@github.com/aorith/la-coby-lista.git"
       },
