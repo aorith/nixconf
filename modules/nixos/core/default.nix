@@ -48,9 +48,9 @@
     useXkbConfig = true;
   };
 
-  services.journald.extraConfig = ''
-    SystemMaxUse=1G
-  '';
+  services.journald.settings.Journal = {
+    SystemMaxUse = "512M";
+  };
 
   # Disable LLMNR (name resolution on the local network)
   services.resolved.settings.Resolve.LLMNR = "no";
