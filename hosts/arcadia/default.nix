@@ -16,6 +16,7 @@
     ./victoriametrics.nix
     ./dns.nix
     ./la-coby-lista.nix
+    ./monkeyworks.nix
   ];
 
   config = {

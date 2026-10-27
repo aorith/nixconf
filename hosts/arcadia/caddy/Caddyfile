@@ -92,26 +92,16 @@ cobylista.iou.re {
 	}
 }
 
-#https://vault.iou.re {
-#	tls @CERT_PATH@ @KEY_PATH@
-#	bind 10.255.254.1
-#
-#	log vault {
-#		level INFO
-#		format json
-#		output file /var/log/caddy/vault.log {
-#			roll_size 10MiB
-#			roll_keep 10
-#			roll_keep_for 196h
-#		}
-#	}
-#
-#	@blocked not remote_ip 10.255.254.0/24
-#	respond @blocked "Nope" 403
-#
-#	reverse_proxy 127.0.0.1:8222 {
-#		header_up X-Real-IP {remote_host}
-#	}
-#}
+https://monkeyworks.iou.re {
+	tls @CERT_PATH@ @KEY_PATH@
+	bind 10.255.254.1
+
+	@blocked not remote_ip 10.255.254.0/24
+	respond @blocked "Nope" 403
+
+	reverse_proxy 127.0.0.1:8755 {
+		header_up X-Real-IP {remote_host}
+	}
+}
 
 # vim: ft=caddyfile noexpandtab
