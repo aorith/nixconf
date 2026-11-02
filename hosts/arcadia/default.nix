@@ -8,9 +8,7 @@
     ./syncthing.nix
     ./wireguard.nix
     ./proxy.nix
-    ./yarr.nix
     ./varnishlog-parser.nix
-    ./nginx.nix
     ./whoami.nix
     ./timers.nix
     ./victoriametrics.nix
