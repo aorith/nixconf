@@ -15,6 +15,7 @@
     ./dns.nix
     ./la-coby-lista.nix
     ./monkeyworks.nix
+    ./globalping.nix
   ];
 
   config = {
